@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_strongarm().
+ * Implements hook_strongarm().
  */
 function ignition_sites_strongarm() {
   $export = array();
@@ -13,30 +13,30 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'ant_pattern_ignition_site';
+  $strongarm->name = 'ant_pattern_project_info';
   $strongarm->value = '';
-  $export['ant_pattern_ignition_site'] = $strongarm;
+  $export['ant_pattern_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'ant_php_ignition_site';
+  $strongarm->name = 'ant_php_project_info';
   $strongarm->value = 0;
-  $export['ant_php_ignition_site'] = $strongarm;
+  $export['ant_php_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'ant_ignition_site';
+  $strongarm->name = 'ant_project_info';
   $strongarm->value = '0';
-  $export['ant_ignition_site'] = $strongarm;
+  $export['ant_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_anonymous_ignition_site';
+  $strongarm->name = 'comment_anonymous_project_info';
   $strongarm->value = 0;
-  $export['comment_anonymous_ignition_site'] = $strongarm;
+  $export['comment_anonymous_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -48,9 +48,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_controls_ignition_site';
+  $strongarm->name = 'comment_controls_project_info';
   $strongarm->value = '3';
-  $export['comment_controls_ignition_site'] = $strongarm;
+  $export['comment_controls_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -62,9 +62,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_mode_ignition_site';
+  $strongarm->name = 'comment_default_mode_project_info';
   $strongarm->value = 1;
-  $export['comment_default_mode_ignition_site'] = $strongarm;
+  $export['comment_default_mode_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -76,9 +76,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_order_ignition_site';
+  $strongarm->name = 'comment_default_order_project_info';
   $strongarm->value = '1';
-  $export['comment_default_order_ignition_site'] = $strongarm;
+  $export['comment_default_order_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -90,9 +90,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_default_per_page_ignition_site';
+  $strongarm->name = 'comment_default_per_page_project_info';
   $strongarm->value = '50';
-  $export['comment_default_per_page_ignition_site'] = $strongarm;
+  $export['comment_default_per_page_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -104,9 +104,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_form_location_ignition_site';
+  $strongarm->name = 'comment_form_location_project_info';
   $strongarm->value = 0;
-  $export['comment_form_location_ignition_site'] = $strongarm;
+  $export['comment_form_location_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -118,9 +118,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_preview_ignition_site';
+  $strongarm->name = 'comment_preview_project_info';
   $strongarm->value = '0';
-  $export['comment_preview_ignition_site'] = $strongarm;
+  $export['comment_preview_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -132,9 +132,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_ignition_site';
+  $strongarm->name = 'comment_project_info';
   $strongarm->value = '2';
-  $export['comment_ignition_site'] = $strongarm;
+  $export['comment_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -146,9 +146,9 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'comment_subject_field_ignition_site';
+  $strongarm->name = 'comment_subject_field_project_info';
   $strongarm->value = 1;
-  $export['comment_subject_field_ignition_site'] = $strongarm;
+  $export['comment_subject_field_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
@@ -160,11 +160,11 @@ function ignition_sites_strongarm() {
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_ignition_site';
+  $strongarm->name = 'node_options_project_info';
   $strongarm->value = array(
     0 => 'status',
   );
-  $export['node_options_ignition_site'] = $strongarm;
+  $export['node_options_project_info'] = $strongarm;
 
   $strongarm = new stdClass;
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */

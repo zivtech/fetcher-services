@@ -5,7 +5,7 @@
  */
 
 /**
- * Implementation of hook_field_default_fields().
+ * Implements hook_field_default_fields().
  */
 function ignition_sites_field_default_fields() {
   $fields = array();
@@ -38,10 +38,10 @@ function ignition_sites_field_default_fields() {
           'contact' => 0,
           'event' => 0,
           'expense' => 0,
+          'ignition_site' => 0,
           'lead' => 0,
           'page' => 0,
           'project' => 0,
-          'ignition_site' => 0,
           'server' => 'server',
           'site_note' => 0,
           'template' => 0,
@@ -380,10 +380,10 @@ prod|Production',
           'contact' => 0,
           'event' => 0,
           'expense' => 0,
+          'ignition_site' => 0,
           'lead' => 0,
           'page' => 0,
           'project' => 0,
-          'ignition_site' => 0,
           'server' => 'server',
           'site_note' => 0,
           'template' => 0,
@@ -556,8 +556,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-body'
-  $fields['node-ignition_site-body'] = array(
+  // Exported field: 'node-project_info-body'
+  $fields['node-project_info-body'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -577,7 +577,7 @@ prod|Production',
       'type' => 'text_with_summary',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -627,8 +627,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_environment'
-  $fields['node-ignition_site-field_environment'] = array(
+  // Exported field: 'node-project_info-field_environment'
+  $fields['node-project_info-field_environment'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
@@ -645,7 +645,7 @@ prod|Production',
       'type' => 'field_collection',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -693,8 +693,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_hosting'
-  $fields['node-ignition_site-field_hosting'] = array(
+  // Exported field: 'node-project_info-field_hosting'
+  $fields['node-project_info-field_hosting'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -722,7 +722,7 @@ prod|Production',
       'type' => 'list_boolean',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => array(
         0 => array(
           'value' => 'Yes',
@@ -816,8 +816,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_machine_name'
-  $fields['node-ignition_site-field_machine_name'] = array(
+  // Exported field: 'node-project_info-field_machine_name'
+  $fields['node-project_info-field_machine_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -841,7 +841,7 @@ prod|Production',
       'type' => 'machine_name',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -891,8 +891,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_site_drupal_version'
-  $fields['node-ignition_site-field_site_drupal_version'] = array(
+  // Exported field: 'node-project_info-field_site_drupal_version'
+  $fields['node-project_info-field_site_drupal_version'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -918,7 +918,7 @@ prod|Production',
       'type' => 'list_text',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => array(
         0 => array(
           'value' => '2',
@@ -966,8 +966,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_site_vcs'
-  $fields['node-ignition_site-field_site_vcs'] = array(
+  // Exported field: 'node-project_info-field_site_vcs'
+  $fields['node-project_info-field_site_vcs'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -993,7 +993,7 @@ prod|Production',
       'type' => 'list_text',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => array(
         0 => array(
           'value' => '1',
@@ -1042,8 +1042,8 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-ignition_site-field_support'
-  $fields['node-ignition_site-field_support'] = array(
+  // Exported field: 'node-project_info-field_support'
+  $fields['node-project_info-field_support'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
@@ -1071,7 +1071,7 @@ prod|Production',
       'type' => 'list_boolean',
     ),
     'field_instance' => array(
-      'bundle' => 'ignition_site',
+      'bundle' => 'project_info',
       'default_value' => array(
         0 => array(
           'value' => 'No',
