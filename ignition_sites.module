@@ -1,0 +1,72 @@
+<?php
+/**
+ * @file
+ * Code for the Ignition Sites feature.
+ */
+
+include_once('ignition_sites.features.inc');
+
+/**
+ * Implementation of hook_services_resources().
+ */
+function ignition_sites_services_resources() {
+  $resources['ignition-site'] = array(
+    'index' => array(
+      'help' => 'Retrieves a list of Ignition managed sites.',
+      'file' => array(
+        'file' => 'inc',
+        'module' => 'ignition_sites'
+      ),
+      'callback' => '_ignition_sites_index',
+      // TODO: We'll need our own access system.
+      'access callback' => 'ignition_sites_site_services_access',
+      'access arguments' => array('access content'),
+      //'access arguments append' => FALSE,
+      'args' => array(array(
+         'name' => 'page',
+         'type' => 'int',
+         'description' => '',
+         'source' => array(
+           'param' => 'page',
+         ),
+         'optional' => TRUE,
+         'default value' => 0,
+       ),
+       array(
+         'name' => 'parameters',
+         'type' => 'array',
+         'description' => '',
+         'source' => 'param',
+         'optional' => TRUE,
+         'default value' => array(),
+       ),
+      ),
+    ),
+  );
+  return $resources;
+}
+
+function ignition_sites_site_services_access() {
+  return TRUE;
+}
+
+/**
+ * Implementation of hook_default_services_endpoint().
+ */
+function ignition_sites_default_services_endpoint() {
+/*
+  $endpoints = array();
+  $endpoint = new stdClass;
+  $endpoint->disabled = FALSE;
+  $endpoint->name = 'ignition';
+  $endpoint->title = 'Ignition API Server';
+  $endpoint->server = 'rest_server';
+  $endpoint->path = 'ignition/api';
+  $endpoint->authentication = array();
+  $endpoint->resources = array(
+  );
+  $endpoints[] = $endpoint;
+
+  return $endpoints;
+*/
+}
