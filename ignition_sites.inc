@@ -10,12 +10,11 @@
 function _ignition_sites_index($page, $parameters) {
   $sites = array();
   $query = new EntityFieldQuery();
-  $query->entityCondition('entity_type', 'node');
-  $query->entityCondition('bundle', 'ignition_site');
-  die(print_r($query->execute()));
-  /*
-  */
-//  print_r($result);
-  $sites[] = 'foo';
+  $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'ignition_site');
+  $results = $query->execute();
+  foreach ($results[node] as $nid => $node_data) {
+    $sites[] = $node_data;
+  }
   return $sites;
 }

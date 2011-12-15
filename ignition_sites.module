@@ -50,23 +50,3 @@ function ignition_sites_site_services_access() {
   return TRUE;
 }
 
-/**
- * Implementation of hook_default_services_endpoint().
- */
-function ignition_sites_default_services_endpoint() {
-/*
-  $endpoints = array();
-  $endpoint = new stdClass;
-  $endpoint->disabled = FALSE;
-  $endpoint->name = 'ignition';
-  $endpoint->title = 'Ignition API Server';
-  $endpoint->server = 'rest_server';
-  $endpoint->path = 'ignition/api';
-  $endpoint->authentication = array();
-  $endpoint->resources = array(
-  );
-  $endpoints[] = $endpoint;
-
-  return $endpoints;
-*/
-}
