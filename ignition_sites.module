@@ -17,7 +17,7 @@ function ignition_sites_services_resources() {
         'file' => 'inc',
         'module' => 'ignition_sites'
       ),
-      'callback' => '_ignition_sites_index',
+      'callback' => '_ignition_sites_services_index_sites',
       // TODO: We'll need our own access system.
       'access callback' => 'ignition_sites_site_services_access',
       'access arguments' => array('access content'),
@@ -51,7 +51,7 @@ function ignition_sites_services_resources() {
         'file' => 'inc',
         'module' => 'ignition_sites'
       ),
-      'callback' => '_ignition_sites_retrieve',
+      'callback' => '_ignition_sites_services_retrieve_site',
       // TODO: We'll need our own access system.
       'access callback' => 'ignition_sites_site_services_access',
       //'access arguments' => array('access content'),
