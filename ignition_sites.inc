@@ -15,7 +15,7 @@ function _ignition_sites_services_index_sites($page, $name, $name) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'ignition_site')
-    ->range($page, 50);
+    ->range($page, 100);
   if ($name != '') {
     $query = $query->fieldCondition('field_machine_name', 'value', $name, 'CONTAINS');
   }
