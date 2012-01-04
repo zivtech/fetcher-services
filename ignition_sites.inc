@@ -36,6 +36,11 @@ function _ignition_sites_services_index_sites($page, $name, $name) {
 
 /**
  * Callback for listing info about a single site.
+ *
+ * @param $name
+ *   The name of the site to list.
+ * @param $parameters
+ *   An array of parameters from the services request.
  */
 function _ignition_sites_services_retrieve_site($name, $parameters) {
   $query = new EntityFieldQuery();
@@ -73,6 +78,14 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
   return $site_info;
 }
 
+/**
+ * Returns the display value for a list field.
+ *
+ * @param $field
+ *  The name of the field (e.g. `field_foo`).
+ * @param $value
+ *  The actual value of the field.
+ */
 function _ignition_sites_get_list_display_value($field, $value) {
   $field_info = field_info_field($field);
   if (isset($field_info['settings']['allowed_values'][$value])) {
