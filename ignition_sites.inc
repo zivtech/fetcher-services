@@ -10,7 +10,7 @@
  * @return array
  *   A multidimensional array containing site name and client.
  */
-function _ignition_sites_services_index_sites($page, $name, $name) {
+function _ignition_sites_services_index_sites($page, $name) {
   $sites = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
