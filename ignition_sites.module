@@ -78,14 +78,19 @@ function ignition_sites_site_services_access() {
  * Immplementation of hook_services_authentication().
  */
 function ignition_sites_services_authentication_info() {
-  /*
-  return array(
-    'file'             => 'ignition_sites.inc',
-    'title'            => t('Server Token'),
-    'description'      => t('A token based authentication mechanism.'),
-    'security_settings' => '_services_oauth_security_settings',
-    'authenticate_call' => '_services_oauth_authenticate_call',
-    'controller_settings' => '_services_oauth_controller_settings',
-  );
-  */
+  // TODO: Consider moving this to a standalone module?
+  if (module_exists('sshkey')) {
+    return array(
+      'file'             => 'ignition_sites.inc',
+      'title'            => t('Public Key'),
+      'description'      => t('Authenticate based on a .'),
+      //'security_settings' => '_services_oauth_security_settings',
+      'authenticate_call' => '_ignition_sites_services_authentication_authenticate_call',
+      'alter_controllers' => '_ignition_sites_services_authentication_alter_methds'
+      //'controller_settings' => '_services_oauth_controller_settings',
+    );
+  }
+  else {
+    return array();
+  }
 }
