@@ -84,10 +84,8 @@ function ignition_sites_services_authentication_info() {
       'file'             => 'ignition_sites.inc',
       'title'            => t('Public Key'),
       'description'      => t('Authenticate based on a .'),
-      //'security_settings' => '_services_oauth_security_settings',
       'authenticate_call' => '_ignition_sites_services_authentication_authenticate_call',
       'alter_controllers' => '_ignition_sites_services_authentication_alter_methds'
-      //'controller_settings' => '_services_oauth_controller_settings',
     );
   }
   else {
