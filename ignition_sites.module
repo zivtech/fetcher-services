@@ -19,7 +19,7 @@ function ignition_sites_services_resources() {
       ),
       'callback' => '_ignition_sites_services_index_sites',
       // TODO: We'll need our own access system.
-      'access callback' => 'ignition_sites_site_services_access',
+      'access callback' => 'user_access',
       'access arguments' => array('access content'),
       //'access arguments append' => FALSE,
       'args' => array(
@@ -53,8 +53,8 @@ function ignition_sites_services_resources() {
       ),
       'callback' => '_ignition_sites_services_retrieve_site',
       // TODO: We'll need our own access system.
-      'access callback' => 'ignition_sites_site_services_access',
-      //'access arguments' => array('access content'),
+      'access callback' => 'user_access',
+      'access arguments' => array('access content'),
       //'access arguments append' => FALSE,
       'args' => array(
          array(

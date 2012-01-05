@@ -183,7 +183,8 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
   try {
     // If we're missing anything report it as an error.
     if (!isset($ssh_data['fingerprint']) || !isset($ssh_data['plaintext']) || !isset($ssh_data['signature'])) {
-      throw new Exception('SSH Parameter missing');
+      // An SSH parameter is missing, we just will not auth.
+      return;
     }
     if (!$public_key = sshkey_load_by_fingerprint(base64_decode($ssh_data['fingerprint']))) {
       throw new Exception(t('SSH Key with fingerprint %fingerprint was not found', array('%fingerprint' => $ssh_data['fingerprint'])));
@@ -201,7 +202,6 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
     $signature = base64_decode($ssh_data['signature']);
     $success = openssl_verify(base64_decode($ssh_data['plaintext']), base64_decode($ssh_data['signature']), $pem_key);
     if ($success == TRUE) {
-      dpm('verified');
       $account = user_load($public_key->entity_id);
       global $user;
       $user = $account;
