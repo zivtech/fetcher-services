@@ -70,10 +70,6 @@ function ignition_sites_services_resources() {
   return $resources;
 }
 
-function ignition_sites_site_services_access() {
-  return TRUE;
-}
-
 /**
  * Immplementation of hook_services_authentication().
  */
