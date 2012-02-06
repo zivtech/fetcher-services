@@ -31,6 +31,13 @@ function _ignition_sites_services_index_sites($page, $name) {
       //'client' => $site->
     );
   }
+  $trimmer = function(&$name, &$value) {
+    $name = trim($name);
+    if (is_string($value)) {
+      $value = trim($value);
+    }
+  };
+  array_walk($sites, $trimmer);
   return $sites;
 }
 
@@ -69,12 +76,22 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
     $data['server']['name'] = $name;
     $data['server']['hostname'] = $server->field_server_hostname->value();
     // TODO: make this smart.
-    $data['code hosts'][] = $name;
-    $data['files host'] = $name;
-    $data['mysql host'] = $name;
+    $data['code hosts'][]['name'] = $name;
+    $data['code hosts'][]['hostname'] = $server->field_server_hostname->value();
+    $data['files host']['name'] = $name;
+    $data['files host']['hostname'] = $server->field_server_hostname->value();
+    $data['mysql host']['name'] = $name;
+    $data['mysql host']['hostname'] = $name;
     $data['server']['hostname'] = $server->field_server_hostname->value();
     $site_info['environments'][$environment->field_environment_name->value()] = $data;
   }
+  $trimmer = function(&$name, &$value) {
+    $name = trim($name);
+    if (is_string($value)) {
+      $value = trim($value);
+    }
+  };
+  array_walk_recursive($site_info, $trimmer);
   return $site_info;
 }
 
@@ -106,7 +123,7 @@ function _ignition_sites_get_list_display_value($field, $value) {
  * @param $controller
  *   The server controller that we're configuring.
  */
-function _ignition_sites_services_authentication_alter_methds($settings, &$methods, &$controller) {
+function _ignition_sites_services_authentication_alter_methods($settings, &$methods, &$controller) {
   // If we're enabled for a method we need to get ssh params in the
   // request because we allow authenticating per request.
   foreach ($methods as &$method) {
@@ -167,7 +184,7 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
   foreach ($args as $key => $value) {
     // $method is a description of whatever is being executed.  We will have
     // added params to this method description in
-    // `_ignition_sites_services_authentication_alter_methds` but we have no way
+    // `_ignition_sites_services_authentication_alter_methods` but we have no way
     // of knowing what position ours will be in the array (because other modules
     // might have monkeyed with this module too, so loop through finding ours
     // (whcih are carefully namespaced) and add them to an array for our use

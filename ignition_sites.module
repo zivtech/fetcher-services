@@ -81,7 +81,7 @@ function ignition_sites_services_authentication_info() {
       'title'            => t('Public Key'),
       'description'      => t('Authenticate based on a .'),
       'authenticate_call' => '_ignition_sites_services_authentication_authenticate_call',
-      'alter_controllers' => '_ignition_sites_services_authentication_alter_methds'
+      'alter_controllers' => '_ignition_sites_services_authentication_alter_methods'
     );
   }
   else {
