@@ -26,7 +26,7 @@ function _ignition_sites_services_index_sites($page, $name) {
   foreach ($nodes as $nid => $node) {
     $site = entity_metadata_wrapper('node', $node);
     $sites[$site->field_machine_name->value()] = array(
-      'name' => $site->title->value(),
+      'title' => $site->title->value(),
       // TODO: add client reference.
       //'client' => $site->
     );
@@ -204,9 +204,11 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
       return;
     }
     if (!$public_key = sshkey_load_by_fingerprint(base64_decode($ssh_data['fingerprint']))) {
+
       throw new Exception(t('SSH Key with fingerprint %fingerprint was not found', array('%fingerprint' => $ssh_data['fingerprint'])));
     }
     if ($public_key->entity_type != 'user') {
+      watdog('test', t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
       throw new Exception(t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
     }
     $pem_key = _ignition_sites_convert_openssh_to_pem($public_key->value);
@@ -242,7 +244,7 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
 
 /**
  * Convert an OpenSSh formatted RSA key to an OpenSSL formatted key.
- * 
+ *
  * @param $key
  *   The plaintext representation of the SSH key.
  */
@@ -280,7 +282,7 @@ function _ignition_sites_convert_openssh_to_pem($key) {
   // Wrap it into sequence.
   $data = pack('Ca*a*', 0x30,_ignition_sites_key_length($data), $data);
 
-  $pem_key = "-----BEGIN PUBLIC KEY-----\n" .
+  $pem_key = "-----BEGIN PUBLIC KEY-----\n";
   $pem_key .= chunk_split(base64_encode($data), 64, "\n");
   $pem_key .= "-----END PUBLIC KEY-----\n";
   return $pem_key;
