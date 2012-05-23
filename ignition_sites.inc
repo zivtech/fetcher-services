@@ -54,36 +54,30 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'ignition_site')
     // TODO: rename this site machine name since it has to be unique
-    ->fieldCondition('field_machine_name', 'value', $name, '=')
-    ->range($page, 50);
+    ->fieldCondition('field_machine_name', 'value', $name, '=');
   $results = $query->execute();
   $site = entity_metadata_wrapper('node', node_load(reset(array_keys($results['node']))));
   $site_info = array();
   $site_info['name'] = $site->field_machine_name->value();
   $site_info['title'] = $site->title->value();
-  $site_info['nid'] = $site->nid->value();
   $site_info['vcs'] = drupal_strtolower(_ignition_sites_get_list_display_value('field_site_vcs', $site->field_site_vcs->value()));
   $site_info['vcs_url'] = $site->field_site_vcs_url->value();
-  // TODO: look up real values.
-  $site_info['version'] = drupal_strtolower(_ignition_sites_get_list_display_value('field_site_drupal_version', $site->field_site_drupal_version->value()));
-  $site_info['support'] = (boolean) $site->field_support->value();
-  $site_info['private files'] = (boolean) $site->field_private_files->value();
-  foreach ($site->field_environment->value() as $environment) {
+
+  foreach ($site->field_ig_environment->value() as $environment) {
+    //$site_info['debug'][] = print_r($environment, TRUE);
     $environment = entity_metadata_wrapper('field_collection_item', $environment);
+    $server = entity_metadata_wrapper('node', $environment->field_ig_server->value());
+
     $data = array();
-    $server = entity_metadata_wrapper('node', $environment->field_server->value());
-    $name = $server->field_server_machine_name->value();
-    $data['server']['name'] = $name;
-    $data['server']['hostname'] = $server->field_server_hostname->value();
-    // TODO: make this smart.
-    $data['code hosts'][]['name'] = $name;
-    $data['code hosts'][]['hostname'] = $server->field_server_hostname->value();
-    $data['files host']['name'] = $name;
-    $data['files host']['hostname'] = $server->field_server_hostname->value();
-    $data['mysql host']['name'] = $name;
-    $data['mysql host']['hostname'] = $name;
-    $data['server']['hostname'] = $server->field_server_hostname->value();
-    $site_info['environments'][$environment->field_environment_name->value()] = $data;
+    $data['hostname'] = $server->field_server_hostname->value();
+    $data['uri'] = $environment->field_ig_uri->value();
+    $data['root'] = $environment->field_ig_root->value();
+    $data['db url'] = $environment->field_ig_dburl->value();
+    $data['remote host'] = $environment->field_ig_remote_host->value();
+    $data['remote user'] = $environment->field_ig_remote_user->value();
+    $data['ignition']['version'] = $environment->field_ig_drupal_version->value();
+    $data['ignition']['branch'] = $environment->field_ig_branch->value();
+    $site_info['environments'][$environment->field_ig_environment_name->value()] = $data;
   }
   $trimmer = function(&$name, &$value) {
     $name = trim($name);
