@@ -16,7 +16,10 @@ function ignition_sites_default_services_endpoint() {
   $endpoint->name = 'ignition';
   $endpoint->server = 'rest_server';
   $endpoint->path = 'ignition/api';
-  $endpoint->authentication = array();
+  $endpoint->authentication = array(
+    'ignition_sites' => 'ignition_sites',
+    'services' => 'services',
+  );
   $endpoint->server_settings = array();
   $endpoint->resources = array(
     'ignition-site' => array(
