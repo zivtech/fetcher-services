@@ -73,8 +73,8 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
     $data['uri'] = $environment->field_ig_uri->value();
     $data['root'] = $environment->field_ig_root->value();
     $data['db url'] = $environment->field_ig_dburl->value();
-    $data['remote host'] = $environment->field_ig_remote_host->value();
-    $data['remote user'] = $environment->field_ig_remote_user->value();
+    $data['remote-host'] = $environment->field_ig_remote_host->value();
+    $data['remote-user'] = $environment->field_ig_remote_user->value();
     $data['ignition']['version'] = $environment->field_ig_drupal_version->value();
     $data['ignition']['branch'] = $environment->field_ig_branch->value();
     $site_info['environments'][$environment->field_ig_environment_name->value()] = $data;
