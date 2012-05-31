@@ -217,7 +217,7 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
     // of seconds in the ignition_request_age variable.
     $time = substr($plain_text, -10);
     // TODO: Provide user configuration for this variable?
-    if ($time < REQUEST_TIME - variable_get('ignition_request_age', 1)) {
+    if ($time < REQUEST_TIME - variable_get('ignition_request_age', 5)) {
       throw new Exception(t('Request signature was too old.'));
     }
     $signature = base64_decode($ssh_data['signature']);
