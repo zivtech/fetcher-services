@@ -32,7 +32,9 @@ function _ignition_sites_services_index_sites($page, $name) {
     );
   }
   $trimmer = function(&$name, &$value) {
-    $name = trim($name);
+    if (is_string($name)) {
+      $name = trim($name);
+    }
     if (is_string($value)) {
       $value = trim($value);
     }
@@ -64,7 +66,6 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
   $site_info['vcs_url'] = $site->field_site_vcs_url->value();
 
   foreach ($site->field_ig_environment->value() as $environment) {
-    //$site_info['debug'][] = print_r($environment, TRUE);
     $environment = entity_metadata_wrapper('field_collection_item', $environment);
     $server = entity_metadata_wrapper('node', $environment->field_ig_server->value());
 
@@ -72,10 +73,9 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
     $data['hostname'] = $server->field_server_hostname->value();
     $data['uri'] = $environment->field_ig_uri->value();
     $data['root'] = $environment->field_ig_root->value();
-    $data['db url'] = $environment->field_ig_dburl->value();
     $data['remote-host'] = $environment->field_ig_remote_host->value();
     $data['remote-user'] = $environment->field_ig_remote_user->value();
-    $data['ignition']['version'] = $environment->field_ig_drupal_version->value();
+    $data['ignition']['version'] = _ignition_sites_get_list_display_value('field_ig_drupal_version', $environment->field_ig_drupal_version->value());
     $data['ignition']['branch'] = $environment->field_ig_branch->value();
     $site_info['environments'][$environment->field_ig_environment_name->value()] = $data;
   }
