@@ -1,9 +1,9 @@
 <?php
 
 /**
- * Implements hook_ignition_search_paths().
+ * Implements hook_fetcher_search_paths().
  */
-function ignition_sites_ignition_search_paths() {
+function fetcher_sites_fetcher_search_paths() {
   // TODO: use a proper method for discovering the base path to the cmd file
   $path = explode('/', __FILE__);
   array_pop($path);
