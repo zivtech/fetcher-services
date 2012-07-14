@@ -9,7 +9,7 @@ function ignition_sites_ignition_search_paths() {
   array_pop($path);
   $path = implode('/', $path) . '/lib/';
   return array(
-    // Classes in base Ignition install.
+    // Classes in base Fetcher install.
     $path,
   );
 }
