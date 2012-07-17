@@ -44,7 +44,7 @@ class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
 
   public function listSites($name = '', $page = 0) {
     $client = $this->site['fetcher client'];
-    $client->setPath('ignition/api/site.json');
+    $client->setPath('fetcher/api/site.json');
 
     // If we have a name to search for add it to the query.
     if ($name != '') {

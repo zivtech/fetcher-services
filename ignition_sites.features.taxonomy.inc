@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ignition_sites.features.taxonomy.inc
+ * fetcher_services.features.taxonomy.inc
  */
 
 /**
  * Implements hook_taxonomy_default_vocabularies().
  */
-function ignition_sites_taxonomy_default_vocabularies() {
+function fetcher_services_taxonomy_default_vocabularies() {
   return array(
     'server_services' => array(
       'name' => 'Server Services',

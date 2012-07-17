@@ -4,20 +4,20 @@
  * Code for the Ignition Sites feature.
  */
 
-include_once('ignition_sites.features.inc');
+include_once('fetcher_services.features.inc');
 
 /**
  * Implementation of hook_services_resources().
  */
-function ignition_sites_services_resources() {
-  $resources['ignition-site'] = array(
+function fetcher_services_services_resources() {
+  $resources['fetcher-site'] = array(
     'index' => array(
       'help' => 'Retrieves a list of Ignition managed sites.',
       'file' => array(
         'file' => 'inc',
-        'module' => 'ignition_sites'
+        'module' => 'fetcher_services'
       ),
-      'callback' => '_ignition_sites_services_index_sites',
+      'callback' => '_fetcher_services_services_index_sites',
       // TODO: We'll need our own access system.
       'access callback' => 'user_access',
       'access arguments' => array('access content'),
@@ -49,9 +49,9 @@ function ignition_sites_services_resources() {
       'help' => 'Retrieves a signle Ignition managed site.',
       'file' => array(
         'file' => 'inc',
-        'module' => 'ignition_sites'
+        'module' => 'fetcher_services'
       ),
-      'callback' => '_ignition_sites_services_retrieve_site',
+      'callback' => '_fetcher_services_services_retrieve_site',
       // TODO: We'll need our own access system.
       'access callback' => 'user_access',
       'access arguments' => array('access content'),
@@ -73,15 +73,15 @@ function ignition_sites_services_resources() {
 /**
  * Immplementation of hook_services_authentication().
  */
-function ignition_sites_services_authentication_info() {
+function fetcher_services_services_authentication_info() {
   // TODO: Consider moving this to a standalone module?
   if (module_exists('sshkey')) {
     return array(
-      'file'             => 'ignition_sites.inc',
+      'file'             => 'fetcher_services.inc',
       'title'            => t('Public Key'),
       'description'      => t('Authenticate based on a .'),
-      'authenticate_call' => '_ignition_sites_services_authentication_authenticate_call',
-      'alter_controllers' => '_ignition_sites_services_authentication_alter_methods'
+      'authenticate_call' => '_fetcher_services_services_authentication_authenticate_call',
+      'alter_controllers' => '_fetcher_services_services_authentication_alter_methods'
     );
   }
   else {
@@ -89,11 +89,11 @@ function ignition_sites_services_authentication_info() {
   }
 }
 
-function ignition_sites_form_ignition_site_node_form_alter(&$form, &$form_state, $form_id) {
-  $form['#validate'][] = '_ignition_sites_form_validate';
+function fetcher_services_form_fetcher_site_node_form_alter(&$form, &$form_state, $form_id) {
+  $form['#validate'][] = '_fetcher_services_form_validate';
 }
 
-function _ignition_sites_form_validate($form, &$form_state) {
+function _fetcher_services_form_validate($form, &$form_state) {
   $environment_langcode = $form['field_ig_environment']['#language'];
   $field_environments = $form_state['values']['field_ig_environment'][$environment_langcode];
   // Go through each environment and put the value of field_environment_name

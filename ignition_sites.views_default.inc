@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ignition_sites.views_default.inc
+ * fetcher_services.views_default.inc
  */
 
 /**
  * Implements hook_views_default_views().
  */
-function ignition_sites_views_default_views() {
+function fetcher_services_views_default_views() {
   $export = array();
 
   $view = new view;

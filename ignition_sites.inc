@@ -10,11 +10,11 @@
  * @return array
  *   A multidimensional array containing site name and client.
  */
-function _ignition_sites_services_index_sites($page, $name) {
+function _fetcher_services_services_index_sites($page, $name) {
   $sites = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'ignition_site')
+    ->entityCondition('bundle', 'fetcher_site')
     ->range($page, 100);
   if ($name != '') {
     $query = $query->fieldCondition('field_machine_name', 'value', $name, 'CONTAINS');
@@ -51,10 +51,10 @@ function _ignition_sites_services_index_sites($page, $name) {
  * @param $parameters
  *   An array of parameters from the services request.
  */
-function _ignition_sites_services_retrieve_site($name, $parameters) {
+function _fetcher_services_services_retrieve_site($name, $parameters) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
-    ->entityCondition('bundle', 'ignition_site')
+    ->entityCondition('bundle', 'fetcher_site')
     // TODO: rename this site machine name since it has to be unique
     ->fieldCondition('field_machine_name', 'value', $name, '=');
   $results = $query->execute();
@@ -62,7 +62,7 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
   $site_info = array();
   $site_info['name'] = $site->field_machine_name->value();
   $site_info['title'] = $site->title->value();
-  $site_info['vcs'] = drupal_strtolower(_ignition_sites_get_list_display_value('field_site_vcs', $site->field_site_vcs->value()));
+  $site_info['vcs'] = drupal_strtolower(_fetcher_services_get_list_display_value('field_site_vcs', $site->field_site_vcs->value()));
   $site_info['vcs_url'] = $site->field_site_vcs_url->value();
 
   foreach ($site->field_ig_environment->value() as $environment) {
@@ -75,8 +75,8 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
     $data['root'] = $environment->field_ig_root->value();
     $data['remote-host'] = $environment->field_ig_remote_host->value();
     $data['remote-user'] = $environment->field_ig_remote_user->value();
-    $data['ignition']['version'] = _ignition_sites_get_list_display_value('field_ig_drupal_version', $environment->field_ig_drupal_version->value());
-    $data['ignition']['branch'] = $environment->field_ig_branch->value();
+    $data['fetcher']['version'] = _fetcher_services_get_list_display_value('field_ig_drupal_version', $environment->field_ig_drupal_version->value());
+    $data['fetcher']['branch'] = $environment->field_ig_branch->value();
     $site_info['environments'][$environment->field_ig_environment_name->value()] = $data;
   }
   $trimmer = function(&$name, &$value) {
@@ -97,7 +97,7 @@ function _ignition_sites_services_retrieve_site($name, $parameters) {
  * @param $value
  *  The actual value of the field.
  */
-function _ignition_sites_get_list_display_value($field, $value) {
+function _fetcher_services_get_list_display_value($field, $value) {
   $field_info = field_info_field($field);
   if (isset($field_info['settings']['allowed_values'][$value])) {
     return $field_info['settings']['allowed_values'][$value];
@@ -117,12 +117,12 @@ function _ignition_sites_get_list_display_value($field, $value) {
  * @param $controller
  *   The server controller that we're configuring.
  */
-function _ignition_sites_services_authentication_alter_methods($settings, &$methods, &$controller) {
+function _fetcher_services_services_authentication_alter_methods($settings, &$methods, &$controller) {
   // If we're enabled for a method we need to get ssh params in the
   // request because we allow authenticating per request.
   foreach ($methods as &$method) {
     $method['args'][] = array(
-      'name' => '_ignition_sites_ssh_plaintext',
+      'name' => '_fetcher_services_ssh_plaintext',
       'type' => 'string',
       'description' => 'Plaintext representation of the text to sign for asymetric SSH key authentication.',
       'source' => array(
@@ -132,7 +132,7 @@ function _ignition_sites_services_authentication_alter_methods($settings, &$meth
       'default value' => '',
     );
     $method['args'][] = array(
-      'name' => '_ignition_sites_ssh_signature',
+      'name' => '_fetcher_services_ssh_signature',
       'type' => 'string',
       'description' => 'Signed representation of the text to sign for asymetric SSH key authentication.',
       'source' => array(
@@ -142,7 +142,7 @@ function _ignition_sites_services_authentication_alter_methods($settings, &$meth
       'default value' => '',
     );
     $method['args'][] = array(
-      'name' => '_ignition_sites_ssh_fingerprint',
+      'name' => '_fetcher_services_ssh_fingerprint',
       'type' => 'string',
       'description' => 'The ssh fingerprint of the public key to use.',
       'source' => array(
@@ -166,7 +166,7 @@ function _ignition_sites_services_authentication_alter_methods($settings, &$meth
  * @return void|string
  *  Returns nothing, or a error message if authentication fails
  */
-function _ignition_sites_services_authentication_authenticate_call($settings, $method, $args) {
+function _fetcher_services_services_authentication_authenticate_call($settings, $method, $args) {
 
   // The authentication plugin stuff for services is half brain-dead so we have
   // to jump through crazy hoops here.
@@ -178,13 +178,13 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
   foreach ($args as $key => $value) {
     // $method is a description of whatever is being executed.  We will have
     // added params to this method description in
-    // `_ignition_sites_services_authentication_alter_methods` but we have no way
+    // `_fetcher_services_services_authentication_alter_methods` but we have no way
     // of knowing what position ours will be in the array (because other modules
     // might have monkeyed with this module too, so loop through finding ours
     // (whcih are carefully namespaced) and add them to an array for our use
     // (removing the namespacing for convenience).
     if (isset($method['args'][$key]['name']) && $name = $method['args'][$key]['name']) {
-      if (strpos($name, '_ignition_sites') === 0 && $value != '') {
+      if (strpos($name, '_fetcher_services') === 0 && $value != '') {
         // Strip our namespacing for convenience and reinstate our base64
         // provided +'s, they shouldn't be spaces.
         $ssh_data[substr($name, 20)] = str_replace(' ', '+', $value);
@@ -205,7 +205,7 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
       watdog('test', t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
       throw new Exception(t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
     }
-    $pem_key = _ignition_sites_convert_openssh_to_pem($public_key->value);
+    $pem_key = _fetcher_services_convert_openssh_to_pem($public_key->value);
     $key_id = openssl_get_publickey($pem_key);
     if ($key_id === FALSE) {
       throw new Exception(t('The public key could not be parsed, perhaps it is in the wrong format?'));
@@ -214,10 +214,10 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
     $plain_text = base64_decode($ssh_data['plaintext']);
     // We prevent replay attacks by including a timestamp in the plaintext
     // message.  We never accept any request that's older than the number
-    // of seconds in the ignition_request_age variable.
+    // of seconds in the fetcher_request_age variable.
     $time = substr($plain_text, -10);
     // TODO: Provide user configuration for this variable?
-    if ($time < REQUEST_TIME - variable_get('ignition_request_age', 5)) {
+    if ($time < REQUEST_TIME - variable_get('fetcher_request_age', 5)) {
       throw new Exception(t('Request signature was too old.'));
     }
     $signature = base64_decode($ssh_data['signature']);
@@ -242,7 +242,7 @@ function _ignition_sites_services_authentication_authenticate_call($settings, $m
  * @param $key
  *   The plaintext representation of the SSH key.
  */
-function _ignition_sites_convert_openssh_to_pem($key) {
+function _fetcher_services_convert_openssh_to_pem($key) {
 
   list(,$data) = explode(' ', trim($key), 3);
   $data = base64_decode($data);
@@ -262,19 +262,19 @@ function _ignition_sites_convert_openssh_to_pem($key) {
   // Algorithm identifier (id, null).
   $algorithm_id = pack('H*', '06092a864886f70d0101010500');
   // Wrap it into sequence.
-  $algorithm_id = pack('Ca*a*', 0x30, _ignition_sites_key_length($algorithm_id), $algorithm_id);
+  $algorithm_id = pack('Ca*a*', 0x30, _fetcher_services_key_length($algorithm_id), $algorithm_id);
   // numbers
-  $data = pack('Ca*a*Ca*a*', 0x02, _ignition_sites_key_length($n), $n, 0x02, _ignition_sites_key_length($e), $e);
+  $data = pack('Ca*a*Ca*a*', 0x02, _fetcher_services_key_length($n), $n, 0x02, _fetcher_services_key_length($e), $e);
   // Wrap it into sequence.
-  $data = pack('Ca*a*', 0x30, _ignition_sites_key_length($data), $data);
+  $data = pack('Ca*a*', 0x30, _fetcher_services_key_length($data), $data);
   // Don't know why, but needed.
   $data = "\x00" . $data;
   // Wrap it into sequence.
-  $data = pack('Ca*a*', 0x03, _ignition_sites_key_length($data), $data);
+  $data = pack('Ca*a*', 0x03, _fetcher_services_key_length($data), $data);
   // Prepend the algorithm_id.
   $data = $algorithm_id . $data;
   // Wrap it into sequence.
-  $data = pack('Ca*a*', 0x30,_ignition_sites_key_length($data), $data);
+  $data = pack('Ca*a*', 0x30,_fetcher_services_key_length($data), $data);
 
   $pem_key = "-----BEGIN PUBLIC KEY-----\n";
   $pem_key .= chunk_split(base64_encode($data), 64, "\n");
@@ -282,7 +282,7 @@ function _ignition_sites_convert_openssh_to_pem($key) {
   return $pem_key;
 }
 
-function _ignition_sites_key_length($string) {
+function _fetcher_services_key_length($string) {
   $length = strlen($string);
   if ($length < 0x80) {
       return chr($length);

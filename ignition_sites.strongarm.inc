@@ -1,13 +1,13 @@
 <?php
 /**
  * @file
- * ignition_sites.strongarm.inc
+ * fetcher_services.strongarm.inc
  */
 
 /**
  * Implements hook_strongarm().
  */
-function ignition_sites_strongarm() {
+function fetcher_services_strongarm() {
   $export = array();
 
   $strongarm = new stdClass;
