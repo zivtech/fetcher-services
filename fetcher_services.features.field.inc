@@ -556,14 +556,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_branch'
-  $fields['field_collection_item-field_ig_environment-field_ig_branch'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_branch'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_branch'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_branch',
+      'field_name' => 'field_ftchr_branch',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -585,7 +585,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => array(
         0 => array(
           'value' => 'master',
@@ -603,7 +603,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_branch',
+      'field_name' => 'field_ftchr_branch',
       'label' => 'Branch',
       'required' => 0,
       'settings' => array(
@@ -622,14 +622,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_database_server'
-  $fields['field_collection_item-field_ig_environment-field_ig_database_server'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_database_server'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_database_server'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_database_server',
+      'field_name' => 'field_ftchr_database_server',
       'foreign keys' => array(
         'nid' => array(
           'columns' => array(
@@ -671,7 +671,7 @@ prod|Production',
       'type' => 'node_reference',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -685,7 +685,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_database_server',
+      'field_name' => 'field_ftchr_database_server',
       'label' => 'Database server',
       'required' => 0,
       'settings' => array(
@@ -705,14 +705,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_dburl'
-  $fields['field_collection_item-field_ig_environment-field_ig_dburl'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_dburl'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_dburl'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_dburl',
+      'field_name' => 'field_ftchr_dburl',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -734,7 +734,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -748,7 +748,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_dburl',
+      'field_name' => 'field_ftchr_dburl',
       'label' => 'DB-URL',
       'required' => 0,
       'settings' => array(
@@ -767,14 +767,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_documentroot'
-  $fields['field_collection_item-field_ig_environment-field_ig_documentroot'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_documentroot'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_documentroot'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_documentroot',
+      'field_name' => 'field_ftchr_documentroot',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -796,7 +796,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -810,7 +810,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_documentroot',
+      'field_name' => 'field_ftchr_documentroot',
       'label' => 'Document root',
       'required' => 0,
       'settings' => array(
@@ -829,14 +829,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_drupal_version'
-  $fields['field_collection_item-field_ig_environment-field_ig_drupal_version'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_drupal_version',
+      'field_name' => 'field_ftchr_drupal_version',
       'foreign keys' => array(),
       'indexes' => array(
         'value' => array(
@@ -856,7 +856,7 @@ prod|Production',
       'type' => 'list_text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => array(
         0 => array(
           'value' => '2',
@@ -876,7 +876,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_drupal_version',
+      'field_name' => 'field_ftchr_drupal_version',
       'label' => 'Drupal version',
       'required' => 0,
       'settings' => array(
@@ -892,14 +892,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_environment_name'
-  $fields['field_collection_item-field_ig_environment-field_ig_environment_name'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_environment_name'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_environment_name',
+      'field_name' => 'field_ftchr_environment_name',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -921,7 +921,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -935,7 +935,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_environment_name',
+      'field_name' => 'field_ftchr_environment_name',
       'label' => 'Environment',
       'required' => FALSE,
       'settings' => array(
@@ -957,14 +957,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_remote_host'
-  $fields['field_collection_item-field_ig_environment-field_ig_remote_host'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_remote_host'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_remote_host'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_remote_host',
+      'field_name' => 'field_ftchr_remote_host',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -986,7 +986,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1000,7 +1000,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_remote_host',
+      'field_name' => 'field_ftchr_remote_host',
       'label' => 'Remote Host',
       'required' => 0,
       'settings' => array(
@@ -1019,14 +1019,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_remote_user'
-  $fields['field_collection_item-field_ig_environment-field_ig_remote_user'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_remote_user'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_remote_user'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_remote_user',
+      'field_name' => 'field_ftchr_remote_user',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1048,7 +1048,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1062,7 +1062,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_remote_user',
+      'field_name' => 'field_ftchr_remote_user',
       'label' => 'Remote User',
       'required' => 0,
       'settings' => array(
@@ -1081,14 +1081,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_root'
-  $fields['field_collection_item-field_ig_environment-field_ig_root'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_root'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_root'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_root',
+      'field_name' => 'field_ftchr_root',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1110,7 +1110,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1124,7 +1124,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_root',
+      'field_name' => 'field_ftchr_root',
       'label' => 'Root',
       'required' => 0,
       'settings' => array(
@@ -1143,14 +1143,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_server'
-  $fields['field_collection_item-field_ig_environment-field_ig_server'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_server'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_server'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_server',
+      'field_name' => 'field_ftchr_server',
       'foreign keys' => array(
         'nid' => array(
           'columns' => array(
@@ -1192,7 +1192,7 @@ prod|Production',
       'type' => 'node_reference',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1206,7 +1206,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_server',
+      'field_name' => 'field_ftchr_server',
       'label' => 'Server',
       'required' => 0,
       'settings' => array(
@@ -1222,14 +1222,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ig_environment-field_ig_uri'
-  $fields['field_collection_item-field_ig_environment-field_ig_uri'] = array(
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_uri'
+  $fields['field_collection_item-field_ftchr_environment-field_ftchr_uri'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_uri',
+      'field_name' => 'field_ftchr_uri',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -1251,7 +1251,7 @@ prod|Production',
       'type' => 'text',
     ),
     'field_instance' => array(
-      'bundle' => 'field_ig_environment',
+      'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
       'description' => '',
@@ -1265,7 +1265,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ig_uri',
+      'field_name' => 'field_ftchr_uri',
       'label' => 'URI',
       'required' => 0,
       'settings' => array(
@@ -1478,14 +1478,14 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ig_environment'
-  $fields['node-fetcher_site-field_ig_environment'] = array(
+  // Exported field: 'node-fetcher_site-field_ftchr_environment'
+  $fields['node-fetcher_site-field_ftchr_environment'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ig_environment',
+      'field_name' => 'field_ftchr_environment',
       'foreign keys' => array(),
       'indexes' => array(),
       'module' => 'field_collection',
@@ -1528,7 +1528,7 @@ prod|Production',
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ig_environment',
+      'field_name' => 'field_ftchr_environment',
       'label' => 'Environment',
       'required' => 0,
       'settings' => array(

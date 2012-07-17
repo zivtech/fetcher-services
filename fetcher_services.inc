@@ -65,19 +65,19 @@ function _fetcher_services_services_retrieve_site($name, $parameters) {
   $site_info['vcs'] = drupal_strtolower(_fetcher_services_get_list_display_value('field_site_vcs', $site->field_site_vcs->value()));
   $site_info['vcs_url'] = $site->field_site_vcs_url->value();
 
-  foreach ($site->field_ig_environment->value() as $environment) {
+  foreach ($site->field_ftchr_environment->value() as $environment) {
     $environment = entity_metadata_wrapper('field_collection_item', $environment);
-    $server = entity_metadata_wrapper('node', $environment->field_ig_server->value());
+    $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
 
     $data = array();
     $data['hostname'] = $server->field_server_hostname->value();
-    $data['uri'] = $environment->field_ig_uri->value();
-    $data['root'] = $environment->field_ig_root->value();
-    $data['remote-host'] = $environment->field_ig_remote_host->value();
-    $data['remote-user'] = $environment->field_ig_remote_user->value();
-    $data['fetcher']['version'] = _fetcher_services_get_list_display_value('field_ig_drupal_version', $environment->field_ig_drupal_version->value());
-    $data['fetcher']['branch'] = $environment->field_ig_branch->value();
-    $site_info['environments'][$environment->field_ig_environment_name->value()] = $data;
+    $data['uri'] = $environment->field_ftchr_uri->value();
+    $data['root'] = $environment->field_ftchr_root->value();
+    $data['remote-host'] = $environment->field_ftchr_remote_host->value();
+    $data['remote-user'] = $environment->field_ftchr_remote_user->value();
+    $data['fetcher']['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
+    $data['fetcher']['branch'] = $environment->field_ftchr_branch->value();
+    $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
   }
   $trimmer = function(&$name, &$value) {
     $name = trim($name);

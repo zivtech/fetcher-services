@@ -94,18 +94,18 @@ function fetcher_services_form_fetcher_site_node_form_alter(&$form, &$form_state
 }
 
 function _fetcher_services_form_validate($form, &$form_state) {
-  $environment_langcode = $form['field_ig_environment']['#language'];
-  $field_environments = $form_state['values']['field_ig_environment'][$environment_langcode];
+  $environment_langcode = $form['field_ftchr_environment']['#language'];
+  $field_environments = $form_state['values']['field_ftchr_environment'][$environment_langcode];
   // Go through each environment and put the value of field_environment_name
   // into $names so we can check them for uniqueness.
   foreach ($field_environments as $key => $field_environment) {
     if (is_array($field_environment) && isset($field_environment['entity'])) {
       $wrapper = entity_metadata_wrapper('field_collection_item', $field_environment['entity']);
-      $names[$key] = $wrapper->field_ig_environment_name->value();
+      $names[$key] = $wrapper->field_ftchr_environment_name->value();
     }
   }
   // If $names contain only unique values, this statement evaluates to TRUE.
   foreach (array_diff_key($names, array_unique($names)) as $key => $name) {
-    form_error($form['field_ig_environment'][$environment_langcode][$key]['field_ig_environment_name'], t('Enironment names must be unique.'));
+    form_error($form['field_ftchr_environment'][$environment_langcode][$key]['field_ftchr_environment_name'], t('Enironment names must be unique.'));
   }
 }
