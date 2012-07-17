@@ -1,5 +1,5 @@
-name = "Ignition Sites"
-description = "Provides support for Ignition Sites and the Servers they are hosted on."
+name = "Fetcher Services"
+description = "Provides the data model and services integration for Drupal sites and the servers they are hosted on."
 core = "7.x"
 package = "Features"
 php = "5.2.4"
