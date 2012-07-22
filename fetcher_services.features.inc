@@ -33,10 +33,10 @@ function fetcher_services_views_api() {
  */
 function fetcher_services_node_info() {
   $items = array(
-    'project_info' => array(
-      'name' => t('Site'),
+    'fetcher_site' => array(
+      'name' => t('Fetcher Site'),
       'base' => 'node_content',
-      'description' => t('A site that Zivtech created or maintains and the associated access information.'),
+      'description' => t('A site listed with and deployable via fetcher.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
