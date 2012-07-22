@@ -2135,328 +2135,6 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs'
-  $fields['node-fetcher_site-field_ftchr_site_vcs'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_site_vcs',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          1 => 'Git',
-          2 => 'SVN',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-      ),
-      'translatable' => '1',
-      'type' => 'list_text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => '1',
-        ),
-      ),
-      'default_value_function' => '',
-      'default_value_php' => '',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '2',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '0',
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_site_vcs',
-      'label' => 'Version Control System',
-      'required' => 1,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '3',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-field_ftchr_support'
-  $fields['node-fetcher_site-field_ftchr_support'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_support',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'No',
-          1 => 'Zivtech Drupal Support',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'No',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '3',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '5',
-        ),
-        'full' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        'label' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 15,
-        ),
-        'token' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        2 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        3 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        4 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_support',
-      'label' => 'Drupal Support',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '2',
-      'widget' => array(
-        'active' => '0',
-        'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-          'display_label' => 0,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '13',
-      ),
-      'widget_type' => 'optionwidgets_onoff',
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-field_ftchr_site_hosting'
-  $fields['node-fetcher_site-field_ftchr_site_hosting'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_site_hosting',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'No',
-          1 => 'Zivtech Hosting',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Yes',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '4',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        'label' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 14,
-        ),
-        'token' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        2 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        3 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        4 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_site_hosting',
-      'label' => 'Zivtech Hosting',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '1',
-      'widget' => array(
-        'active' => '0',
-        'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-          'display_label' => 0,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '7',
-      ),
-      'widget_type' => 'optionwidgets_onoff',
-    ),
-  );
-
   // Exported field: 'node-fetcher_site-field_ftchr_private_files'
   $fields['node-fetcher_site-field_ftchr_private_files'] = array(
     'field_config' => array(
@@ -2609,76 +2287,126 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs_url'
-  $fields['node-fetcher_site-field_ftchr_site_vcs_url'] = array(
+  // Exported field: 'node-fetcher_site-field_ftchr_site_hosting'
+  $fields['node-fetcher_site-field_ftchr_site_hosting'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ftchr_site_vcs_url',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
+      'field_name' => 'field_ftchr_site_hosting',
+      'foreign keys' => array(),
       'indexes' => array(
-        'format' => array(
-          0 => 'format',
+        'value' => array(
+          0 => 'value',
         ),
       ),
-      'module' => 'text',
+      'module' => 'list',
       'settings' => array(
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Zivtech Hosting',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
         'max_length' => 255,
+        'text_processing' => '0',
       ),
       'translatable' => '1',
-      'type' => 'text',
+      'type' => 'list_boolean',
     ),
     'field_instance' => array(
       'bundle' => 'fetcher_site',
-      'default_value' => NULL,
+      'default_value' => array(
+        0 => array(
+          'value' => 'Yes',
+        ),
+      ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'text',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 8,
+          'type' => 'list_default',
+          'weight' => '4',
         ),
         'extranet_lead_display' => array(
           'label' => 'above',
           'settings' => array(),
           'type' => 'hidden',
+          'weight' => '3',
+        ),
+        'full' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        'label' => array(
+          'label' => 'inline',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
           'weight' => 0,
         ),
         'teaser' => array(
-          'label' => 'above',
+          'label' => 'inline',
+          'module' => 'link',
           'settings' => array(),
-          'type' => 'hidden',
+          'type' => 'default',
+          'weight' => 14,
+        ),
+        'token' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        2 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        3 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        4 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
           'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ftchr_site_vcs_url',
-      'label' => 'VCS URL',
+      'field_name' => 'field_ftchr_site_hosting',
+      'label' => 'Zivtech Hosting',
       'required' => FALSE,
       'settings' => array(
-        'text_processing' => 0,
         'user_register_form' => FALSE,
       ),
+      'weight' => '1',
       'widget' => array(
-        'module' => 'text',
+        'active' => '0',
+        'module' => 'options',
         'settings' => array(
-          'size' => 60,
+          'default_value_php' => NULL,
+          'display_label' => 0,
         ),
-        'type' => 'text_textfield',
-        'weight' => '4',
+        'type' => 'options_onoff',
+        'weight' => '7',
       ),
+      'widget_type' => 'optionwidgets_onoff',
     ),
   );
 
@@ -2800,6 +2528,278 @@ prod|Production',
         ),
         'type' => 'options_onoff',
         'weight' => '8',
+      ),
+      'widget_type' => 'optionwidgets_onoff',
+    ),
+  );
+
+  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs'
+  $fields['node-fetcher_site-field_ftchr_site_vcs'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_site_vcs',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          1 => 'Git',
+          2 => 'SVN',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+      ),
+      'translatable' => '1',
+      'type' => 'list_text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_site',
+      'default_value' => array(
+        0 => array(
+          'value' => '1',
+        ),
+      ),
+      'default_value_function' => '',
+      'default_value_php' => '',
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '2',
+        ),
+        'extranet_lead_display' => array(
+          'label' => 'inline',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '0',
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_site_vcs',
+      'label' => 'Version Control System',
+      'required' => 1,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'options',
+        'settings' => array(),
+        'type' => 'options_select',
+        'weight' => '3',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs_url'
+  $fields['node-fetcher_site-field_ftchr_site_vcs_url'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_site_vcs_url',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => 255,
+      ),
+      'translatable' => '1',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_site',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 8,
+        ),
+        'extranet_lead_display' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_site_vcs_url',
+      'label' => 'VCS URL',
+      'required' => FALSE,
+      'settings' => array(
+        'text_processing' => 0,
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'module' => 'text',
+        'settings' => array(
+          'size' => 60,
+        ),
+        'type' => 'text_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-fetcher_site-field_ftchr_support'
+  $fields['node-fetcher_site-field_ftchr_support'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_support',
+      'foreign keys' => array(),
+      'indexes' => array(
+        'value' => array(
+          0 => 'value',
+        ),
+      ),
+      'module' => 'list',
+      'settings' => array(
+        'allowed_values' => array(
+          0 => 'No',
+          1 => 'Zivtech Drupal Support',
+        ),
+        'allowed_values_function' => '',
+        'allowed_values_php' => '',
+        'max_length' => 255,
+        'text_processing' => '0',
+      ),
+      'translatable' => '1',
+      'type' => 'list_boolean',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_site',
+      'default_value' => array(
+        0 => array(
+          'value' => 'No',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => '',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => '3',
+        ),
+        'extranet_lead_display' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => '5',
+        ),
+        'full' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        'label' => array(
+          'label' => 'inline',
+          'module' => 'list',
+          'settings' => array(),
+          'type' => 'list_default',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 15,
+        ),
+        'token' => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        2 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        3 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+        4 => array(
+          'label' => 'inline',
+          'module' => 'link',
+          'settings' => array(),
+          'type' => 'default',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_support',
+      'label' => 'Drupal Support',
+      'required' => FALSE,
+      'settings' => array(
+        'user_register_form' => FALSE,
+      ),
+      'weight' => '2',
+      'widget' => array(
+        'active' => '0',
+        'module' => 'options',
+        'settings' => array(
+          'default_value_php' => NULL,
+          'display_label' => 0,
+        ),
+        'type' => 'options_onoff',
+        'weight' => '13',
       ),
       'widget_type' => 'optionwidgets_onoff',
     ),

@@ -28,6 +28,9 @@ function fetcher_services_default_services_endpoint() {
         'index' => array(
           'enabled' => 1,
         ),
+        'retrieve' => array(
+          'enabled' => 1,
+        ),
       ),
     ),
   );
