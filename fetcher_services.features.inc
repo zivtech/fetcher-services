@@ -33,18 +33,18 @@ function fetcher_services_views_api() {
  */
 function fetcher_services_node_info() {
   $items = array(
-    'fetcher_site' => array(
-      'name' => t('Fetcher Site'),
+    'fetcher_server' => array(
+      'name' => t('Fetcher Server'),
       'base' => 'node_content',
-      'description' => t('A site listed with and deployable via fetcher.'),
+      'description' => t('A server that can can be specified as the home for Fetcher Sites.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',
     ),
-    'server' => array(
-      'name' => t('Server'),
+    'fetcher_site' => array(
+      'name' => t('Fetcher Site'),
       'base' => 'node_content',
-      'description' => t('A server that zivtech runs or maintains.'),
+      'description' => t('A site listed with and deployable via fetcher.'),
       'has_title' => '1',
       'title_label' => t('Title'),
       'help' => '',

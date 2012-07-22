@@ -17,7 +17,7 @@ function fetcher_services_views_default_views() {
   $view->base_table = 'node';
   $view->human_name = 'Projects';
   $view->core = 7;
-  $view->api_version = '3.0-alpha1';
+  $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
 
   /* Display: Defaults */
@@ -148,7 +148,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['title']['hide_empty'] = 0;
   $handler->display->display_options['fields']['title']['empty_zero'] = 0;
   $handler->display->display_options['fields']['title']['link_to_node'] = 1;
-  /* Field: Content: Client */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_project_company']['id'] = 'field_project_company';
   $handler->display->display_options['fields']['field_project_company']['table'] = 'field_data_field_project_company';
   $handler->display->display_options['fields']['field_project_company']['field'] = 'field_project_company';
@@ -169,14 +169,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['field_project_company']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_project_company']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_company']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_company']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_project_company']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'node_reference_default',
-  );
-  $handler->display->display_options['fields']['field_project_company']['field_api_classes'] = 0;
-  /* Field: Content: Dev lead */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id']['id'] = 'entity_id';
   $handler->display->display_options['fields']['entity_id']['table'] = 'field_data_field_dev_lead';
   $handler->display->display_options['fields']['entity_id']['field'] = 'field_dev_lead';
@@ -198,17 +191,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'user_reference_default',
-  );
-  $handler->display->display_options['fields']['entity_id']['group_rows'] = 1;
-  $handler->display->display_options['fields']['entity_id']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['entity_id']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['entity_id']['field_api_classes'] = 0;
-  /* Field: Content: Project Manager */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id_3']['id'] = 'entity_id_3';
   $handler->display->display_options['fields']['entity_id_3']['table'] = 'field_data_field_main_contact';
   $handler->display->display_options['fields']['entity_id_3']['field'] = 'field_main_contact';
@@ -230,14 +213,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id_3']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id_3']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id_3']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id_3']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id_3']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'user_reference_default',
-  );
-  $handler->display->display_options['fields']['entity_id_3']['field_api_classes'] = 0;
-  /* Field: Content: Developers */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id_1']['id'] = 'entity_id_1';
   $handler->display->display_options['fields']['entity_id_1']['table'] = 'field_data_field_internal_lead';
   $handler->display->display_options['fields']['entity_id_1']['field'] = 'field_internal_lead';
@@ -259,19 +235,9 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id_1']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id_1']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id_1']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id_1']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id_1']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'user_reference_default',
-  );
-  $handler->display->display_options['fields']['entity_id_1']['group_rows'] = 1;
-  $handler->display->display_options['fields']['entity_id_1']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['entity_id_1']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['entity_id_1']['field_api_classes'] = 0;
   /* Field: Content: Edit link */
   $handler->display->display_options['fields']['edit_node']['id'] = 'edit_node';
-  $handler->display->display_options['fields']['edit_node']['table'] = 'node';
+  $handler->display->display_options['fields']['edit_node']['table'] = 'views_entity_node';
   $handler->display->display_options['fields']['edit_node']['field'] = 'edit_node';
   $handler->display->display_options['fields']['edit_node']['label'] = '';
   $handler->display->display_options['fields']['edit_node']['alter']['alter_text'] = 0;
@@ -287,7 +253,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['edit_node']['element_default_classes'] = 1;
   $handler->display->display_options['fields']['edit_node']['hide_empty'] = 0;
   $handler->display->display_options['fields']['edit_node']['empty_zero'] = 0;
-  /* Field: Content: Activity Level */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id_2']['id'] = 'entity_id_2';
   $handler->display->display_options['fields']['entity_id_2']['table'] = 'field_data_field_project_activity_level';
   $handler->display->display_options['fields']['entity_id_2']['field'] = 'field_project_activity_level';
@@ -308,20 +274,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id_2']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id_2']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id_2']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id_2']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id_2']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'number_decimal',
-    'fallback_settings' => array(
-      'thousand_separator' => ' ',
-      'decimal_separator' => '.',
-      'scale' => '0',
-      'prefix_suffix' => 1,
-    ),
-  );
-  $handler->display->display_options['fields']['entity_id_2']['field_api_classes'] = 0;
-  /* Field: Content: Next Deadline */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id_5']['id'] = 'entity_id_5';
   $handler->display->display_options['fields']['entity_id_5']['table'] = 'field_data_field_project_next_deadline';
   $handler->display->display_options['fields']['entity_id_5']['field'] = 'field_project_next_deadline';
@@ -342,22 +295,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id_5']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id_5']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id_5']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id_5']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id_5']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'date_default',
-    'fallback_settings' => array(
-      'format_type' => 'long',
-      'fromto' => 'both',
-      'multiple_number' => '',
-      'multiple_from' => '',
-      'multiple_to' => '',
-      'show_repeat_rule' => 'show',
-    ),
-  );
-  $handler->display->display_options['fields']['entity_id_5']['field_api_classes'] = 0;
-  /* Field: Content: Sites */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['entity_id_4']['id'] = 'entity_id_4';
   $handler->display->display_options['fields']['entity_id_4']['table'] = 'field_data_field_sites';
   $handler->display->display_options['fields']['entity_id_4']['field'] = 'field_sites';
@@ -379,17 +317,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['entity_id_4']['hide_empty'] = 0;
   $handler->display->display_options['fields']['entity_id_4']['empty_zero'] = 0;
   $handler->display->display_options['fields']['entity_id_4']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['entity_id_4']['type'] = 'editable';
-  $handler->display->display_options['fields']['entity_id_4']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'node_reference_default',
-  );
-  $handler->display->display_options['fields']['entity_id_4']['group_rows'] = 1;
-  $handler->display->display_options['fields']['entity_id_4']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['entity_id_4']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['entity_id_4']['field_api_classes'] = 0;
-  /* Field: Content: Notes */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_project_notes']['id'] = 'field_project_notes';
   $handler->display->display_options['fields']['field_project_notes']['table'] = 'field_data_field_project_notes';
   $handler->display->display_options['fields']['field_project_notes']['field'] = 'field_project_notes';
@@ -410,17 +338,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['field_project_notes']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_project_notes']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_notes']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_notes']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_project_notes']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'text_default',
-  );
-  $handler->display->display_options['fields']['field_project_notes']['group_rows'] = 1;
-  $handler->display->display_options['fields']['field_project_notes']['delta_offset'] = '0';
-  $handler->display->display_options['fields']['field_project_notes']['delta_reversed'] = 0;
-  $handler->display->display_options['fields']['field_project_notes']['field_api_classes'] = 0;
-  /* Field: Content: Amount Budgeted */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_project_amount_budgeted']['id'] = 'field_project_amount_budgeted';
   $handler->display->display_options['fields']['field_project_amount_budgeted']['table'] = 'field_data_field_project_amount_budgeted';
   $handler->display->display_options['fields']['field_project_amount_budgeted']['field'] = 'field_project_amount_budgeted';
@@ -441,20 +359,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['field_project_amount_budgeted']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_project_amount_budgeted']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_project_amount_budgeted']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_project_amount_budgeted']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_project_amount_budgeted']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'number_decimal',
-    'fallback_settings' => array(
-      'thousand_separator' => ',',
-      'decimal_separator' => '.',
-      'scale' => '0',
-      'prefix_suffix' => 1,
-    ),
-  );
-  $handler->display->display_options['fields']['field_project_amount_budgeted']['field_api_classes'] = 0;
-  /* Field: Content: Amount Complete */
+  /* Field: Broken/missing handler */
   $handler->display->display_options['fields']['field_amount_complete']['id'] = 'field_amount_complete';
   $handler->display->display_options['fields']['field_amount_complete']['table'] = 'field_data_field_amount_complete';
   $handler->display->display_options['fields']['field_amount_complete']['field'] = 'field_amount_complete';
@@ -475,19 +380,6 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['fields']['field_amount_complete']['hide_empty'] = 0;
   $handler->display->display_options['fields']['field_amount_complete']['empty_zero'] = 0;
   $handler->display->display_options['fields']['field_amount_complete']['hide_alter_empty'] = 0;
-  $handler->display->display_options['fields']['field_amount_complete']['type'] = 'editable';
-  $handler->display->display_options['fields']['field_amount_complete']['settings'] = array(
-    'click_to_edit' => 1,
-    'empty_text' => '',
-    'fallback_format' => 'number_decimal',
-    'fallback_settings' => array(
-      'thousand_separator' => ',',
-      'decimal_separator' => '.',
-      'scale' => '0',
-      'prefix_suffix' => 1,
-    ),
-  );
-  $handler->display->display_options['fields']['field_amount_complete']['field_api_classes'] = 0;
   /* Field: Last Updated */
   $handler->display->display_options['fields']['changed']['id'] = 'changed';
   $handler->display->display_options['fields']['changed']['table'] = 'node';
@@ -515,7 +407,7 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
   );
-  /* Filter criterion: Content: Activity Level (field_project_activity_level) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_project_activity_level_value']['id'] = 'field_project_activity_level_value';
   $handler->display->display_options['filters']['field_project_activity_level_value']['table'] = 'field_data_field_project_activity_level';
   $handler->display->display_options['filters']['field_project_activity_level_value']['field'] = 'field_project_activity_level_value';
@@ -530,12 +422,14 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'project' => 'project',
   );
-  /* Filter criterion: Content: Activity Level (field_project_activity_level) */
+  /* Filter criterion: Broken/missing handler */
   $handler->display->display_options['filters']['field_project_activity_level_value']['id'] = 'field_project_activity_level_value';
   $handler->display->display_options['filters']['field_project_activity_level_value']['table'] = 'field_data_field_project_activity_level';
   $handler->display->display_options['filters']['field_project_activity_level_value']['field'] = 'field_project_activity_level_value';
   $handler->display->display_options['filters']['field_project_activity_level_value']['operator'] = '>';
-  $handler->display->display_options['filters']['field_project_activity_level_value']['value']['value'] = '0';
+  $handler->display->display_options['filters']['field_project_activity_level_value']['value'] = array(
+    'value' => '0',
+  );
   $handler->display->display_options['path'] = 'projects/active';
   $handler->display->display_options['menu']['type'] = 'default tab';
   $handler->display->display_options['menu']['title'] = 'Active Projects';
@@ -560,33 +454,6 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['menu']['type'] = 'tab';
   $handler->display->display_options['menu']['title'] = 'All Projects';
   $handler->display->display_options['menu']['weight'] = '1';
-  $translatables['projects'] = array(
-    t('Defaults'),
-    t('Projects'),
-    t('more'),
-    t('Apply'),
-    t('Reset'),
-    t('Sort by'),
-    t('Asc'),
-    t('Desc'),
-    t('<a href="/node/add/project">+ Add new project</a>
-<h3>Activity Level Scale</h3>
-<b>0 = Inactive</b>, <b>1 = Barely active</b>, <b>2 = Some activity</b>, <b>3 = Normal activity</b>, <b>4 = Heavy activity</b>, <b>5 = Aggressive deadline, urgent</b>.'),
-    t('Title'),
-    t('Client'),
-    t('Dev Lead'),
-    t('PM'),
-    t('Main Devs'),
-    t('Activity Level'),
-    t('Next Deadline'),
-    t('Site'),
-    t('Notes'),
-    t('Amount Budgeted'),
-    t('Amount Complete'),
-    t('Last Updated'),
-    t('Active Projects'),
-    t('All Projects'),
-  );
   $export['projects'] = $view;
 
   return $export;
