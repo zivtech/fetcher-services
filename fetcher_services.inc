@@ -21,7 +21,7 @@ function _fetcher_services_services_index_sites($page, $name) {
   }
   // TODO: Add optional $server param.
   $results = $query->execute();
-  $nodes = node_load_multiple(array_keys($results[node]));
+  $nodes = node_load_multiple(array_keys($results['node']));
   $sites = array();
   foreach ($nodes as $nid => $node) {
     $site = entity_metadata_wrapper('node', $node);
