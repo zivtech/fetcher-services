@@ -17,7 +17,7 @@ function _fetcher_services_services_index_sites($page, $name) {
     ->entityCondition('bundle', 'fetcher_site')
     ->range($page, 100);
   if ($name != '') {
-    $query = $query->fieldCondition('field_machine_name', 'value', $name, 'CONTAINS');
+    $query = $query->fieldCondition('field_ftchr_server_machine_name', 'value', $name, 'CONTAINS');
   }
   // TODO: Add optional $server param.
   $results = $query->execute();
@@ -25,7 +25,7 @@ function _fetcher_services_services_index_sites($page, $name) {
   $sites = array();
   foreach ($nodes as $nid => $node) {
     $site = entity_metadata_wrapper('node', $node);
-    $sites[$site->field_machine_name->value()] = array(
+    $sites[$site->field_ftchr_machine_name->value()] = array(
       'title' => $site->title->value(),
       // TODO: add client reference.
       //'client' => $site->
@@ -56,21 +56,22 @@ function _fetcher_services_services_retrieve_site($name, $parameters) {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
     // TODO: rename this site machine name since it has to be unique
-    ->fieldCondition('field_machine_name', 'value', $name, '=');
+    ->fieldCondition('field_ftchr_machine_name', 'value', $name, '=');
   $results = $query->execute();
   $site = entity_metadata_wrapper('node', node_load(reset(array_keys($results['node']))));
   $site_info = array();
-  $site_info['name'] = $site->field_machine_name->value();
+  $site_info['name'] = $site->field_ftchr_machine_name->value();
   $site_info['title'] = $site->title->value();
-  $site_info['vcs'] = drupal_strtolower(_fetcher_services_get_list_display_value('field_site_vcs', $site->field_site_vcs->value()));
-  $site_info['vcs_url'] = $site->field_site_vcs_url->value();
+  $site_info['vcs'] = drupal_strtolower(_fetcher_services_get_list_display_value('field_ftchr_site_vcs', $site->field_ftchr_site_vcs->value()));
+  $site_info['vcs_url'] = $site->field_ftchr_site_vcs_url->value();
 
   foreach ($site->field_ftchr_environment->value() as $environment) {
     $environment = entity_metadata_wrapper('field_collection_item', $environment);
-    $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
-
     $data = array();
-    $data['hostname'] = $server->field_server_hostname->value();
+    if ($environment->field_ftchr_server->value()) {
+      $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
+      $data['hostname'] = $server->field_ftchr_server_hostname->value();
+    }
     $data['uri'] = $environment->field_ftchr_uri->value();
     $data['root'] = $environment->field_ftchr_root->value();
     $data['remote-host'] = $environment->field_ftchr_remote_host->value();
