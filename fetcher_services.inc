@@ -188,7 +188,7 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
       if (strpos($name, '_fetcher_services') === 0 && $value != '') {
         // Strip our namespacing for convenience and reinstate our base64
         // provided +'s, they shouldn't be spaces.
-        $ssh_data[substr($name, 20)] = str_replace(' ', '+', $value);
+        $ssh_data[substr($name, 22)] = str_replace(' ', '+', $value);
       }
     }
   }
@@ -196,7 +196,7 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     // If we're missing anything report it as an error.
     if (!isset($ssh_data['fingerprint']) || !isset($ssh_data['plaintext']) || !isset($ssh_data['signature'])) {
       // An SSH parameter is missing, we just will not auth.
-      return;
+      return 'SSH Fingerprint not set.';
     }
     if (!$public_key = sshkey_load_by_fingerprint(base64_decode($ssh_data['fingerprint']))) {
 
