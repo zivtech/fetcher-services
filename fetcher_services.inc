@@ -17,7 +17,7 @@ function _fetcher_services_services_index_sites($page, $name) {
     ->entityCondition('bundle', 'fetcher_site')
     ->range($page, 100);
   if ($name != '') {
-    $query = $query->fieldCondition('field_ftchr_server_machine_name', 'value', $name, 'CONTAINS');
+    $query = $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
   }
   // TODO: Add optional $server param.
   $results = $query->execute();
