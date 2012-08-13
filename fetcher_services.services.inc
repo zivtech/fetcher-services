@@ -20,7 +20,7 @@ function fetcher_services_default_services_endpoint() {
     'fetcher_services' => 'fetcher_services',
     'services' => 'services',
   );
-  $endpoint->server_settings = array();
+  $endpoint->server_settings = array('rest_server' => array());
   $endpoint->resources = array(
     'fetcher-site' => array(
       'alias' => 'site',
