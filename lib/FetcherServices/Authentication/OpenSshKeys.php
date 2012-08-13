@@ -152,54 +152,5 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
     $output['signature'] = base64_decode($output['signature']);
     $output['fingerprint'] = str_replace(':', '', $output['fingerprint']);
     return $output;
-    // TODO: This is a start at getting ssh-agent to do the signing for us.
-    // Finish it to prevent password mutiny.
-    // This is based on http://ptspts.blogspot.com/2010/06/how-to-use-ssh-agent-programmatically.html
-
-    /*
-    // Attempt 1:
-    $address = getenv('SSH_AUTH_SOCK');
-    //$fp = fsockopen($address, 80, $errno, $errstr, 30);
-    $fp = stream_socket_client('unix://' . $address, $errno, $errstr, 5);
-    if (!$fp) {
-        drush_print("$errstr ($errno)<br />\n");
-        drush_print('fail');
-    }
-    else {
-        drush_print('success');
-        $message = "\0\0\0\1\v";
-        fwrite($fp, $message);
-        $result = array();
-        while (!feof($fp)) {
-          $result[] = fgets($fp, 128);
-        }
-        fclose($fp);
-        drush_print_r($result);
-    }
-    //*/
-
-    /*/
-    // Attempt 2:
-    $address = getenv('SSH_AUTH_SOCK');
-    if ($address !== FALSE) {
-      $socket = socket_create(AF_UNIX, SOCK_STREAM, 0);
-      $connction = socket_connect($socket, $address);
-      $message = "\0\0\0\1\v";
-      $result = socket_send($socket, $message, strlen($message), MSG_EOR);
-      $write  = $except = $read = array($socket);
-      // For now we grab everything from the socket, this is the max length.
-      $result = socket_read($socket, 133693415);
-      // The response string comes back with is binary.  We need to unpack it.
-      $result = unpack('N', $result);
-      if (($position = strpos($result, "\0\0\3\5\f")) !== FALSE) {
-        drush_print($position);
-        drush_print('contained');
-      }
-      else {
-        drush_print('not contained');
-      }
-      $result ? drush_print_r($result) : drush_print('something failed');
-    }
-    //*/
   }
 }
