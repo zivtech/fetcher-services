@@ -49,7 +49,12 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
     // TODO: Make this smarter/configurable.
     $system = $this->container['system'];
     $home_folder = $system->getUserHomeFolder();
-    return file_get_contents($home_folder . '/.ssh/id_rsa.pub');
+    if (file_exists($home_folder . '/.ssh/id_rsa.pub')) {
+      return file_get_contents($home_folder . '/.ssh/id_rsa.pub');
+    }
+    else {
+      throw new \Exception('Key could not be located.');
+    }
   }
 
    /**
@@ -67,7 +72,7 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
      // "<algorithm type> <base64-encoded key> <comment>"
      $keyParts = explode(' ', $parsed['value'], 3);
      if (count($keyParts) < 2) {
-       throw new FetcherException(dt('Fetcher Services Authentication Error: The key is invalid.'));
+       throw new Exception(dt('Fetcher Services Authentication Error: The key is invalid.'));
      }
 
      $parsed['algorithm'] = $keyParts[0];
@@ -122,7 +127,6 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
    * Check to see whether ssh-agent is running on the system.
    */
   public function sshAgentExists() {
-    // TODO: Change this whet getSignatureFromSSHAgent() works.
     $address = getenv('SSH_AUTH_SOCK');
     // Ensure we have an address
     if ($address && stream_socket_client('unix://' . $address)) {
