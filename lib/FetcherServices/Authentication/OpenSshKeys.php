@@ -5,11 +5,11 @@
  *  Provides authentication
  */
 
-namespace FetcherSites\Authentication;
+namespace FetcherServices\Authentication;
 use Fetcher\Exception\FetcherException;
 use Symfony\Component\Process\Process;
 
-class OpenSshKeys implements \FetcherSites\Authentication\AuthenticationInterface {
+class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
 
   private $container = NULL;
 
