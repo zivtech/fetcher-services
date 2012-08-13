@@ -70,12 +70,11 @@ function _fetcher_services_services_retrieve_site($name, $parameters) {
     $data = array();
     if ($environment->field_ftchr_server->value()) {
       $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
-      $data['hostname'] = $server->field_ftchr_server_hostname->value();
+      $data['remote-host'] = $server->field_ftchr_server_hostname->value();
+      $data['remote-user'] = $server->field_ftchr_remote_user->value();
     }
     $data['uri'] = $environment->field_ftchr_uri->value();
     $data['root'] = $environment->field_ftchr_root->value();
-    $data['remote-host'] = $environment->field_ftchr_remote_host->value();
-    $data['remote-user'] = $environment->field_ftchr_remote_user->value();
     $data['fetcher']['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
     $data['fetcher']['branch'] = $environment->field_ftchr_branch->value();
     $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
