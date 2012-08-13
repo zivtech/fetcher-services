@@ -57,11 +57,14 @@ class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
 
     // Execute the request and decode the response.
     $result = $client->fetch();
-    if (!empty($result) && $result) {
+    if (is_object($result)) {
+      if (!count($result)) {
+        $this->site['log']('No sites appear to exist on the server.', 'ok');
+      }
       return $result;
     }
     else {
-      drush_log(dt('The data could not be retrieved from the server. Error code @code received rom server.', array('@code' => $client->getResponseCode())), 'error');
+      drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
     }
   }
 
