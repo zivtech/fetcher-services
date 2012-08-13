@@ -1,6 +1,6 @@
 <?php
 
-namespace FetcherSites\InfoFetcher;
+namespace FetcherServices\InfoFetcher;
 
 class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
 
@@ -13,7 +13,7 @@ class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
 
     // Set our default fetcher client authentication class to our own HTTPClient.
     if (!isset($site['client.authentication class'])) {
-      $site['client.authentication class'] = '\Fetcher\Authentication\OpenSshKeys';
+      $site['client.authentication class'] = '\FetcherServices\Authentication\OpenSshKeys';
     }
 
     $site['client.authentication'] = $site->share(function($c) {
