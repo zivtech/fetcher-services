@@ -58,6 +58,9 @@ function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
     // TODO: rename this site machine name since it has to be unique
     ->fieldCondition('field_ftchr_machine_name', 'value', $name, '=');
   $results = $query->execute();
+  if (!count($results)) {
+    return FALSE;
+  }
   $site = entity_metadata_wrapper('node', node_load(reset(array_keys($results['node']))));
   $site_info = array();
   $site_info['name'] = $site->field_ftchr_machine_name->value();
