@@ -1,10 +1,12 @@
 <?php
 
 namespace FetcherServices\InfoFetcher;
+use Fetcher\InfoFetcher\InfoFetcherInterface;
+use Fetcher\Site;
 
-class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
+class FetcherServices implements InfoFetcherInterface {
 
-  public function __construct(Pimple $site) {
+  public function __construct(Site $site) {
 
     // Set our default fetcher client class to our own HTTPClient.
     if (!isset($site['fetcher client class'])) {
@@ -98,6 +100,17 @@ class FetcherServices implements \Fetcher\InfoFetcher\InfoFetcherInterface {
       }
       return FALSE;
     }
+    $arrayify = function ($object) use (&$arrayify) {
+      if (is_object($object)) {
+        foreach ($object as &$item) {
+          if (is_object($item)) {
+            $item = $arrayify($item);
+          }
+        }
+      }
+      return (array) $object;
+    };
+    $result = $arrayify($result);
     return $result;
   }
 
