@@ -51,7 +51,7 @@ function _fetcher_services_services_index_sites($page, $name) {
  * @param $parameters
  *   An array of parameters from the services request.
  */
-function _fetcher_services_services_retrieve_site($name, $parameters) {
+function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
