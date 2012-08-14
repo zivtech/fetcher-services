@@ -196,10 +196,15 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     }
   }
   try {
+    $cache_key = substr(base64_decode($ssh_data['plaintext']), 0, 80);
     // If we're missing anything report it as an error.
+    if (!$value = cache_get($cache_key, 'cache_fetcher_services_auth')) {
+      throw new Exception(t('The plaintext key was not recognized and has either expired or was not created by this system.'));
+    }
+    cache_clear_all($cache_key, 'cache_fetcher_services_auth');
     if (!isset($ssh_data['fingerprint']) || !isset($ssh_data['plaintext']) || !isset($ssh_data['signature'])) {
       // An SSH parameter is missing, we just will not auth.
-      return 'SSH Fingerprint not set.';
+      throw new Exception('SSH Fingerprint not set.');
     }
     if (!$public_key = sshkey_load_by_fingerprint(base64_decode($ssh_data['fingerprint']))) {
 

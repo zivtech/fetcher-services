@@ -24,8 +24,10 @@ function fetcher_services_menu() {
  *
  */
 function fetcher_services_one_time_use_token() {
-  $random = drupal_hash_base64(drupal_random_bytes(55));
-  cache_set($random, TRUE, 'cache_fetcher_services_auth', CACHE_TEMPORARY);
+  $random = drupal_random_bytes(64);
+  $random = base64_encode(substr(strtr($random, array('+' => '-', '/' => '_', '\\' => '_', '=' => '')), 0, -2));
+  $cache_key = substr($random, 0, 80);
+  cache_set($cache_key, $random, 'cache_fetcher_services_auth', CACHE_TEMPORARY);
   print json_encode($random);
   return NULL;
 }
