@@ -206,7 +206,6 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
       throw new Exception(t('SSH Key with fingerprint %fingerprint was not found', array('%fingerprint' => $ssh_data['fingerprint'])));
     }
     if ($public_key->entity_type != 'user') {
-      watdog('test', t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
       throw new Exception(t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
     }
     $pem_key = _fetcher_services_convert_openssh_to_pem($public_key->value);
