@@ -7,14 +7,15 @@
 
 namespace FetcherServices\Authentication;
 use Fetcher\Exception\FetcherException;
+use Fetcher\Site;
 use Symfony\Component\Process\Process;
 
 class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
 
-  private $container = NULL;
+  private $site = NULL;
 
-  public function __construct(\Pimple $container) {
-    $this->container = $container;
+  public function __construct(Site $site) {
+    $this->site = $site;
   }
 
   /**
@@ -30,7 +31,15 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
 
     // Generate pseudo random noise to sign for this transaction.
     // The current time is included preventing replay attacks.
-    $text = $this->container['random'](64) . '-' . time();
+    $site = $this->site;
+    $textLoadingClient = new $site['fetcher client class']();
+    $text = $textLoadingClient
+      ->setURL($site['info-fetcher.config']['host'])
+      ->setMethod('GET')
+      ->setTimeout(3)
+      ->setEncoding('json')
+      ->setPath('fetcher-services/api/get-token')
+      ->fetch();
     $data = $this->getSignatureAndFingerprint($text);
 
     $client->addParam('ssh_plaintext', base64_encode($text));
@@ -47,7 +56,7 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
    */
   public function getPublicKey() {
     // TODO: Make this smarter/configurable.
-    $system = $this->container['system'];
+    $system = $this->site['system'];
     $home_folder = $system->getUserHomeFolder();
     if (file_exists($home_folder . '/.ssh/id_rsa.pub')) {
       return file_get_contents($home_folder . '/.ssh/id_rsa.pub');
@@ -109,7 +118,7 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
 
       $keyData = $this->parsePublicKey($this->getPublicKey());
       $fingerprint = $keyData['fingerprint'];
-      $process = new Process('openssl rsa -in ' . $this->container['system']->getUserHomeFolder() . '/.ssh/id_rsa');
+      $process = new Process('openssl rsa -in ' . $this->site['system']->getUserHomeFolder() . '/.ssh/id_rsa');
       $process->setTimeout(3600);
       $process->run();
       if (!$process->isSuccessful()) {

@@ -3,6 +3,7 @@
 namespace FetcherServices\InfoFetcher;
 use Fetcher\InfoFetcher\InfoFetcherInterface;
 use Fetcher\Site;
+use Fetcher\Exception\FetcherException;
 
 class FetcherServices implements InfoFetcherInterface {
 
@@ -26,7 +27,7 @@ class FetcherServices implements InfoFetcherInterface {
       if (!fetcher_drush_get_option('info-fetcher.config', FALSE)) {
         $message = 'The fetcher server option must be set, we recommend setting it in your .drushrc.php file.';
         drush_log(dt($message), 'error');
-        throw new \Fetcher\Exception\FetcherException($message);
+        throw new FetcherException($message);
       }
       $c['info-fetcher.config'] = fetcher_drush_get_option('info-fetcher.config');
       $client = new $c['fetcher client class']();
