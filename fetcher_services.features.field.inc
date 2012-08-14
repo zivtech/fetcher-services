@@ -10,7 +10,70 @@
 function fetcher_services_field_default_fields() {
   $fields = array();
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_branch'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'.
+  $fields['field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_field_ftchr_vcs_rootsubdir',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'field_ftchr_environment',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'If the root of this VCS repository is not the root of the Drupal htdocs (the folder containing `index.php`, specify the subdirectory containing it.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 13,
+        ),
+      ),
+      'entity_type' => 'field_collection_item',
+      'field_name' => 'field_field_ftchr_vcs_rootsubdir',
+      'label' => 'Version Control Doc Root Subdirectory',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '11',
+      ),
+    ),
+  );
+
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_branch'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_branch'] = array(
     'field_config' => array(
       'active' => '1',
@@ -31,6 +94,7 @@ function fetcher_services_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -46,7 +110,7 @@ function fetcher_services_field_default_fields() {
         ),
       ),
       'deleted' => '0',
-      'description' => '',
+      'description' => 'With git this defaults to `master`, on svn it defaults to `trunk`.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -58,7 +122,7 @@ function fetcher_services_field_default_fields() {
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_ftchr_branch',
-      'label' => 'Branch',
+      'label' => 'Version Control Branch',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -71,219 +135,12 @@ function fetcher_services_field_default_fields() {
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '8',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_database_server'
-  $fields['field_collection_item-field_ftchr_environment-field_ftchr_database_server'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_database_server',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
-      'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
-        ),
-      ),
-      'module' => 'node_reference',
-      'settings' => array(
-        'referenceable_types' => array(
-          'company' => 0,
-          'contact' => 0,
-          'event' => 0,
-          'expense' => 0,
-          'fetcher_site' => 0,
-          'lead' => 0,
-          'page' => 0,
-          'project' => 0,
-          'project_info' => 0,
-          'server' => 'server',
-          'site' => 0,
-          'site_note' => 0,
-          'template' => 0,
-          'wiki' => 0,
-        ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
-      ),
-      'translatable' => '1',
-      'type' => 'node_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_ftchr_environment',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 7,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ftchr_database_server',
-      'label' => 'Database server',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'node_reference',
-        'settings' => array(
-          'autocomplete_match' => 'contains',
-          'autocomplete_path' => 'node_reference/autocomplete',
-          'size' => '60',
-        ),
-        'type' => 'node_reference_autocomplete',
-        'weight' => '7',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_dburl'
-  $fields['field_collection_item-field_ftchr_environment-field_ftchr_dburl'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_dburl',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_ftchr_environment',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 2,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ftchr_dburl',
-      'label' => 'DB-URL',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_documentroot'
-  $fields['field_collection_item-field_ftchr_environment-field_ftchr_documentroot'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_documentroot',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_ftchr_environment',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 6,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ftchr_documentroot',
-      'label' => 'Document root',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'] = array(
     'field_config' => array(
       'active' => '1',
@@ -297,6 +154,7 @@ function fetcher_services_field_default_fields() {
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -311,11 +169,7 @@ function fetcher_services_field_default_fields() {
     ),
     'field_instance' => array(
       'bundle' => 'field_ftchr_environment',
-      'default_value' => array(
-        0 => array(
-          'value' => '2',
-        ),
-      ),
+      'default_value' => NULL,
       'default_value_function' => '',
       'default_value_php' => '',
       'deleted' => '0',
@@ -332,7 +186,7 @@ function fetcher_services_field_default_fields() {
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_ftchr_drupal_version',
       'label' => 'Drupal version',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -341,12 +195,12 @@ function fetcher_services_field_default_fields() {
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '7',
+        'weight' => '2',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_environment_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -367,6 +221,7 @@ function fetcher_services_field_default_fields() {
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -406,140 +261,17 @@ prod|Production',
           'available_options_php' => '',
           'markup_available_options_php' => '&lt;none&gt;',
           'other' => 'Other',
+          'other_title' => '',
           'other_unknown_defaults' => 'ignore',
           'sort_options' => 0,
         ),
         'type' => 'select_or_other',
-        'weight' => 0,
+        'weight' => '1',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_remote_host'
-  $fields['field_collection_item-field_ftchr_environment-field_ftchr_remote_host'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_remote_host',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_ftchr_environment',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 3,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ftchr_remote_host',
-      'label' => 'Remote Host',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '5',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_remote_user'
-  $fields['field_collection_item-field_ftchr_environment-field_ftchr_remote_user'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_remote_user',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'field_ftchr_environment',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => 4,
-        ),
-      ),
-      'entity_type' => 'field_collection_item',
-      'field_name' => 'field_ftchr_remote_user',
-      'label' => 'Remote User',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '6',
-      ),
-    ),
-  );
-
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_root'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_root'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_root'] = array(
     'field_config' => array(
       'active' => '1',
@@ -560,6 +292,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -571,7 +304,7 @@ prod|Production',
       'bundle' => 'field_ftchr_environment',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'This is optional and will default to `/var/www/[site name]/webroot`.',
       'display' => array(
         'default' => array(
           'label' => 'above',
@@ -583,7 +316,7 @@ prod|Production',
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_ftchr_root',
-      'label' => 'Root',
+      'label' => 'Remote Server Site Root',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -596,12 +329,12 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '3',
+        'weight' => '12',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_server'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_server'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_server'] = array(
     'field_config' => array(
       'active' => '1',
@@ -609,45 +342,37 @@ prod|Production',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_ftchr_server',
-      'foreign keys' => array(
-        'nid' => array(
-          'columns' => array(
-            'nid' => 'nid',
-          ),
-          'table' => 'node',
-        ),
-      ),
+      'foreign keys' => array(),
       'indexes' => array(
-        'nid' => array(
-          0 => 'nid',
+        'target_id' => array(
+          0 => 'target_id',
         ),
       ),
-      'module' => 'node_reference',
+      'locked' => '0',
+      'module' => 'entityreference',
       'settings' => array(
-        'referenceable_types' => array(
-          'company' => 0,
-          'contact' => 0,
-          'event' => 0,
-          'expense' => 0,
-          'fetcher_site' => 0,
-          'lead' => 0,
-          'page' => 0,
-          'project' => 0,
-          'project_info' => 0,
-          'server' => 'server',
-          'site' => 0,
-          'site_note' => 0,
-          'template' => 0,
-          'wiki' => 0,
+        'handler' => 'base',
+        'handler_settings' => array(
+          'behaviors' => array(
+            'views-select-list' => array(
+              'status' => 0,
+            ),
+          ),
+          'sort' => array(
+            'direction' => 'ASC',
+            'field' => 'body:value',
+            'property' => 'nid',
+            'type' => 'none',
+          ),
+          'target_bundles' => array(
+            'fetcher_server' => 'fetcher_server',
+          ),
         ),
-        'view' => array(
-          'args' => array(),
-          'display_name' => '',
-          'view_name' => '',
-        ),
+        'handler_submit' => 'Change handler',
+        'target_type' => 'node',
       ),
-      'translatable' => '1',
-      'type' => 'node_reference',
+      'translatable' => '0',
+      'type' => 'entityreference',
     ),
     'field_instance' => array(
       'bundle' => 'field_ftchr_environment',
@@ -657,16 +382,18 @@ prod|Production',
       'display' => array(
         'default' => array(
           'label' => 'above',
-          'module' => 'node_reference',
-          'settings' => array(),
-          'type' => 'node_reference_default',
-          'weight' => 8,
+          'module' => 'entityreference',
+          'settings' => array(
+            'link' => FALSE,
+          ),
+          'type' => 'entityreference_label',
+          'weight' => 11,
         ),
       ),
       'entity_type' => 'field_collection_item',
       'field_name' => 'field_ftchr_server',
       'label' => 'Server',
-      'required' => 0,
+      'required' => 1,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
@@ -675,12 +402,12 @@ prod|Production',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '2',
+        'weight' => '3',
       ),
     ),
   );
 
-  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_uri'
+  // Exported field: 'field_collection_item-field_ftchr_environment-field_ftchr_uri'.
   $fields['field_collection_item-field_ftchr_environment-field_ftchr_uri'] = array(
     'field_config' => array(
       'active' => '1',
@@ -701,6 +428,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -737,12 +465,12 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '1',
+        'weight' => '0',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-body'
+  // Exported field: 'node-fetcher_server-body'.
   $fields['node-fetcher_server-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -765,6 +493,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -777,7 +506,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -817,19 +546,19 @@ prod|Production',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '9',
+        'weight' => '5',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_hostname'
-  $fields['node-fetcher_server-field_ftchr_server_hostname'] = array(
+  // Exported field: 'node-fetcher_server-field_ftchr_remote_host'.
+  $fields['node-fetcher_server-field_ftchr_remote_host'] = array(
     'field_config' => array(
       'active' => '1',
       'cardinality' => '1',
       'deleted' => '0',
       'entity_types' => array(),
-      'field_name' => 'field_ftchr_server_hostname',
+      'field_name' => 'field_ftchr_remote_host',
       'foreign keys' => array(
         'format' => array(
           'columns' => array(
@@ -843,31 +572,26 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
       ),
-      'translatable' => '1',
+      'translatable' => '0',
       'type' => 'text',
     ),
     'field_instance' => array(
       'bundle' => 'fetcher_server',
       'default_value' => NULL,
       'deleted' => '0',
-      'description' => '',
+      'description' => 'The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.',
       'display' => array(
         'default' => array(
           'label' => 'above',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => '2',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
+          'weight' => 15,
         ),
         'teaser' => array(
           'label' => 'above',
@@ -877,8 +601,8 @@ prod|Production',
         ),
       ),
       'entity_type' => 'node',
-      'field_name' => 'field_ftchr_server_hostname',
-      'label' => 'Hostname',
+      'field_name' => 'field_ftchr_remote_host',
+      'label' => 'Host Name',
       'required' => 0,
       'settings' => array(
         'text_processing' => '0',
@@ -891,12 +615,85 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '10',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_ip'
+  // Exported field: 'node-fetcher_server-field_ftchr_remote_user'.
+  $fields['node-fetcher_server-field_ftchr_remote_user'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_remote_user',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '1',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_server',
+      'default_value' => array(
+        0 => array(
+          'value' => 'webadmin',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 14,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_remote_user',
+      'label' => 'Remote User',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '4',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-fetcher_server-field_ftchr_server_ip'.
   $fields['node-fetcher_server-field_ftchr_server_ip'] = array(
     'field_config' => array(
       'active' => '1',
@@ -917,6 +714,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -931,7 +729,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -965,86 +763,12 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '11',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_linode'
-  $fields['node-fetcher_server-field_ftchr_server_linode'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_server_linode',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_server',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '10',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_server_linode',
-      'label' => 'Linode Number',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '8',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_server-field_ftchr_server_machine_name'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_machine_name'.
   $fields['node-fetcher_server-field_ftchr_server_machine_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1058,6 +782,7 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'machine_name',
       'settings' => array(
         'max_length' => 128,
@@ -1074,11 +799,16 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
-          'module' => NULL,
-          'settings' => array(),
-          'type' => 'machine_name_default',
-          'weight' => 13,
+          'label' => 'inline',
+          'module' => 'editablefields',
+          'settings' => array(
+            'click_to_edit' => FALSE,
+            'empty_text' => '',
+            'fallback_format' => NULL,
+            'fallback_settings' => array(),
+          ),
+          'type' => 'editable',
+          'weight' => '13',
         ),
         'extranet_lead_display' => array(
           'label' => 'above',
@@ -1113,7 +843,7 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_managed'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_managed'.
   $fields['node-fetcher_server-field_ftchr_server_managed'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1127,10 +857,11 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          1 => 'Zivtech managed',
+          1 => 'Company managed',
           2 => 'Client managed',
           3 => 'Deprecated',
         ),
@@ -1149,7 +880,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
@@ -1180,12 +911,12 @@ prod|Production',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '12',
+        'weight' => '11',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_mysql_pass'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_mysql_pass'.
   $fields['node-fetcher_server-field_ftchr_server_mysql_pass'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1206,6 +937,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1220,7 +952,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -1254,12 +986,12 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '7',
+        'weight' => '9',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_mysql_user'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_mysql_user'.
   $fields['node-fetcher_server-field_ftchr_server_mysql_user'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1280,6 +1012,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1294,7 +1027,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -1328,12 +1061,12 @@ prod|Production',
           'size' => '60',
         ),
         'type' => 'text_textfield',
-        'weight' => '6',
+        'weight' => '8',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_os'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_os'.
   $fields['node-fetcher_server-field_ftchr_server_os'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1347,12 +1080,14 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          1 => '10.04 Lucid',
-          2 => '9.04 Jaunty',
-          3 => '9.10 Karmic',
+          '12.04 Precise Panguin' => '12.04 Precise Panguin',
+          '10.04 Lucid Lynx' => '10.04 Lucid Lynx',
+          '9.04 Jaunty Jackalope' => '9.04 Jaunty Jackalope',
+          '9.10 Karmic Koala' => '9.10 Karmic Koala',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
@@ -1369,7 +1104,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
@@ -1390,7 +1125,7 @@ prod|Production',
       ),
       'entity_type' => 'node',
       'field_name' => 'field_ftchr_server_os',
-      'label' => 'Ubuntu Version',
+      'label' => 'Server Version',
       'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
@@ -1400,12 +1135,12 @@ prod|Production',
         'module' => 'options',
         'settings' => array(),
         'type' => 'options_select',
-        'weight' => '13',
+        'weight' => '10',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_other_user'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_other_user'.
   $fields['node-fetcher_server-field_ftchr_server_other_user'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1426,6 +1161,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -1438,7 +1174,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -1472,12 +1208,81 @@ prod|Production',
           'rows' => '5',
         ),
         'type' => 'text_textarea',
-        'weight' => '5',
+        'weight' => '7',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_root'
+  // Exported field: 'node-fetcher_server-field_ftchr_server_remote_user_p'.
+  $fields['node-fetcher_server-field_ftchr_server_remote_user_p'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_server_remote_user_p',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_server',
+      'default_value' => NULL,
+      'deleted' => '0',
+      'description' => 'The password for the remote user to be used for website administration (if there is such a shared user).',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 16,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_server_remote_user_p',
+      'label' => 'Remote User Password',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '6',
+      ),
+    ),
+  );
+
+  // Exported field: 'node-fetcher_server-field_ftchr_server_root'.
   $fields['node-fetcher_server-field_ftchr_server_root'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1498,6 +1303,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => '255',
@@ -1512,7 +1318,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -1551,247 +1357,7 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_server-field_ftchr_server_webadmin_pass'
-  $fields['node-fetcher_server-field_ftchr_server_webadmin_pass'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_server_webadmin_pass',
-      'foreign keys' => array(
-        'format' => array(
-          'columns' => array(
-            'format' => 'format',
-          ),
-          'table' => 'filter_format',
-        ),
-      ),
-      'indexes' => array(
-        'format' => array(
-          0 => 'format',
-        ),
-      ),
-      'module' => 'text',
-      'settings' => array(
-        'max_length' => '255',
-      ),
-      'translatable' => '1',
-      'type' => 'text',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_server',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'text',
-          'settings' => array(),
-          'type' => 'text_default',
-          'weight' => '5',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_server_webadmin_pass',
-      'label' => 'Webadmin Password',
-      'required' => 0,
-      'settings' => array(
-        'text_processing' => '0',
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'text',
-        'settings' => array(
-          'size' => '60',
-        ),
-        'type' => 'text_textfield',
-        'weight' => '4',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_server-field_ftchr_services'
-  $fields['node-fetcher_server-field_ftchr_services'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_services',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'parent' => '0',
-            'vocabulary' => 'server_services',
-          ),
-        ),
-      ),
-      'translatable' => '1',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_server',
-      'default_value' => array(
-        0 => array(
-          'tid' => '53',
-        ),
-        1 => array(
-          'tid' => '57',
-        ),
-        2 => array(
-          'tid' => '54',
-        ),
-        3 => array(
-          'tid' => '56',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => '11',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_services',
-      'label' => 'Services',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_buttons',
-        'weight' => '2',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_server-taxonomy_vocabulary_1'
-  $fields['node-fetcher_server-taxonomy_vocabulary_1'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '-1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'taxonomy_vocabulary_1',
-      'foreign keys' => array(
-        'tid' => array(
-          'columns' => array(
-            'tid' => 'tid',
-          ),
-          'table' => 'taxonomy_term_data',
-        ),
-      ),
-      'indexes' => array(
-        'tid' => array(
-          0 => 'tid',
-        ),
-      ),
-      'module' => 'taxonomy',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => array(
-            'parent' => 0,
-            'vocabulary' => 'vocabulary_1',
-          ),
-        ),
-        'required' => TRUE,
-      ),
-      'translatable' => '0',
-      'type' => 'taxonomy_term_reference',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_server',
-      'default_value' => NULL,
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'taxonomy',
-          'settings' => array(),
-          'type' => 'taxonomy_term_reference_link',
-          'weight' => 12,
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'taxonomy_vocabulary_1',
-      'label' => 'Category',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(),
-        'type' => 'options_select',
-        'weight' => '15',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-body'
+  // Exported field: 'node-fetcher_site-body'.
   $fields['node-fetcher_site-body'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1814,6 +1380,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(),
       'translatable' => '1',
@@ -1826,7 +1393,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'hidden',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
@@ -1865,12 +1432,12 @@ prod|Production',
           'summary_rows' => 5,
         ),
         'type' => 'text_textarea_with_summary',
-        'weight' => '6',
+        'weight' => '7',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_environment'
+  // Exported field: 'node-fetcher_site-field_ftchr_environment'.
   $fields['node-fetcher_site-field_ftchr_environment'] = array(
     'field_config' => array(
       'active' => '1',
@@ -1880,6 +1447,7 @@ prod|Production',
       'field_name' => 'field_ftchr_environment',
       'foreign keys' => array(),
       'indexes' => array(),
+      'locked' => '0',
       'module' => 'field_collection',
       'settings' => array(
         'path' => '',
@@ -1894,7 +1462,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'field_collection',
           'settings' => array(
             'add' => 'Add',
@@ -1904,7 +1472,7 @@ prod|Production',
             'view_mode' => 'full',
           ),
           'type' => 'field_collection_view',
-          'weight' => 9,
+          'weight' => '9',
         ),
         'extranet_lead_display' => array(
           'label' => 'above',
@@ -1931,135 +1499,12 @@ prod|Production',
         'module' => 'field_collection',
         'settings' => array(),
         'type' => 'field_collection_embed',
-        'weight' => '5',
+        'weight' => '6',
       ),
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_hosting'
-  $fields['node-fetcher_site-field_ftchr_hosting'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_hosting',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'No',
-          1 => 'Zivtech Hosting',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Yes',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '4',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        'label' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 14,
-        ),
-        'token' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        2 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        3 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        4 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_hosting',
-      'label' => 'Zivtech Hosting',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '1',
-      'widget' => array(
-        'active' => '0',
-        'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-          'display_label' => 0,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '12',
-      ),
-      'widget_type' => 'optionwidgets_onoff',
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-field_ftchr_machine_name'
+  // Exported field: 'node-fetcher_site-field_ftchr_machine_name'.
   $fields['node-fetcher_site-field_ftchr_machine_name'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2073,6 +1518,7 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'machine_name',
       'settings' => array(
         'max_length' => 128,
@@ -2090,11 +1536,10 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'editablefields',
           'settings' => array(
             'click_to_edit' => FALSE,
-            'click_to_edit_style' => 'button',
             'empty_text' => '',
             'fallback_format' => NULL,
             'fallback_settings' => array(),
@@ -2135,84 +1580,7 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_private_files'
-  $fields['node-fetcher_site-field_ftchr_private_files'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_private_files',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => '0',
-          1 => '1',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 0,
-        ),
-      ),
-      'default_value_function' => '',
-      'default_value_php' => '',
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 7,
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_private_files',
-      'label' => 'Private files',
-      'required' => 0,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'widget' => array(
-        'active' => 1,
-        'module' => 'options',
-        'settings' => array(
-          'display_label' => 1,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '10',
-      ),
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-field_ftchr_site_drupal_version'
+  // Exported field: 'node-fetcher_site-field_ftchr_site_drupal_version'.
   $fields['node-fetcher_site-field_ftchr_site_drupal_version'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2226,11 +1594,12 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
-          1 => 'D6',
-          2 => 'D7',
+          6 => 'Drupal 6.x',
+          7 => 'Drupal 7.x',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
@@ -2240,18 +1609,14 @@ prod|Production',
     ),
     'field_instance' => array(
       'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => '2',
-        ),
-      ),
+      'default_value' => NULL,
       'default_value_function' => '',
       'default_value_php' => '',
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
@@ -2287,130 +1652,7 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_site_hosting'
-  $fields['node-fetcher_site-field_ftchr_site_hosting'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_site_hosting',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'No',
-          1 => 'Zivtech Hosting',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'Yes',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '4',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '3',
-        ),
-        'full' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        'label' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 14,
-        ),
-        'token' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        2 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        3 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        4 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_site_hosting',
-      'label' => 'Zivtech Hosting',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '1',
-      'widget' => array(
-        'active' => '0',
-        'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-          'display_label' => 0,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '7',
-      ),
-      'widget_type' => 'optionwidgets_onoff',
-    ),
-  );
-
-  // Exported field: 'node-fetcher_site-field_ftchr_site_support'
+  // Exported field: 'node-fetcher_site-field_ftchr_site_support'.
   $fields['node-fetcher_site-field_ftchr_site_support'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2424,11 +1666,12 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
           0 => 'No',
-          1 => 'Zivtech Drupal Support',
+          1 => 'Drupal Support',
         ),
         'allowed_values_function' => '',
         'allowed_values_php' => '',
@@ -2442,14 +1685,14 @@ prod|Production',
       'bundle' => 'fetcher_site',
       'default_value' => array(
         0 => array(
-          'value' => 'No',
+          'value' => 0,
         ),
       ),
       'deleted' => '0',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
@@ -2463,9 +1706,9 @@ prod|Production',
         ),
         'full' => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 0,
         ),
         'label' => array(
@@ -2477,63 +1720,62 @@ prod|Production',
         ),
         'teaser' => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 15,
         ),
         'token' => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 0,
         ),
         2 => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 0,
         ),
         3 => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 0,
         ),
         4 => array(
           'label' => 'inline',
-          'module' => 'link',
+          'module' => 'list',
           'settings' => array(),
-          'type' => 'default',
+          'type' => 'list_default',
           'weight' => 0,
         ),
       ),
       'entity_type' => 'node',
       'field_name' => 'field_ftchr_site_support',
       'label' => 'Drupal Support',
-      'required' => FALSE,
+      'required' => 0,
       'settings' => array(
         'user_register_form' => FALSE,
       ),
       'weight' => '2',
       'widget' => array(
-        'active' => '0',
+        'active' => 1,
         'module' => 'options',
         'settings' => array(
-          'default_value_php' => NULL,
           'display_label' => 0,
         ),
         'type' => 'options_onoff',
-        'weight' => '8',
+        'weight' => '5',
       ),
       'widget_type' => 'optionwidgets_onoff',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs'
+  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs'.
   $fields['node-fetcher_site-field_ftchr_site_vcs'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2547,6 +1789,7 @@ prod|Production',
           0 => 'value',
         ),
       ),
+      'locked' => '0',
       'module' => 'list',
       'settings' => array(
         'allowed_values' => array(
@@ -2572,7 +1815,7 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'list',
           'settings' => array(),
           'type' => 'list_default',
@@ -2609,7 +1852,7 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs_url'
+  // Exported field: 'node-fetcher_site-field_ftchr_site_vcs_url'.
   $fields['node-fetcher_site-field_ftchr_site_vcs_url'] = array(
     'field_config' => array(
       'active' => '1',
@@ -2630,6 +1873,7 @@ prod|Production',
           0 => 'format',
         ),
       ),
+      'locked' => '0',
       'module' => 'text',
       'settings' => array(
         'max_length' => 255,
@@ -2644,11 +1888,11 @@ prod|Production',
       'description' => '',
       'display' => array(
         'default' => array(
-          'label' => 'above',
+          'label' => 'inline',
           'module' => 'text',
           'settings' => array(),
           'type' => 'text_default',
-          'weight' => 8,
+          'weight' => '8',
         ),
         'extranet_lead_display' => array(
           'label' => 'above',
@@ -2682,163 +1926,38 @@ prod|Production',
     ),
   );
 
-  // Exported field: 'node-fetcher_site-field_ftchr_support'
-  $fields['node-fetcher_site-field_ftchr_support'] = array(
-    'field_config' => array(
-      'active' => '1',
-      'cardinality' => '1',
-      'deleted' => '0',
-      'entity_types' => array(),
-      'field_name' => 'field_ftchr_support',
-      'foreign keys' => array(),
-      'indexes' => array(
-        'value' => array(
-          0 => 'value',
-        ),
-      ),
-      'module' => 'list',
-      'settings' => array(
-        'allowed_values' => array(
-          0 => 'No',
-          1 => 'Zivtech Drupal Support',
-        ),
-        'allowed_values_function' => '',
-        'allowed_values_php' => '',
-        'max_length' => 255,
-        'text_processing' => '0',
-      ),
-      'translatable' => '1',
-      'type' => 'list_boolean',
-    ),
-    'field_instance' => array(
-      'bundle' => 'fetcher_site',
-      'default_value' => array(
-        0 => array(
-          'value' => 'No',
-        ),
-      ),
-      'deleted' => '0',
-      'description' => '',
-      'display' => array(
-        'default' => array(
-          'label' => 'above',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => '3',
-        ),
-        'extranet_lead_display' => array(
-          'label' => 'above',
-          'settings' => array(),
-          'type' => 'hidden',
-          'weight' => '5',
-        ),
-        'full' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        'label' => array(
-          'label' => 'inline',
-          'module' => 'list',
-          'settings' => array(),
-          'type' => 'list_default',
-          'weight' => 0,
-        ),
-        'teaser' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 15,
-        ),
-        'token' => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        2 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        3 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-        4 => array(
-          'label' => 'inline',
-          'module' => 'link',
-          'settings' => array(),
-          'type' => 'default',
-          'weight' => 0,
-        ),
-      ),
-      'entity_type' => 'node',
-      'field_name' => 'field_ftchr_support',
-      'label' => 'Drupal Support',
-      'required' => FALSE,
-      'settings' => array(
-        'user_register_form' => FALSE,
-      ),
-      'weight' => '2',
-      'widget' => array(
-        'active' => '0',
-        'module' => 'options',
-        'settings' => array(
-          'default_value_php' => NULL,
-          'display_label' => 0,
-        ),
-        'type' => 'options_onoff',
-        'weight' => '13',
-      ),
-      'widget_type' => 'optionwidgets_onoff',
-    ),
-  );
-
   // Translatables
   // Included for use with string extractors like potx.
   t('Additional Notes');
-  t('Branch');
-  t('Category');
-  t('DB-URL');
-  t('Database server');
-  t('Document root');
   t('Drupal Support');
   t('Drupal Version');
   t('Drupal version');
   t('Environment');
-  t('Hostname');
+  t('Host Name');
   t('IP Address');
-  t('Linode Number');
+  t('If the root of this VCS repository is not the root of the Drupal htdocs (the folder containing `index.php`, specify the subdirectory containing it.');
   t('Machine Name');
   t('Managed By');
   t('MySQL Password');
   t('MySQL User');
   t('Notes');
   t('Other Users Info');
-  t('Private files');
-  t('Remote Host');
+  t('Remote Server Site Root');
   t('Remote User');
-  t('Root');
+  t('Remote User Password');
   t('Root Password');
   t('Server');
-  t('Services');
+  t('Server Version');
+  t('The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.');
+  t('The password for the remote user to be used for website administration (if there is such a shared user).');
+  t('The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.');
+  t('This is optional and will default to `/var/www/[site name]/webroot`.');
   t('URI');
-  t('Ubuntu Version');
   t('VCS URL');
+  t('Version Control Branch');
+  t('Version Control Doc Root Subdirectory');
   t('Version Control System');
-  t('Webadmin Password');
-  t('Zivtech Hosting');
+  t('With git this defaults to `master`, on svn it defaults to `trunk`.');
 
   return $fields;
 }
