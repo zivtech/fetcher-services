@@ -1,0 +1,17 @@
+<?php
+
+/**
+ * Implements hook_schema().
+ */
+function fetcher_services_schema() {
+  $schema = array();
+  $schema['cache_fetcher_services_auth'] = drupal_get_schema_unprocessed('system', 'cache');
+  return $schema;
+}
+
+/**
+ * Install the fetcher services auth cache bin.
+ */
+function fetcher_services_update_7000() {
+  drupal_install_schema('fetcher_services');
+}
