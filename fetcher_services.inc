@@ -218,11 +218,6 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     // We prevent replay attacks by including a timestamp in the plaintext
     // message.  We never accept any request that's older than the number
     // of seconds in the fetcher_request_age variable.
-    $time = substr($plain_text, -10);
-    // TODO: Provide user configuration for this variable?
-    if ($time < REQUEST_TIME - variable_get('fetcher_request_age', 5)) {
-      throw new Exception(t('Request signature was too old.'));
-    }
     $signature = base64_decode($ssh_data['signature']);
     $success = openssl_verify(base64_decode($ssh_data['plaintext']), base64_decode($ssh_data['signature']), $pem_key);
     if ($success == TRUE) {
