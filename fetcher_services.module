@@ -7,6 +7,30 @@
 include_once('fetcher_services.features.inc');
 
 /**
+ * Implements hook_menu().
+ */
+function fetcher_services_menu() {
+  $items = array();
+  $items['fetcher-services/api/get-token'] = array(
+    'page title' => 'OpenSSH Authentication',
+    'page callback' => 'fetcher_services_one_time_use_token',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  return $items;
+}
+
+/**
+ *
+ */
+function fetcher_services_one_time_use_token() {
+  $random = drupal_hash_base64(drupal_random_bytes(55));
+  cache_set($random, TRUE, 'cache_fetcher_services_auth', CACHE_TEMPORARY);
+  print json_encode($random);
+  return NULL;
+}
+
+/**
  * Implementation of hook_services_resources().
  */
 function fetcher_services_services_resources() {
