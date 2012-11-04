@@ -93,7 +93,7 @@ class FetcherServices implements InfoFetcherInterface {
         }
         drush_log(dt('Access was denied, please check your authentication credentials.'), 'error');
       }
-      else if ($code == 404) {
+      else if ($code == 404 || $code == 200) {
         drush_log(dt('The requested site could not be found on the server.'), 'error');
       }
       else {
