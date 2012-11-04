@@ -74,7 +74,7 @@ function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
     if ($environment->field_field_ftchr_vcs_rootsubdir->value()) {
       $data['webroot_subdirectory'] = $environment->field_field_ftchr_vcs_rootsubdir->value();
     }
-    $data['code_fetcher.config']['branch'] = $environment->field_ftchr_branch->value();
+    $data['code_fetcher.config']['branch'] = $environment->field_ftchr_branch->value() ? $environment->field_ftchr_branch->value() : 'master';
     if ($environment->field_ftchr_server->value()) {
       $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
       $data['remote-host'] = $server->field_ftchr_remote_host->value();
@@ -83,7 +83,6 @@ function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
     $data['uri'] = $environment->field_ftchr_uri->value();
     $data['root'] = $environment->field_ftchr_root->value() ? $environment->field_ftchr_root->value() : '/var/www/' . $site_info['name'] . '/webroot';
     $data['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
-    $data['branch'] = $environment->field_ftchr_branch->value();
     $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
   }
   $trimmer = function(&$name, &$value) {
