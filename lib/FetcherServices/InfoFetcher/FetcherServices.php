@@ -45,7 +45,10 @@ class FetcherServices implements InfoFetcherInterface {
 
   }
 
-  public function listSites($name = '', $page = 0) {
+  /**
+   * List all sites.
+   */
+  public function listSites($name = '', $page = 0, $options = array()) {
     $client = $this->site['fetcher client'];
     $client->setPath('fetcher/api/site.json');
 
@@ -56,6 +59,12 @@ class FetcherServices implements InfoFetcherInterface {
     // If we are paging past the first 100 results, add the page.
     if ($page) {
       $client->addParam('page', $page);
+    }
+
+    if (!empty($options)) {
+      foreach ($options as $param => $value) {
+        $client->addParam($name, $value);
+      }
     }
 
     // Execute the request and decode the response.
