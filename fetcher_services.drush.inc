@@ -93,7 +93,6 @@ function drush_fetcher_services_get_sites_for_host($hostname = NULL) {
     $site_info = $arrayify($site_info);
     foreach ($site_info['environments'] as $name => $environment) {
       $local_site_info = array_merge($site_info, $environment);
-      drush_print_r($local_site_info);
       $site = drush_fetcher_get_site($local_site_info);
       $site['environment.local'] = $name;
       $sites[] = $site;
