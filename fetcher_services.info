@@ -34,6 +34,7 @@ features[field][] = field_collection_item-field_ftchr_environment-field_ftchr_se
 features[field][] = field_collection_item-field_ftchr_environment-field_ftchr_uri
 features[field][] = node-fetcher_server-body
 features[field][] = node-fetcher_server-field_ftchr_remote_host
+features[field][] = node-fetcher_server-field_ftchr_remote_user
 features[field][] = node-fetcher_server-field_ftchr_server_ip
 features[field][] = node-fetcher_server-field_ftchr_server_machine_name
 features[field][] = node-fetcher_server-field_ftchr_server_managed

@@ -689,6 +689,85 @@ prod|Production',
     ),
   );
 
+  // Exported field: 'node-fetcher_server-field_ftchr_remote_user'.
+  $fields['node-fetcher_server-field_ftchr_remote_user'] = array(
+    'field_config' => array(
+      'active' => '1',
+      'cardinality' => '1',
+      'deleted' => '0',
+      'entity_types' => array(),
+      'field_name' => 'field_ftchr_remote_user',
+      'foreign keys' => array(
+        'format' => array(
+          'columns' => array(
+            'format' => 'format',
+          ),
+          'table' => 'filter_format',
+        ),
+      ),
+      'indexes' => array(
+        'format' => array(
+          0 => 'format',
+        ),
+      ),
+      'locked' => '0',
+      'module' => 'text',
+      'settings' => array(
+        'max_length' => '255',
+      ),
+      'translatable' => '0',
+      'type' => 'text',
+    ),
+    'field_instance' => array(
+      'bundle' => 'fetcher_server',
+      'default_value' => array(
+        0 => array(
+          'value' => 'webadmin',
+        ),
+      ),
+      'deleted' => '0',
+      'description' => 'The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.',
+      'display' => array(
+        'default' => array(
+          'label' => 'above',
+          'module' => 'text',
+          'settings' => array(),
+          'type' => 'text_default',
+          'weight' => 16,
+        ),
+        'extranet_lead_display' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+        'teaser' => array(
+          'label' => 'above',
+          'settings' => array(),
+          'type' => 'hidden',
+          'weight' => 0,
+        ),
+      ),
+      'entity_type' => 'node',
+      'field_name' => 'field_ftchr_remote_user',
+      'label' => 'Remote User',
+      'required' => 0,
+      'settings' => array(
+        'text_processing' => '0',
+        'user_register_form' => FALSE,
+      ),
+      'widget' => array(
+        'active' => 1,
+        'module' => 'text',
+        'settings' => array(
+          'size' => '60',
+        ),
+        'type' => 'text_textfield',
+        'weight' => '31',
+      ),
+    ),
+  );
+
   // Exported field: 'node-fetcher_server-field_ftchr_server_ip'.
   $fields['node-fetcher_server-field_ftchr_server_ip'] = array(
     'field_config' => array(
@@ -1517,10 +1596,12 @@ prod|Production',
   t('Managed By');
   t('Notes');
   t('Remote Server Site Root');
+  t('Remote User');
   t('Server');
   t('Server Version');
   t('The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.');
   t('The name of the remote database for this site. If left blank, the site\'s machine name will be used.');
+  t('The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.');
   t('This is optional and will default to `/var/www/[site name]/webroot`.');
   t('URI');
   t('VCS URL');
