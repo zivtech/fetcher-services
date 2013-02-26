@@ -19,9 +19,7 @@ function fetcher_services_default_services_endpoint() {
   $endpoint->authentication = array(
     'fetcher_services' => 'fetcher_services',
   );
-  $endpoint->server_settings = array(
-    'rest_server' => array(),
-  );
+  $endpoint->server_settings = array();
   $endpoint->resources = array(
     'fetcher-site' => array(
       'alias' => 'site',
