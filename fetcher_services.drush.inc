@@ -38,28 +38,8 @@ function fetcher_services_drush_command() {
  */
 function drush_fetcher_services_cron($site_name = NULL) {
   $hostname = drush_get_option('server-hostname');
-  $site = drush_fetcher_get_site();
-  if (is_null($hostname)) {
-    $hostname = $site['system']->getHostname();
-  }
-  $options = array(
-    'detail' => 'true',
-    'server-hostname' => $hostname,
-  );
-  $sites = drush_fetcher_get_info_fetcher()
-    ->listSites('', 0, $options);
-  $arrayify = function ($object) use (&$arrayify) {
-    if (is_object($object)) {
-      foreach ($object as &$item) {
-        if (is_object($item)) {
-          $item = $arrayify($item);
-        }
-      }
-    }
-    return (array) $object;
-  };
-  foreach ($sites as $site_info) {
-    $site = drush_fetcher_get_site($arrayify($site_info));
+  $sites = drush_fetcher_services_get_sites_for_host($hostname);
+  foreach ($sites as $site) {
     drush_log("Now executing: `drush cron --root={$site['site.webroot']} --uri={$site['hostname']}`", 'ok');
     $command_options = array(
       "--root={$site['site.webroot']}",
@@ -82,4 +62,42 @@ function drush_fetcher_services_cron($site_name = NULL) {
       drush_set_error('CRON_FAILURE', dt('Error running cron for sites: @sites', array('@sites' => implode($failures, ', '))));
     }
   }
+}
+
+/**
+ * Get an array of fetcher sites for all environments on a host.
+ */
+function drush_fetcher_services_get_sites_for_host($hostname = NULL) {
+  $site = drush_fetcher_get_site();
+  if (is_null($hostname)) {
+    $hostname = $site['system']->getHostname();
+  }
+  $options = array(
+    'detail' => 'true',
+    'server-hostname' => $hostname,
+  );
+  $site_info_list = drush_fetcher_get_info_fetcher()
+    ->listSites('', 0, $options);
+  $arrayify = function ($object) use (&$arrayify) {
+    if (is_object($object)) {
+      foreach ($object as &$item) {
+        if (is_object($item)) {
+          $item = $arrayify($item);
+        }
+      }
+    }
+    return (array) $object;
+  };
+  $sites = array();
+  foreach ($site_info_list as $site_info) {
+    $site_info = $arrayify($site_info);
+    foreach ($site_info['environments'] as $name => $environment) {
+      $local_site_info = array_merge($site_info, $environment);
+      drush_print_r($local_site_info);
+      $site = drush_fetcher_get_site($local_site_info);
+      $site['environment.local'] = $name;
+      $sites[] = $site;
+    }
+  }
+  return $sites;
 }
