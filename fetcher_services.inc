@@ -10,38 +10,60 @@
  * @return array
  *   A multidimensional array containing site name and client.
  */
-function _fetcher_services_services_index_sites($page, $name) {
+function _fetcher_services_services_index_sites($page, $name, $detail, $server_hostname) {
   $sites = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
+    ->fieldOrderBy('field_ftchr_machine_name', 'value')
     ->range($page, 100);
   if ($name != '') {
-    $query = $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
+    $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
+  }
+  if ($server_hostname) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($server_hostname);
+    $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
   // TODO: Add optional $server param.
   $results = $query->execute();
   $nodes = node_load_multiple(array_keys($results['node']));
   $sites = array();
   foreach ($nodes as $nid => $node) {
-    $site = entity_metadata_wrapper('node', $node);
-    $sites[$site->field_ftchr_machine_name->value()] = array(
-      'title' => $site->title->value(),
-      // TODO: add client reference.
-      //'client' => $site->
-    );
+    if ($detail) {
+      $options = array();
+      if ($server_hostname) {
+        $options['server_hostname'] = $server_hostname;
+      }
+      $site = _fetcher_services_build_site_info($nid, $options);
+      $sites[$site['name']] = $site;
+    }
+    else {
+      $site = entity_metadata_wrapper('node', $node);
+      $sites[$site->field_ftchr_machine_name->value()] = array(
+        'title' => $site->title->value(),
+      );
+    }
   }
-  $trimmer = function(&$name, &$value) {
-    if (is_string($name)) {
-      $name = trim($name);
-    }
-    if (is_string($value)) {
-      $value = trim($value);
-    }
-  };
-  array_walk($sites, $trimmer);
+  if ($detail) {
+    array_walk($sites, '_fetcher_services_services_trim');
+  }
   return $sites;
 }
+
+
+
+/**
+ * Utility function to trim a keya nd value for use with array_walk().
+ */
+function _fetcher_services_services_trim(&$name, &$value) {
+  if (is_string($name)) {
+    $name = trim($name);
+  }
+  if (is_string($value)) {
+    $value = trim($value);
+  }
+};
+
 
 /**
  * Callback for listing info about a single site.
@@ -61,7 +83,23 @@ function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
   if (!count($results)) {
     return FALSE;
   }
-  $site = entity_metadata_wrapper('node', node_load(reset(array_keys($results['node']))));
+  $site_info = _fetcher_services_build_site_info(reset(array_keys($results['node'])));
+  return $site_info;
+}
+
+/**
+ * A callback to load site info for a node id.
+ *
+ * @param $nid
+ *   The nid of the site node to load.
+ * @param $options
+ *   An array of options to effect the information returned.
+ *
+ *  Currently supports $options['server_hostname'] to filter the returned
+ *  environments to only those on a server with the given hostname.
+ */
+function _fetcher_services_build_site_info($nid, $options = array()) {
+  $site = entity_metadata_wrapper('node', node_load($nid));
   $site_info = array();
   $site_info['name'] = $site->field_ftchr_machine_name->value();
   $site_info['title'] = $site->title->value();
@@ -71,27 +109,28 @@ function _fetcher_services_services_retrieve_site($name, $parameters = NULL) {
   foreach ($site->field_ftchr_environment->value() as $environment) {
     $data = array();
     $environment = entity_metadata_wrapper('field_collection_item', $environment);
-    if ($environment->field_field_ftchr_vcs_rootsubdir->value()) {
-      $data['webroot_subdirectory'] = $environment->field_field_ftchr_vcs_rootsubdir->value();
-    }
-    $data['code_fetcher.config']['branch'] = $environment->field_ftchr_branch->value() ? $environment->field_ftchr_branch->value() : 'master';
+    $server = null;
     if ($environment->field_ftchr_server->value()) {
       $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
-      $data['remote-host'] = $server->field_ftchr_remote_host->value();
-      $data['remote-user'] = $server->field_ftchr_remote_user->value();
     }
-    $data['uri'] = $environment->field_ftchr_uri->value();
-    $data['root'] = $environment->field_ftchr_root->value() ? $environment->field_ftchr_root->value() : '/var/www/' . $site_info['name'] . '/webroot';
-    $data['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
-    $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
+    if (empty($options['server_hostname']) ||  ($server && $server->field_ftchr_remote_host->value() == $options['server_hostname'])) {
+      if ($environment->field_field_ftchr_vcs_rootsubdir->value()) {
+        $data['webroot_subdirectory'] = $environment->field_field_ftchr_vcs_rootsubdir->value();
+      }
+      if ($environment->field_ftchr_branch->value()) {
+        $data['code_fetcher.config']['branch'] = $environment->field_ftchr_branch->value();
+      }
+      if ($environment->field_ftchr_server->value()) {
+        $data['remote-host'] = $server->field_ftchr_remote_host->value();
+        $data['remote-user'] = $server->field_ftchr_remote_user->value();
+      }
+      $data['uri'] = $environment->field_ftchr_uri->value();
+      $data['root'] = $environment->field_ftchr_root->value() ? $environment->field_ftchr_root->value() : '/var/www/' . $site_info['name'] . '/webroot';
+      $data['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
+      $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
+    }
   }
-  $trimmer = function(&$name, &$value) {
-    $name = trim($name);
-    if (is_string($value)) {
-      $value = trim($value);
-    }
-  };
-  array_walk_recursive($site_info, $trimmer);
+  array_walk_recursive($site_info, '_fetcher_services_services_trim');
   return $site_info;
 }
 
@@ -210,7 +249,7 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     }
     if (!$public_key = sshkey_load_by_fingerprint(base64_decode($ssh_data['fingerprint']))) {
 
-      throw new Exception(t('SSH Key with fingerprint %fingerprint was not found', array('%fingerprint' => $ssh_data['fingerprint'])));
+      throw new Exception(t('SSH Key with fingerprint @fingerprint was not found', array('@fingerprint' => base64_decode($ssh_data['fingerprint']))));
     }
     if ($public_key->entity_type != 'user') {
       throw new Exception(t('SSH Key with fingerprint %fingerprint was found, but associated with a %entity_type rather than a user.', array('%fingerprint' => $ssh_data['fingerprint'], '%entity_type' => $public_key->entity_type)));
@@ -237,6 +276,7 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     }
   }
   catch (Exception $e) {
+    watchdog('debug', $e->getMessage());
     return $e->getMessage();
   }
 }

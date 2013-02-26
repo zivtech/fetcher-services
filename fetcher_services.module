@@ -24,6 +24,8 @@ function fetcher_services_menu() {
  *
  */
 function fetcher_services_one_time_use_token() {
+  global $conf;
+  $conf['cache'] = FALSE;
   $random = drupal_random_bytes(64);
   $random = base64_encode(substr(strtr($random, array('+' => '-', '/' => '_', '\\' => '_', '=' => '')), 0, -2));
   $cache_key = substr($random, 0, 80);
@@ -49,25 +51,45 @@ function fetcher_services_services_resources() {
       'access arguments' => array('access content'),
       //'access arguments append' => FALSE,
       'args' => array(
-         array(
-           'name' => 'page',
-           'type' => 'int',
-           'description' => '',
-           'source' => array(
-             'param' => 'page',
-           ),
-           'optional' => TRUE,
-           'default value' => 0,
-         ),
         array(
-           'name' => 'name',
-           'type' => 'string',
-           'description' => 'The machine name of the site to get',
-           'source' => array(
-             'param' => 'name',
-           ),
-           'optional' => TRUE,
-           'default value' => '',
+          'name' => 'page',
+          'type' => 'int',
+          'description' => '',
+          'source' => array(
+            'param' => 'page',
+          ),
+          'optional' => TRUE,
+          'default value' => 0,
+        ),
+        array(
+          'name' => 'name',
+          'type' => 'string',
+          'description' => 'The machine name of the site to get',
+          'source' => array(
+            'param' => 'name',
+          ),
+          'optional' => TRUE,
+          'default value' => '',
+        ),
+        array(
+          'name' => 'detail',
+          'type' => 'string',
+          'description' => 'Whether to display rich detail for the sites.',
+          'source' => array(
+            'param' => 'detail',
+          ),
+          'optional' => TRUE,
+          'default value' => FALSE,
+        ),
+        array(
+          'name' => 'server-hostname',
+          'type' => 'string',
+          'description' => 'Filter the results to only include site environments on a particular server.',
+          'source' => array(
+            'param' => 'server-hostname',
+          ),
+          'optional' => TRUE,
+          'default value' => FALSE,
         ),
       ),
     ),
@@ -135,3 +157,38 @@ function _fetcher_services_form_validate($form, &$form_state) {
     form_error($form['field_ftchr_environment'][$environment_langcode][$key]['field_ftchr_environment_name'], t('Enironment names must be unique.'));
   }
 }
+
+
+ /**
+  * Lookup a server's nid by its hostname.
+  */
+function fetcher_services_lookup_server_nid_by_hostname($hostname) {
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'fetcher_server')
+    ->fieldCondition('field_ftchr_remote_host', 'value', $hostname)
+    ->execute();
+  return reset(array_keys(reset($results)));
+}
+
+ /**
+  * Lookup a list of environment field collection ids by server hostname.
+  *
+  * Only returns ids for environments that are hosted on a server with the provided
+  * hostname.
+  */
+function fetcher_services_services_get_environment_ids_from_server_hostname($hostname) {
+  $sites = array();
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_ftchr_environment')
+    ->fieldCondition('field_ftchr_server', 'target_id', fetcher_services_lookup_server_nid_by_hostname($hostname))
+    ->execute();
+  $ids = array();
+  foreach (reset($results) as $item) {
+    $ids[] = $item->item_id;
+  }
+  return $ids;
+}
+
+
