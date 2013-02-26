@@ -26,6 +26,9 @@ function fetcher_services_drush_command() {
   $items['fetcher-services-cron'] = array(
     'description' => 'Run cron on all sites listed on this host in the fetcher services database.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
+    'options' => array(
+      'server-hostname' => 'If set explicity, used as the hostname to find the list of site environments on this server.',
+    ),
   );
   return $items;
 }
@@ -34,12 +37,49 @@ function fetcher_services_drush_command() {
  * Print out information about a single site.
  */
 function drush_fetcher_services_cron($site_name = NULL) {
+  $hostname = drush_get_option('server-hostname');
   $site = drush_fetcher_get_site();
+  if (is_null($hostname)) {
+    $hostname = $site['system']->getHostname();
+  }
   $options = array(
-    'server-hostname' => $site['system']->getHostname(),
+    'detail' => 'true',
+    'server-hostname' => $hostname,
   );
-  $sites = drush_fetcher_get_info_fetcher('', 0, $options)
-    ->listSites();
-  drush_print_r($sites);
+  $sites = drush_fetcher_get_info_fetcher()
+    ->listSites('', 0, $options);
+  $arrayify = function ($object) use (&$arrayify) {
+    if (is_object($object)) {
+      foreach ($object as &$item) {
+        if (is_object($item)) {
+          $item = $arrayify($item);
+        }
+      }
+    }
+    return (array) $object;
+  };
+  foreach ($sites as $site_info) {
+    $site = drush_fetcher_get_site($arrayify($site_info));
+    drush_log("Now executing: `drush cron --root={$site['site.webroot']} --uri={$site['hostname']}`", 'ok');
+    $command_options = array(
+      "--root={$site['site.webroot']}",
+      "--uri={$site['hostname']}",
+    );
+    $failures = array();
+    if (!drush_invoke_process($site['site.webroot'] . '#' . $site['hostname'], 'cron', array(), $command_options)) {
+      $failures[] = $site['name'] . ':' . $site['environment.local'];
+    }
+    else {
+      $keys = array(
+        '@name' => $site['name'],
+        '@path' => $site['environment.local'],
+        '@webroot' => $site['site.webroot'],
+        '@uri' => $site['hostname'],
+      );
+      drush_log(dt('Processing cron on @name in environment @path at path `@webroot` wtih uri `@uri`.', $keys), 'error');
+    }
+    if (count($failures)) {
+      drush_set_error('CRON_FAILURE', dt('Error running cron for sites: @sites', array('@sites' => implode($failures, ', '))));
+    }
+  }
 }
-

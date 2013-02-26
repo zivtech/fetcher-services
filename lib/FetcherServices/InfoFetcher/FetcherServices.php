@@ -63,7 +63,7 @@ class FetcherServices implements InfoFetcherInterface {
 
     if (!empty($options)) {
       foreach ($options as $param => $value) {
-        $client->addParam($name, $value);
+        $client->addParam($param, $value);
       }
     }
 
