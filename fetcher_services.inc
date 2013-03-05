@@ -131,6 +131,8 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
     }
   }
   array_walk_recursive($site_info, '_fetcher_services_services_trim');
+  // Alter hook.
+  drupal_alter('fetcher_services_site_info', $site_info);
   return $site_info;
 }
 
