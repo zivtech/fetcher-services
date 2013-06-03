@@ -73,7 +73,19 @@ class FetcherServices implements InfoFetcherInterface {
       if (!count($result)) {
         $this->site['log']('No sites appear to exist on the server.', 'ok');
       }
-      return $result;
+      else {
+        $arrayify = function ($object) use (&$arrayify) {
+          if (is_object($object)) {
+            foreach ($object as &$item) {
+              if (is_object($item)) {
+                $item = $arrayify($item);
+              }
+            }
+          }
+          return (array) $object;
+        };
+        return $arrayify($result);
+      }
     }
     else {
       drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
