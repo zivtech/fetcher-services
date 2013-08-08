@@ -39,80 +39,82 @@ function fetcher_services_one_time_use_token() {
  */
 function fetcher_services_services_resources() {
   $resources['fetcher-site'] = array(
-    'index' => array(
-      'help' => 'Retrieves a list of Ignition managed sites.',
-      'file' => array(
-        'file' => 'inc',
-        'module' => 'fetcher_services'
+    'operations' => array(
+      'index' => array(
+        'help' => 'Retrieves a list of Ignition managed sites.',
+        'file' => array(
+          'file' => 'inc',
+          'module' => 'fetcher_services'
+        ),
+        'callback' => '_fetcher_services_services_index_sites',
+        // TODO: We'll need our own access system.
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        //'access arguments append' => FALSE,
+        'args' => array(
+          array(
+            'name' => 'page',
+            'type' => 'int',
+            'description' => '',
+            'source' => array(
+              'param' => 'page',
+            ),
+            'optional' => TRUE,
+            'default value' => 0,
+          ),
+          array(
+            'name' => 'name',
+            'type' => 'string',
+            'description' => 'The machine name of the site to get',
+            'source' => array(
+              'param' => 'name',
+            ),
+            'optional' => TRUE,
+            'default value' => '',
+          ),
+          array(
+            'name' => 'detail',
+            'type' => 'string',
+            'description' => 'Whether to display rich detail for the sites.',
+            'source' => array(
+              'param' => 'detail',
+            ),
+            'optional' => TRUE,
+            'default value' => FALSE,
+          ),
+          array(
+            'name' => 'server-hostname',
+            'type' => 'string',
+            'description' => 'Filter the results to only include site environments on a particular server.',
+            'source' => array(
+              'param' => 'server-hostname',
+            ),
+            'optional' => TRUE,
+            'default value' => FALSE,
+          ),
+        ),
       ),
-      'callback' => '_fetcher_services_services_index_sites',
-      // TODO: We'll need our own access system.
-      'access callback' => 'user_access',
-      'access arguments' => array('access content'),
-      //'access arguments append' => FALSE,
-      'args' => array(
-        array(
-          'name' => 'page',
-          'type' => 'int',
-          'description' => '',
-          'source' => array(
-            'param' => 'page',
-          ),
-          'optional' => TRUE,
-          'default value' => 0,
+      'retrieve' => array(
+        'help' => 'Retrieves a signle Ignition managed site.',
+        'file' => array(
+          'file' => 'inc',
+          'module' => 'fetcher_services'
         ),
-        array(
-          'name' => 'name',
-          'type' => 'string',
-          'description' => 'The machine name of the site to get',
-          'source' => array(
-            'param' => 'name',
-          ),
-          'optional' => TRUE,
-          'default value' => '',
-        ),
-        array(
-          'name' => 'detail',
-          'type' => 'string',
-          'description' => 'Whether to display rich detail for the sites.',
-          'source' => array(
-            'param' => 'detail',
-          ),
-          'optional' => TRUE,
-          'default value' => FALSE,
-        ),
-        array(
-          'name' => 'server-hostname',
-          'type' => 'string',
-          'description' => 'Filter the results to only include site environments on a particular server.',
-          'source' => array(
-            'param' => 'server-hostname',
-          ),
-          'optional' => TRUE,
-          'default value' => FALSE,
+        'callback' => '_fetcher_services_services_retrieve_site',
+        // TODO: We'll need our own access system.
+        'access callback' => 'user_access',
+        'access arguments' => array('access content'),
+        //'access arguments append' => FALSE,
+        'args' => array(
+           array(
+             'name' => 'name',
+             'type' => 'string',
+             'description' => 'The machine name of the site to get',
+             'source' => array('path' => '0'),
+             'optional' => FALSE,
+           ),
         ),
       ),
-    ),
-    'retrieve' => array(
-      'help' => 'Retrieves a signle Ignition managed site.',
-      'file' => array(
-        'file' => 'inc',
-        'module' => 'fetcher_services'
-      ),
-      'callback' => '_fetcher_services_services_retrieve_site',
-      // TODO: We'll need our own access system.
-      'access callback' => 'user_access',
-      'access arguments' => array('access content'),
-      //'access arguments append' => FALSE,
-      'args' => array(
-         array(
-           'name' => 'name',
-           'type' => 'string',
-           'description' => 'The machine name of the site to get',
-           'source' => array('path' => '0'),
-           'optional' => FALSE,
-         ),
-     ),
     ),
   );
   return $resources;
