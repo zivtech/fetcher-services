@@ -39,7 +39,7 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
     }
     else {
       $site = entity_metadata_wrapper('node', $node);
-      $sites[$node->field_ftchr_site_machine_name[$node->language][0]['value']] = array(
+      $sites[$node->field_ftchr_machine_name[$node->language][0]['value']] = array(
         'title' => $site->title->value(),
       );
     }
