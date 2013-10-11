@@ -13,17 +13,17 @@ function fetcher_services_taxonomy_default_vocabularies() {
       'name' => 'Server Services',
       'machine_name' => 'server_services',
       'description' => 'The services that are running on this server.',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
     'vocabulary_1' => array(
       'name' => 'Category',
       'machine_name' => 'vocabulary_1',
       'description' => '',
-      'hierarchy' => '0',
+      'hierarchy' => 0,
       'module' => 'taxonomy',
-      'weight' => '0',
+      'weight' => 0,
     ),
   );
 }
