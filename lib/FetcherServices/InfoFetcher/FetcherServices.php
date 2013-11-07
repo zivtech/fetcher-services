@@ -24,14 +24,14 @@ class FetcherServices implements InfoFetcherInterface {
     });
 
     $site['fetcher client'] = function($c) {
-      if (!fetcher_drush_get_option('info-fetcher.config', FALSE)) {
-        $message = 'The fetcher server option must be set, we recommend setting it in your .drushrc.php file.';
+      if (!fetcher_drush_get_option('info_fetcher.config', FALSE)) {
+        $message = 'In order to use fetcher_services the server option must be set in `$options[\'fetcher\'][\'info_fetcher.class\']`, we recommend setting it in your .drushrc.php file.';
         drush_log(dt($message), 'error');
         throw new FetcherException($message);
       }
-      $c['info-fetcher.config'] = fetcher_drush_get_option('info-fetcher.config');
+      $c['info_fetcher.config'] = fetcher_drush_get_option('info_fetcher.config');
       $client = new $c['fetcher client class']();
-      $client->setURL($c['info-fetcher.config']['host'])
+      $client->setURL($c['info_fetcher.config']['host'])
         ->setMethod('GET')
         ->setTimeout(3)
         ->setEncoding('json');

@@ -34,7 +34,7 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
     $site = $this->site;
     $textLoadingClient = new $site['fetcher client class']();
     $text = $textLoadingClient
-      ->setURL($site['info-fetcher.config']['host'])
+      ->setURL($site['info_fetcher.config']['host'])
       ->setMethod('GET')
       ->setTimeout(3)
       ->setEncoding('json')
