@@ -24,12 +24,11 @@ class FetcherServices implements InfoFetcherInterface {
     });
 
     $site['fetcher client'] = function($c) {
-      if (!fetcher_drush_get_option('info_fetcher.config', FALSE)) {
+      if (!$c['info_fetcher.config']) {
         $message = 'In order to use fetcher_services the server option must be set in `$options[\'fetcher\'][\'info_fetcher.class\']`, we recommend setting it in your .drushrc.php file.';
         drush_log(dt($message), 'error');
         throw new FetcherException($message);
       }
-      $c['info_fetcher.config'] = fetcher_drush_get_option('info_fetcher.config');
       $client = new $c['fetcher client class']();
       $client->setURL($c['info_fetcher.config']['host'])
         ->setMethod('GET')
@@ -133,6 +132,13 @@ class FetcherServices implements InfoFetcherInterface {
       return (array) $object;
     };
     $result = $arrayify($result);
+    $environments = $result['environments'];
+    foreach ($result['environments'] as &$environment) {
+      if (!empty($environment['code_fetcher.config'])  && !empty($result['code_fetcher.config'])) {
+        // Fetcher services puts the vcs repo on the site and branch on the specific environment.
+        $environment['code_fetcher.config'] = $environment['code_fetcher.config'] + $result['code_fetcher.config'];
+      }
+    }
     return $result;
   }
 
