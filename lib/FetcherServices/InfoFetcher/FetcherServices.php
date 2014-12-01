@@ -133,10 +133,12 @@ class FetcherServices implements InfoFetcherInterface {
     };
     $result = $arrayify($result);
     $environments = $result['environments'];
-    foreach ($result['environments'] as &$environment) {
-      if (!empty($environment['code_fetcher.config'])  && !empty($result['code_fetcher.config'])) {
-        // Fetcher services puts the vcs repo on the site and branch on the specific environment.
-        $environment['code_fetcher.config'] = $environment['code_fetcher.config'] + $result['code_fetcher.config'];
+    if (isset($environments)) {
+      foreach ($result['environments'] as &$environment) {
+        if (!empty($environment['code_fetcher.config'])  && !empty($result['code_fetcher.config'])) {
+          // Fetcher services puts the vcs repo on the site and branch on the specific environment.
+          $environment['code_fetcher.config'] = $environment['code_fetcher.config'] + $result['code_fetcher.config'];
+        }
       }
     }
     return $result;
