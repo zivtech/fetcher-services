@@ -37,6 +37,9 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
       if ($server_hostname) {
         $options['server_hostname'] = $server_hostname;
       }
+      if ($ip_address) {
+        $options['server_ip_address'] = $ip_address;
+      }
       $site = _fetcher_services_build_site_info($nid, $options);
       $sites[$site['name']] = $site;
     }
@@ -116,7 +119,7 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
     if ($environment->field_ftchr_server->value()) {
       $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
     }
-    if (empty($options['server_hostname']) ||  ($server && $server->field_ftchr_remote_host->value() == $options['server_hostname'])) {
+    if (_fetcher_services_check_environment_for_inclusion($environment, $options, $server)) {
       if ($environment->field_field_ftchr_vcs_rootsubdir->value()) {
         $data['webroot_subdirectory'] = $environment->field_field_ftchr_vcs_rootsubdir->value();
       }
@@ -137,6 +140,32 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
   // Alter hook.
   drupal_alter('fetcher_services_site_info', $site_info);
   return $site_info;
+}
+
+/**
+ * Check filters to see whether this envrionment should be included in the output of a site.
+ */
+function _fetcher_services_check_environment_for_inclusion(EntityMetadataWrapper $environment, $options, EntityMetadataWrapper $server) {
+
+  // Without filter criteria default to returning everything.
+  $include = TRUE;
+  if (!empty($options['server_hostname']) || !empty($options['server_ip_address'])) {
+
+    // Default to excluding for these filters.
+    $include = FALSE;
+
+    // If we are filtering by server and do not have one, exclude this item.
+    if (!$server) {
+      return FALSE;
+    }
+    if ($options['server_hostname'] && $server->field_ftchr_remote_host->value() == $options['server_hostname']) {
+      $include = TRUE;
+    }
+    if ($options['server_ip_address'] && $server->field_ftchr_server_ip->value() == $options['server_ip_address']) {
+      $include = TRUE;
+    }
+  }
+  return $include;
 }
 
 /**
