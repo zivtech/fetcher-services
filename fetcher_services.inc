@@ -10,7 +10,7 @@
  * @return array
  *   A multidimensional array containing site name and client.
  */
-function _fetcher_services_services_index_sites($page, $name, $detail, $server_hostname) {
+function _fetcher_services_services_index_sites($page, $name, $detail, $server_hostname, $ip_address = NULL) {
   $sites = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
@@ -24,7 +24,10 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
     $ids = fetcher_services_services_get_environment_ids_from_server_hostname($server_hostname);
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
-  // TODO: Add optional $server param.
+  if ($ip_address) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address);
+    $query->fieldCondition('field_ftchr_environment', 'value', $ids);
+  }
   $results = $query->execute();
   $nodes = node_load_multiple(array_keys($results['node']));
   $sites = array();

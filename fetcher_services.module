@@ -17,11 +17,17 @@ function fetcher_services_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['fetcher-services/api/sites-by-ip'] = array(
+    'page title' => 'OpenSSH Authentication',
+    'page callback' => 'fetcher_services_site_environments_by_ip',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
 /**
- *
+ * Page Callback for get token.
  */
 function fetcher_services_one_time_use_token() {
   global $conf;
@@ -31,6 +37,17 @@ function fetcher_services_one_time_use_token() {
   $cache_key = substr($random, 0, 80);
   cache_set($cache_key, $random, 'cache_fetcher_services_auth', CACHE_TEMPORARY);
   print json_encode($random);
+  return NULL;
+}
+
+/**
+ *  Page callback to get all sites by ip IP
+ */
+function fetcher_services_site_environments_by_ip() {
+  $ip_address = ip_address();
+  module_load_include('inc', 'fetcher_services');
+  $sites = _fetcher_services_services_index_sites(0, '', TRUE, FALSE, $ip_address);
+  print drupal_json_output($sites);
   return NULL;
 }
 
@@ -187,10 +204,44 @@ function fetcher_services_services_get_environment_ids_from_server_hostname($hos
     ->fieldCondition('field_ftchr_server', 'target_id', fetcher_services_lookup_server_nid_by_hostname($hostname))
     ->execute();
   $ids = array();
-  foreach (reset($results) as $item) {
-    $ids[] = $item->item_id;
+  if ($results) {
+    foreach (reset($results) as $item) {
+      $ids[] = $item->item_id;
+    }
   }
   return $ids;
 }
 
+/**
+  * Lookup a server's nid by its IP Address.
+  */
+function fetcher_services_lookup_server_nid_by_ip_address($ip_address) {
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'node')
+    ->entityCondition('bundle', 'fetcher_server')
+    ->fieldCondition('field_ftchr_server_ip', 'value', $ip_address)
+    ->execute();
+  return reset(array_keys(reset($results)));
+}
 
+ /**
+  * Lookup a list of environment field collection ids by server IP Address.
+  *
+  * Only returns ids for environments that are hosted on a server with the provided
+  * hostname.
+  */
+function fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address) {
+  $sites = array();
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_ftchr_environment')
+    ->fieldCondition('field_ftchr_server', 'target_id', fetcher_services_lookup_server_nid_by_ip_address($ip_address))
+    ->execute();
+  $ids = array();
+  if ($results) {
+    foreach (reset($results) as $item) {
+      $ids[] = $item->item_id;
+    }
+  }
+  return $ids;
+}
