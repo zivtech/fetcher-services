@@ -794,7 +794,7 @@ prod|Production',
   $fields['node-fetcher_server-field_ftchr_server_ip'] = array(
     'field_config' => array(
       'active' => '1',
-      'cardinality' => '1',
+      'cardinality' => '-1',
       'deleted' => '0',
       'entity_types' => array(),
       'field_name' => 'field_ftchr_server_ip',
