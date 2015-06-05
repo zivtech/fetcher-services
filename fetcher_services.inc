@@ -22,10 +22,16 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
   }
   if ($server_hostname) {
     $ids = fetcher_services_services_get_environment_ids_from_server_hostname($server_hostname);
+    if (empty($ids)) {
+      return array();
+    }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
   if ($ip_address) {
     $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address);
+    if (empty($ids)) {
+      return array();
+    }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
   $results = $query->execute();

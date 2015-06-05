@@ -221,7 +221,7 @@ function fetcher_services_lookup_server_nid_by_ip_address($ip_address) {
     ->entityCondition('bundle', 'fetcher_server')
     ->fieldCondition('field_ftchr_server_ip', 'value', $ip_address)
     ->execute();
-  return reset(array_keys(reset($results)));
+  return isset($results['node']) && !empty($results['node']) ? reset(array_keys($results['node'])) : FALSE;
 }
 
  /**
@@ -231,11 +231,15 @@ function fetcher_services_lookup_server_nid_by_ip_address($ip_address) {
   * hostname.
   */
 function fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address) {
+  $nid = fetcher_services_lookup_server_nid_by_ip_address($ip_address);
+  if (!$nid) {
+    return array();
+  }
   $sites = array();
   $query = new EntityFieldQuery();
   $results = $query->entityCondition('entity_type', 'field_collection_item')
     ->entityCondition('bundle', 'field_ftchr_environment')
-    ->fieldCondition('field_ftchr_server', 'target_id', fetcher_services_lookup_server_nid_by_ip_address($ip_address))
+    ->fieldCondition('field_ftchr_server', 'target_id', $nid)
     ->execute();
   $ids = array();
   if ($results) {
