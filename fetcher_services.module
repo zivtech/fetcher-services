@@ -52,6 +52,7 @@ function fetcher_services_site_environments_by_ip() {
   $options = array(
     'ip_address' => $ip_address,
     'detail' => TRUE,
+    'limit' => FALSE,
   );
   $sites = _fetcher_service_get_list_of_sites($page, $options);
   print drupal_json_output($sites);
