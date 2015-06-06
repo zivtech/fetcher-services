@@ -10,14 +10,30 @@
  * @return array
  *   A multidimensional array containing site name and client.
  */
-function _fetcher_services_services_index_sites($page, $name, $detail, $server_hostname, $ip_address = NULL) {
+function _fetcher_services_services_index_sites($page, $name, $detail, $server_hostname) {
+  $options = array(
+    'name' => $name,
+    'detail' => $detail,
+    'server_hostname' => $server_hostname,
+  );
+  return _fetcher_service_get_list_of_sites($page, $options);
+}
+
+/**
+ * Get a list of site data based on filter parameters.
+ */
+function _fetcher_service_get_list_of_sites($page, $options) {
+  extract($options);
   $sites = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
-    ->fieldOrderBy('field_ftchr_machine_name', 'value')
-    ->range($page, 100);
-  if ($name != '') {
+    ->fieldOrderBy('field_ftchr_machine_name', 'value');
+  $limit = isset($options['limit']) ? $options['limit'] : 100;
+  if ($limit) {
+    $query->range($page, $limit);
+  }
+  if (!empty($options['name'])) {
     $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
   }
   if ($server_hostname) {
@@ -61,8 +77,6 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
   }
   return $sites;
 }
-
-
 
 /**
  * Utility function to trim a keya nd value for use with array_walk().
@@ -149,7 +163,7 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
 }
 
 /**
- * Check filters to see whether this envrionment should be included in the output of a site.
+ * Check filters to see whether this envrionment should be included.
  */
 function _fetcher_services_check_environment_for_inclusion(EntityMetadataWrapper $environment, $options, EntityMetadataWrapper $server) {
 
@@ -167,7 +181,8 @@ function _fetcher_services_check_environment_for_inclusion(EntityMetadataWrapper
     if ($options['server_hostname'] && $server->field_ftchr_remote_host->value() == $options['server_hostname']) {
       $include = TRUE;
     }
-    if ($options['server_ip_address'] && $server->field_ftchr_server_ip->value() == $options['server_ip_address']) {
+    $addresses = $server->field_ftchr_server_ip->value();
+    if (!empty($options['server_ip_address']) && in_array($options['server_ip_address'], $addresses)) {
       $include = TRUE;
     }
   }
