@@ -9,12 +9,12 @@ class FetcherServices implements InfoFetcherInterface {
 
   public function __construct(Site $site) {
 
-    // Set our default fetcher client class to our own HTTPClient.
-    if (!isset($site['fetcher client class'])) {
-      $site['fetcher client class'] = '\Fetcher\Utility\HTTPClient';
+    // Set our default fetcher_client.class to our own HTTPClient.
+    if (!isset($site['fetcher_client.class'])) {
+      $site['fetcher_client.class'] = '\Fetcher\Utility\HTTPClient';
     }
 
-    // Set our default fetcher client authentication class to our own HTTPClient.
+    // Set our default fetcher_client authentication class to our own HTTPClient.
     if (!isset($site['client.authentication class'])) {
       $site['client.authentication class'] = '\FetcherServices\Authentication\OpenSshKeys';
     }
@@ -23,13 +23,13 @@ class FetcherServices implements InfoFetcherInterface {
       return new $c['client.authentication class']($c);
     });
 
-    $site['fetcher client'] = function($c) {
+    $site['fetcher_client'] = function($c) {
       if (!$c['info_fetcher.config']) {
         $message = 'In order to use fetcher_services the server option must be set in `$options[\'fetcher\'][\'info_fetcher.class\']`, we recommend setting it in your .drushrc.php file.';
         drush_log(dt($message), 'error');
         throw new FetcherException($message);
       }
-      $client = new $c['fetcher client class']();
+      $client = new $c['fetcher_client.class']();
       $client->setURL($c['info_fetcher.config']['host'])
         ->setMethod('GET')
         ->setTimeout(3)
@@ -45,10 +45,39 @@ class FetcherServices implements InfoFetcherInterface {
   }
 
   /**
+   * List only sites that and their environments that are on this server.
+   */
+  public function listLocalSites($options = array()) {
+
+    $client = new $this->site['fetcher_client.class']();
+    $client->setURL($c['info_fetcher.config']['host'])
+      ->setMethod('GET')
+      ->setTimeout(3)
+      ->setEncoding('json');
+    $client = $this->site['fetcher_client'];
+    $client->setPath('fetcher-services/api/sites-by-ip');
+
+    if ($page) {
+      $client->addParam('page', $page);
+    }
+
+    // Execute the request and decode the response.
+    $result = $client->fetch();
+    if (!count($result)) {
+      $this->site['log']('No sites appear to exist on the server.', 'ok');
+    }
+    else {
+      drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
+    }
+    return $result;
+
+  }
+
+  /**
    * List all sites.
    */
   public function listSites($name = '', $page = 0, $options = array()) {
-    $client = $this->site['fetcher client'];
+    $client = $this->site['fetcher_client'];
     $client->setPath('fetcher/api/site.json');
 
     // If we have a name to search for add it to the query.
@@ -68,31 +97,17 @@ class FetcherServices implements InfoFetcherInterface {
 
     // Execute the request and decode the response.
     $result = $client->fetch();
-    if (is_object($result)) {
-      if (!count($result)) {
-        $this->site['log']('No sites appear to exist on the server.', 'ok');
-      }
-      else {
-        $arrayify = function ($object) use (&$arrayify) {
-          if (is_object($object)) {
-            foreach ($object as &$item) {
-              if (is_object($item)) {
-                $item = $arrayify($item);
-              }
-            }
-          }
-          return (array) $object;
-        };
-        return $arrayify($result);
-      }
+    if (!count($result)) {
+      $this->site['log']('No sites appear to exist on the server.', 'ok');
     }
     else {
       drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
     }
+    return $result;
   }
 
   public function getInfo($site_name) {
-    $client = $this->site['fetcher client'];
+    $client = $this->site['fetcher_client'];
     $result = $client
       ->setPath("fetcher/api/site/$site_name.json")
       ->fetch();

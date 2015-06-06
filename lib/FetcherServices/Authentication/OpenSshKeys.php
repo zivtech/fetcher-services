@@ -32,7 +32,7 @@ class OpenSshKeys implements \Fetcher\Authentication\AuthenticationInterface {
     // Generate pseudo random noise to sign for this transaction.
     // The current time is included preventing replay attacks.
     $site = $this->site;
-    $textLoadingClient = new $site['fetcher client class']();
+    $textLoadingClient = new $site['fetcher_client.class']();
     $text = $textLoadingClient
       ->setURL($site['info_fetcher.config']['host'])
       ->setMethod('GET')
