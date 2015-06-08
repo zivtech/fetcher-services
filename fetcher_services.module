@@ -44,9 +44,9 @@ function fetcher_services_one_time_use_token() {
  *  Page callback to get all sites by ip IP
  */
 function fetcher_services_site_environments_by_ip() {
-  drupal_add_http_header('Cache-Control: no-cache');
-  drupal_add_http_header('Pragma: no-cache');
-  drupal_add_http_header('Expires: -1');
+  drupal_add_http_header('Cache-Control', 'no-cache');
+  drupal_add_http_header('Pragma', 'no-cache');
+  drupal_add_http_header('Expires', '-1');
   $ip_address = ip_address();
   module_load_include('inc', 'fetcher_services');
   $options = array(
