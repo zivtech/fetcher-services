@@ -7,20 +7,27 @@ use Fetcher\Exception\FetcherException;
 
 class FetcherServices implements InfoFetcherInterface {
 
+  /**
+   * Local reference to the site object.
+   */
+  private $site = null;
+
   public function __construct(Site $site) {
+
+    $this->site = $site;
 
     // Set our default fetcher_client.class to our own HTTPClient.
     if (!isset($site['fetcher_client.class'])) {
       $site['fetcher_client.class'] = '\Fetcher\Utility\HTTPClient';
     }
 
-    // Set our default fetcher_client authentication class to our own HTTPClient.
-    if (!isset($site['client.authentication class'])) {
-      $site['client.authentication class'] = '\FetcherServices\Authentication\OpenSshKeys';
+    // Set our default fetcher_client authentication_class to our own HTTPClient.
+    if (!isset($site['client.authentication_class'])) {
+      $site['client.authentication_class'] = '\FetcherServices\Authentication\OpenSshKeys';
     }
 
     $site['client.authentication'] = $site->share(function($c) {
-      return new $c['client.authentication class']($c);
+      return new $c['client.authentication_class']($c);
     });
 
     $site['fetcher_client'] = function($c) {
@@ -34,9 +41,6 @@ class FetcherServices implements InfoFetcherInterface {
         ->setMethod('GET')
         ->setTimeout(3)
         ->setEncoding('json');
-
-      // Populate this object with the appropriate authentication credentials.
-      $c['client.authentication']->addAuthenticationToHTTPClientFromDrushContext($client);
 
       return $client;
     };
@@ -78,6 +82,10 @@ class FetcherServices implements InfoFetcherInterface {
    */
   public function listSites($name = '', $page = 0, $options = array()) {
     $client = $this->site['fetcher_client'];
+
+    // Populate this object with the appropriate authentication credentials.
+    $this->site['client.authentication']->addAuthenticationToHTTPClientFromDrushContext($client);
+
     $client->setPath('fetcher/api/site.json');
 
     // If we have a name to search for add it to the query.
@@ -108,6 +116,10 @@ class FetcherServices implements InfoFetcherInterface {
 
   public function getInfo($site_name) {
     $client = $this->site['fetcher_client'];
+
+    // Populate this object with the appropriate authentication credentials.
+    $this->site['client.authentication']->addAuthenticationToHTTPClientFromDrushContext($client);
+
     $result = $client
       ->setPath("fetcher/api/site/$site_name.json")
       ->fetch();
