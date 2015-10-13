@@ -52,10 +52,11 @@ function fetcher_services_field_group_info() {
     'label' => 'Server Info',
     'weight' => '2',
     'children' => array(
-      0 => 'field_ftchr_server_ip',
-      1 => 'field_ftchr_server_managed',
-      2 => 'field_ftchr_server_os',
-      3 => 'field_ftchr_remote_host',
+      0 => 'field_ftchr_remote_host',
+      1 => 'field_ftchr_remote_user',
+      2 => 'field_ftchr_server_ip',
+      3 => 'field_ftchr_server_managed',
+      4 => 'field_ftchr_server_os',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
