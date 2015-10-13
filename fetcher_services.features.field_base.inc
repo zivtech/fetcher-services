@@ -376,6 +376,7 @@ function fetcher_services_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
+        '14.04 Trusty Tahr' => '14.04 Trusty Tahr',
         '12.04 Precise Panguin' => '12.04 Precise Panguin',
         '10.04 Lucid Lynx' => '10.04 Lucid Lynx',
         '9.04 Jaunty Jackalope' => '9.04 Jaunty Jackalope',
