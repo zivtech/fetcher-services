@@ -1,8 +1,4 @@
 <?php
-/**
- * @file
- * Code for the Ignition Sites feature.
- */
 
 include_once('fetcher_services.features.inc');
 
@@ -66,7 +62,7 @@ function fetcher_services_services_resources() {
   $resources['fetcher-site'] = array(
     'operations' => array(
       'index' => array(
-        'help' => 'Retrieves a list of Ignition managed sites.',
+        'help' => 'Retrieves a list of Fetcher managed sites.',
         'file' => array(
           'file' => 'inc',
           'module' => 'fetcher_services'
@@ -120,7 +116,7 @@ function fetcher_services_services_resources() {
         ),
       ),
       'retrieve' => array(
-        'help' => 'Retrieves a signle Ignition managed site.',
+        'help' => 'Retrieves a single Fetcher managed site.',
         'file' => array(
           'file' => 'inc',
           'module' => 'fetcher_services'
