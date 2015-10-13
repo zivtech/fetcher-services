@@ -10,7 +10,8 @@
 function fetcher_services_field_default_field_instances() {
   $field_instances = array();
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'
   $field_instances['field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -44,7 +45,8 @@ function fetcher_services_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_branch'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_branch'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_branch'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => array(
@@ -82,7 +84,8 @@ function fetcher_services_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_db'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_db'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_db'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -116,7 +119,8 @@ function fetcher_services_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -151,7 +155,8 @@ function fetcher_services_field_default_field_instances() {
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_environment_name'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -184,6 +189,7 @@ prod|Production',
         'available_options_php' => '',
         'markup_available_options_php' => '&lt;none&gt;',
         'other' => 'Other',
+        'other_size' => 60,
         'other_title' => '',
         'other_unknown_defaults' => 'ignore',
         'sort_options' => 0,
@@ -193,7 +199,8 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_root'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_root'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_root'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -227,7 +234,8 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_server'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_server'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_server'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -262,7 +270,8 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_uri'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_uri'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_uri'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -514,7 +523,8 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_machine_name'
+  // Exported field_instance:
+  // 'node-fetcher_server-field_ftchr_server_machine_name'
   $field_instances['node-fetcher_server-field_ftchr_server_machine_name'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -669,9 +679,7 @@ prod|Production',
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(
-        'apply_chosen' => 0,
-      ),
+      'settings' => array(),
       'type' => 'options_select',
       'weight' => 10,
     ),
