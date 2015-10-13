@@ -565,7 +565,7 @@ prod|Production',
     'entity_type' => 'node',
     'field_name' => 'field_ftchr_server_machine_name',
     'label' => 'Machine Name',
-    'required' => 0,
+    'required' => 1,
     'settings' => array(
       'source' => 'title',
       'user_register_form' => FALSE,
