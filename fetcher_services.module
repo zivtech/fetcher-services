@@ -14,7 +14,7 @@ function fetcher_services_menu() {
     'type' => MENU_CALLBACK,
   );
   $items['fetcher-services/api/sites-by-ip'] = array(
-    'page title' => 'OpenSSH Authentication',
+    'page title' => 'Sites by IP',
     'page callback' => 'fetcher_services_site_environments_by_ip',
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,

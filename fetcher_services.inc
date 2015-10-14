@@ -281,7 +281,7 @@ function _fetcher_services_services_authentication_authenticate_call($settings, 
     // `_fetcher_services_services_authentication_alter_methods` but we have no way
     // of knowing what position ours will be in the array (because other modules
     // might have monkeyed with this module too, so loop through finding ours
-    // (whcih are carefully namespaced) and add them to an array for our use
+    // (which are carefully namespaced) and add them to an array for our use
     // (removing the namespacing for convenience).
     if (isset($method['args'][$key]['name']) && $name = $method['args'][$key]['name']) {
       if (strpos($name, '_fetcher_services') === 0 && $value != '') {

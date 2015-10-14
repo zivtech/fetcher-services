@@ -88,3 +88,4 @@ features[variable][] = node_options_server
 features[variable][] = node_preview_fetcher_server
 features[variable][] = node_submitted_fetcher_server
 features[views_view][] = fetcher_servers
+features[views_view][] = fetcher_sites
