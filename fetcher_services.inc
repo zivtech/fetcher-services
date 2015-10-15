@@ -29,7 +29,7 @@ function _fetcher_service_get_list_of_sites($page, $options) {
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
     ->fieldOrderBy('field_ftchr_machine_name', 'value');
-  $limit = isset($options['limit']) ? $options['limit'] : 100;
+  $limit = isset($options['limit']) ? $options['limit'] : 1000;
   if ($limit) {
     $query->range($page, $limit);
   }
