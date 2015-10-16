@@ -2,7 +2,6 @@ name = Fetcher Services
 description = Provides the data model and services integration for Drupal sites and the servers they are hosted on.
 core = 7.x
 package = Features
-dependencies[] = editablefields
 dependencies[] = entityreference
 dependencies[] = features
 dependencies[] = field_collection
