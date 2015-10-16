@@ -1,13 +1,13 @@
 steps:
   - name: Create a D7 site
-    command: "drush fec fetcherserver"
-  - name: Fix permissions
-    command: 'chown -R www-data:www-data /var/www/fetcherserver/webroot/sites/default/files'
+    command: "drush fec fetcherserver --json-config='{\"settings_php.snippets\": []}'"
   - name: Add fetcher_services code
     command: 'cp -r $SRC_DIR /var/www/fetcherserver/webroot/sites/all/modules'
   - name: Download services module.
     command: 'drush --root=/var/www/fetcherserver/webroot dl services -y'
   - name: Enable fetcher services.
     command: 'drush --root=/var/www/fetcherserver/webroot en fetcher_services -y'
+  - name: Fix permissions
+    command: 'chown -R www-data:www-data /var/www/fetcherserver/webroot/sites/default/files'
   - name: Generate login link
     command: 'drush --root=/var/www/fetcherserver/webroot uli'
