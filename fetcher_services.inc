@@ -50,6 +50,21 @@ function _fetcher_service_get_list_of_sites($page, $options) {
     }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
+
+  if (!empty($environment)) {
+    $ids = fetcher_services_services_get_environment_ids_from_environment($environment);
+    $query->fieldCondition('field_ftchr_environment', 'value', $ids);
+  }
+
+  // Allow grabbing by published value.
+  $published = array_key_exists($options['published']) ? $options['published'] : TRUE;
+  if (!empty($published)) {
+    $query->propertyCondition('status', 1);
+  }
+  else if ($published === FALSE) {
+    $query->propertyCondition('status', 0);
+  }
+
   $results = $query->execute();
   $nodes = node_load_multiple(array_keys($results['node']));
   $sites = array();
@@ -138,6 +153,9 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
     $server = null;
     if ($environment->field_ftchr_server->value()) {
       $server = entity_metadata_wrapper('node', $environment->field_ftchr_server->value());
+    }
+    if (empty($server)) {
+      continue;
     }
     if (_fetcher_services_check_environment_for_inclusion($environment, $options, $server)) {
       if ($environment->field_field_ftchr_vcs_rootsubdir->value()) {

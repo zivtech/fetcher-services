@@ -19,6 +19,19 @@ function fetcher_services_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
+  $items['fetcher-services/api/sites-all'] = array(
+    'page title' => 'Get All Sites',
+    'page callback' => 'fetcher_services_site_environments_all',
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
+  $items['fetcher-services/api/sites-all/%'] = array(
+    'page title' => 'Get All Sites by Environment',
+    'page callback' => 'fetcher_services_site_environments_all',
+    'page arguments' => array(3),
+    'access callback' => TRUE,
+    'type' => MENU_CALLBACK,
+  );
   return $items;
 }
 
@@ -50,7 +63,34 @@ function fetcher_services_site_environments_by_ip() {
     'detail' => TRUE,
     'limit' => FALSE,
   );
+  $page = NULL;
   $sites = _fetcher_service_get_list_of_sites($page, $options);
+  print drupal_json_output($sites);
+  return NULL;
+}
+
+/**
+ *  Page callback to get all sites info.
+ */
+function fetcher_services_site_environments_all($environment = NULL) {
+  drupal_add_http_header('Cache-Control', 'no-cache');
+  drupal_add_http_header('Pragma', 'no-cache');
+  drupal_add_http_header('Expires', '-1');
+  module_load_include('inc', 'fetcher_services');
+
+  // @todo: We could allow CIDR ips in the future.
+  $allowed_ips = variable_get('fetcher_services_all_environment_info_allowed_ips', array('127.0.0.1'));
+  if (!in_array(ip_address(), $allowed_ips)) {
+    drupal_access_denied();
+  }
+
+  $options = array(
+    'environment' => $environment,
+    'detail' => TRUE,
+    'limit' => FALSE,
+  );
+  $sites = _fetcher_service_get_list_of_sites(NULL, $options);
+
   print drupal_json_output($sites);
   return NULL;
 }
@@ -244,6 +284,28 @@ function fetcher_services_services_get_environment_ids_from_server_ip_address($i
   $results = $query->entityCondition('entity_type', 'field_collection_item')
     ->entityCondition('bundle', 'field_ftchr_environment')
     ->fieldCondition('field_ftchr_server', 'target_id', $nid)
+    ->execute();
+  $ids = array();
+  if ($results) {
+    foreach (reset($results) as $item) {
+      $ids[] = $item->item_id;
+    }
+  }
+  return $ids;
+}
+
+/**
+  * Lookup a list of environment field collection ids by environment.
+  *
+  * Only returns ids for environments that are hosted on a server with the provided
+  * hostname.
+  */
+function fetcher_services_services_get_environment_ids_from_environment($environment) {
+  $sites = array();
+  $query = new EntityFieldQuery();
+  $results = $query->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_ftchr_environment')
+    ->fieldCondition('field_ftchr_environment_name', 'value', $environment)
     ->execute();
   $ids = array();
   if ($results) {

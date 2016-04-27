@@ -114,6 +114,29 @@ class FetcherServices implements InfoFetcherInterface {
     return $result;
   }
 
+  /**
+   * List only sites that and their environments that are on this server.
+   */
+  public function getSitesByEnvironment($environment = NULL) {
+    $path = !empty($environment) ? sprintf("fetcher-services/api/sites-all/%s", $environment) : 'fetcher-services/api/sites-all';
+    $client = new $this->site['fetcher_client.class']();
+    $client->setURL($this->site['info_fetcher.config']['host'])
+      ->setMethod('GET')
+      ->setTimeout(20)
+      ->setEncoding('json')
+      ->setPath($path);
+
+    // Execute the request and decode the response.
+    $result = $client->fetch();
+    if ($result === FALSE) {
+      drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
+    }
+    else if (empty($result)) {
+      $this->site['log'](dt('No sites appear to exist with this environment @env.', array('@env' => $environment)), 'ok');
+    }
+    return $result;
+  }
+
   public function getInfo($site_name) {
     $client = $this->site['fetcher_client'];
 
