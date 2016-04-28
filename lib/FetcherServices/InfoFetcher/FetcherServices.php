@@ -67,11 +67,11 @@ class FetcherServices implements InfoFetcherInterface {
 
     // Execute the request and decode the response.
     $result = $client->fetch();
-    if (!count($result)) {
-      $this->site['log']('No sites appear to exist on the server.', 'ok');
-    }
-    else {
+    if ($result === FALSE) {
       drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
+    }
+    else if (empty($result)) {
+      $this->site['log']('No sites appear to exist on the server.', 'ok');
     }
     return $result;
 
@@ -105,11 +105,11 @@ class FetcherServices implements InfoFetcherInterface {
 
     // Execute the request and decode the response.
     $result = $client->fetch();
-    if (!count($result)) {
-      $this->site['log']('No sites appear to exist on the server.', 'ok');
-    }
-    else {
+    if ($result === FALSE) {
       drush_log(dt('The data could not be retrieved from the server. Error code @code received from server.', array('@code' => $client->getResponseCode())), 'error');
+    }
+    else if (empty($result)) {
+      $this->site['log']('No sites appear to exist on the server.', 'ok');
     }
     return $result;
   }
