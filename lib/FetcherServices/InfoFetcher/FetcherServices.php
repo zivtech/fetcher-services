@@ -54,11 +54,10 @@ class FetcherServices implements InfoFetcherInterface {
   public function listLocalSites($options = array()) {
 
     $client = new $this->site['fetcher_client.class']();
-    $client->setURL($c['info_fetcher.config']['host'])
+    $client->setURL($this->site['info_fetcher.config']['host'])
       ->setMethod('GET')
       ->setTimeout(3)
       ->setEncoding('json');
-    $client = $this->site['fetcher_client'];
     $client->setPath('fetcher-services/api/sites-by-ip');
 
     if ($page) {
