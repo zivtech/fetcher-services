@@ -36,15 +36,15 @@ function _fetcher_service_get_list_of_sites($page, $options) {
   if (!empty($options['name'])) {
     $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
   }
-  if ($server_hostname) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($server_hostname);
+  if (!empty($options['server_hostname'])) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($options['server_hostname']);
     if (empty($ids)) {
       return array();
     }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
-  if ($ip_address) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address);
+  if (!empty($options['ip_address'])) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($options['ip_address']);
     if (empty($ids)) {
       return array();
     }
