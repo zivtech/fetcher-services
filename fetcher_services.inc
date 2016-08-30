@@ -57,7 +57,7 @@ function _fetcher_service_get_list_of_sites($page, $options) {
   }
 
   // Allow grabbing by published value.
-  $published = array_key_exists($options['published']) ? $options['published'] : TRUE;
+  $published = isset($options['published']) ? $options['published'] : TRUE;
   if (!empty($published)) {
     $query->propertyCondition('status', 1);
   }
