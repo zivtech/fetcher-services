@@ -53,6 +53,8 @@ function fetcher_services_one_time_use_token() {
  *  Page callback to get all sites by ip IP
  */
 function fetcher_services_site_environments_by_ip() {
+  global $conf;
+  $conf['cache'] = FALSE;
   drupal_add_http_header('Cache-Control', 'no-cache');
   drupal_add_http_header('Pragma', 'no-cache');
   drupal_add_http_header('Expires', '-1');
@@ -64,6 +66,7 @@ function fetcher_services_site_environments_by_ip() {
     'limit' => FALSE,
   );
   $page = NULL;
+  $page = !empty($_GET['page']) ? (int) $_GET['page'] : null;
   $sites = _fetcher_service_get_list_of_sites($page, $options);
   print drupal_json_output($sites);
   return NULL;

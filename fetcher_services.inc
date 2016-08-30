@@ -36,15 +36,15 @@ function _fetcher_service_get_list_of_sites($page, $options) {
   if (!empty($options['name'])) {
     $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
   }
-  if ($server_hostname) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($server_hostname);
+  if (!empty($options['server_hostname'])) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($options['server_hostname']);
     if (empty($ids)) {
       return array();
     }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
-  if ($ip_address) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address);
+  if (!empty($options['ip_address'])) {
+    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($options['ip_address']);
     if (empty($ids)) {
       return array();
     }
@@ -70,14 +70,14 @@ function _fetcher_service_get_list_of_sites($page, $options) {
   $sites = array();
   foreach ($nodes as $nid => $node) {
     if ($detail) {
-      $options = array();
-      if ($server_hostname) {
-        $options['server_hostname'] = $server_hostname;
+      $site_info_options = array();
+      if (!empty($options['server_hostname'])) {
+        $site_info_options['server_hostname'] = $server_hostname;
       }
-      if ($ip_address) {
-        $options['server_ip_address'] = $ip_address;
+      if (!empty($options['ip_address'])) {
+        $site_info_options['server_ip_address'] = $ip_address;
       }
-      $site = _fetcher_services_build_site_info($nid, $options);
+      $site = _fetcher_services_build_site_info($nid, $site_info_options);
       $sites[$site['name']] = $site;
     }
     else {
@@ -196,7 +196,7 @@ function _fetcher_services_check_environment_for_inclusion(EntityMetadataWrapper
     if (!$server) {
       return FALSE;
     }
-    if ($options['server_hostname'] && $server->field_ftchr_remote_host->value() == $options['server_hostname']) {
+    if (!empty($options['server_hostname']) && $server->field_ftchr_remote_host->value() == $options['server_hostname']) {
       $include = TRUE;
     }
     $addresses = $server->field_ftchr_server_ip->value();
