@@ -41,10 +41,11 @@ function fetcher_services_drush_command() {
     ),
   );
   $items['fetcher-services-check-all-urls'] = array(
-    'description' => 'Check the http status of all fetcher urls.',
+    'description' => 'Check the http status of all fetcher url.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
     'arguments' => array(
       'environment' => 'Check all sites of the given environment.',
+      'support' => 'Check all sites of the given environment.',
     ),
   );
 
@@ -118,9 +119,9 @@ function drush_fetcher_services_check_url($url) {
 /**
  * Check the status of all of the urls of a given environment.
  */
-function drush_fetcher_services_check_all_urls($environment = NULL) {
+function drush_fetcher_services_check_all_urls($environment = NULL, $support = NULL) {
   $info = drush_fetcher_get_info_fetcher();
-  $sites = $info->getSitesByEnvironment($environment);
+  $sites = $info->getSitesByEnvironment($environment, $support);
 
   $error_status = FETCHER_SERVICES_CHECK_OK;
   if (empty($sites)) {

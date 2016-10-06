@@ -91,6 +91,7 @@ function fetcher_services_site_environments_all($environment = NULL) {
     'environment' => $environment,
     'detail' => TRUE,
     'limit' => FALSE,
+    'support' => isset($_GET['support']) ? (int) $_GET['support'] : NULL,
   );
   $sites = _fetcher_service_get_list_of_sites(NULL, $options);
 

@@ -65,6 +65,11 @@ function _fetcher_service_get_list_of_sites($page, $options) {
     $query->propertyCondition('status', 0);
   }
 
+  if (isset($support)) {
+    // Support must be either 0 or 1.
+    $query->fieldCondition('field_ftchr_site_support', 'value', (int) $support);
+  }
+
   $results = $query->execute();
   $nodes = node_load_multiple(array_keys($results['node']));
   $sites = array();
