@@ -23,7 +23,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 13,
+        'weight' => 7,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -62,7 +62,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 10,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -97,7 +97,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 14,
+        'weight' => 8,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -134,7 +134,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 9,
+        'weight' => 4,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -168,7 +168,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 3,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -199,13 +199,12 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_root'
+  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_root'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_root'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This is optional and will default to `/var/www/[site name]/webroot`.',
+    'description' => 'This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working directory then this will default to `[working directory]/webroot`.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -230,12 +229,11 @@ prod|Production',
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 12,
+      'weight' => 13,
     ),
   );
 
-  // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_server'
+  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_server'
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_server'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -305,6 +303,40 @@ prod|Production',
     ),
   );
 
+  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_working_dir'
+  $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_working_dir'] = array(
+    'bundle' => 'field_ftchr_environment',
+    'default_value' => NULL,
+    'deleted' => 0,
+    'description' => '(If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'text',
+        'settings' => array(),
+        'type' => 'text_default',
+        'weight' => 2,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_ftchr_working_dir',
+    'label' => 'Remote Server Working Directory',
+    'required' => 0,
+    'settings' => array(
+      'text_processing' => 0,
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'text',
+      'settings' => array(
+        'size' => 60,
+      ),
+      'type' => 'text_textfield',
+      'weight' => 12,
+    ),
+  );
+
   // Exported field_instance: 'node-fetcher_server-body'
   $field_instances['node-fetcher_server-body'] = array(
     'bundle' => 'fetcher_server',
@@ -313,11 +345,11 @@ prod|Production',
     'description' => '',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 6,
+        'weight' => 9,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -371,11 +403,11 @@ prod|Production',
     'description' => 'The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 1,
+        'weight' => 15,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -427,11 +459,11 @@ prod|Production',
     'description' => 'The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.',
     'display' => array(
       'default' => array(
-        'label' => 'inline',
+        'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 4,
+        'weight' => 16,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -467,7 +499,7 @@ prod|Production',
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 11,
+      'weight' => 31,
     ),
   );
 
@@ -483,7 +515,7 @@ prod|Production',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 3,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -541,7 +573,7 @@ prod|Production',
           'fallback_settings' => array(),
         ),
         'type' => 'editable',
-        'weight' => 0,
+        'weight' => 13,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -595,7 +627,7 @@ prod|Production',
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 5,
+        'weight' => 7,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -630,7 +662,7 @@ prod|Production',
         'apply_chosen' => 0,
       ),
       'type' => 'options_select',
-      'weight' => 12,
+      'weight' => 11,
     ),
   );
 
@@ -648,7 +680,7 @@ prod|Production',
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 3,
+        'weight' => 8,
       ),
       'extranet_lead_display' => array(
         'label' => 'above',
@@ -821,7 +853,7 @@ prod|Production',
     'bundle' => 'fetcher_site',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '',
+    'description' => 'Enter a machine name for this Fetcher Site. <strong>Note: Must be 16 characters or less!</strong> <em>Ex. project_name or project_name_stg</em>',
     'display' => array(
       'default' => array(
         'label' => 'inline',
@@ -1084,10 +1116,12 @@ prod|Production',
 
   // Translatables
   // Included for use with string extractors like potx.
+  t('(If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.');
   t('Additional Notes');
   t('Database');
   t('Drupal Support');
   t('Drupal version');
+  t('Enter a machine name for this Fetcher Site. <strong>Note: Must be 16 characters or less!</strong> <em>Ex. project_name or project_name_stg</em>');
   t('Environment');
   t('Host Name');
   t('IP Address');
@@ -1096,13 +1130,14 @@ prod|Production',
   t('Managed By');
   t('Notes');
   t('Remote Server Site Root');
+  t('Remote Server Working Directory');
   t('Remote User');
   t('Server');
   t('Server Version');
   t('The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.');
   t('The name of the remote database for this site. If left blank, the site\'s machine name will be used.');
   t('The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.');
-  t('This is optional and will default to `/var/www/[site name]/webroot`.');
+  t('This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working directory then this will default to `[working directory]/webroot`.');
   t('URI');
   t('VCS URL');
   t('Version Control Branch');
