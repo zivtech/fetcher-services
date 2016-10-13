@@ -47,7 +47,7 @@ function fetcher_services_drush_command() {
       'environment' => 'Check all sites of the given environment.',
     ),
     'options' => array(
-      'support' => 'Check only the sites with or without support.',
+      'support' => 'Check only the sites with or without support. This value must be either "true" or "false".',
     ),
   );
 
