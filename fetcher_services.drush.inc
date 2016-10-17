@@ -41,7 +41,7 @@ function fetcher_services_drush_command() {
     ),
   );
   $items['fetcher-services-check-all-urls'] = array(
-    'description' => 'Check the http status of all fetcher url.',
+    'description' => 'Check the http status of all fetcher urls.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
     'arguments' => array(
       'environment' => 'Check all sites of the given environment.',
