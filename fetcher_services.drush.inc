@@ -46,6 +46,9 @@ function fetcher_services_drush_command() {
     'arguments' => array(
       'environment' => 'Check all sites of the given environment.',
     ),
+    'options' => array(
+      'support' => 'Check only the sites with or without support. This value must be either "true" or "false".',
+    ),
   );
 
   return $items;
@@ -118,9 +121,10 @@ function drush_fetcher_services_check_url($url) {
 /**
  * Check the status of all of the urls of a given environment.
  */
-function drush_fetcher_services_check_all_urls($environment = NULL) {
+function drush_fetcher_services_check_all_urls($environment) {
+  $support = drush_get_option('support');
   $info = drush_fetcher_get_info_fetcher();
-  $sites = $info->getSitesByEnvironment($environment);
+  $sites = $info->getSitesByEnvironment($environment, $support);
 
   $error_status = FETCHER_SERVICES_CHECK_OK;
   if (empty($sites)) {

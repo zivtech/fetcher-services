@@ -87,10 +87,16 @@ function fetcher_services_site_environments_all($environment = NULL) {
     drupal_access_denied();
   }
 
+  // Only allow true and false as strings.
+  if (isset($_GET['support']) && in_array($_GET['support'], array('true', 'false'))) {
+    $support = $_GET['support'] == 'true' ? 1 : 0;
+  }
+
   $options = array(
     'environment' => $environment,
     'detail' => TRUE,
     'limit' => FALSE,
+    'support' => isset($support) ? $support : NULL,
   );
   $sites = _fetcher_service_get_list_of_sites(NULL, $options);
 

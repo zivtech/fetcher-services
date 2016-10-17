@@ -116,7 +116,7 @@ class FetcherServices implements InfoFetcherInterface {
   /**
    * List only sites that and their environments that are on this server.
    */
-  public function getSitesByEnvironment($environment = NULL) {
+  public function getSitesByEnvironment($environment = NULL, $support = NULL) {
     $path = !empty($environment) ? sprintf("fetcher-services/api/sites-all/%s", $environment) : 'fetcher-services/api/sites-all';
     $client = new $this->site['fetcher_client.class']();
     $client->setURL($this->site['info_fetcher.config']['host'])
@@ -124,6 +124,10 @@ class FetcherServices implements InfoFetcherInterface {
       ->setTimeout(20)
       ->setEncoding('json')
       ->setPath($path);
+
+    if (isset($support)) {
+      $client->addParam('support', $support);
+    }
 
     // Execute the request and decode the response.
     $result = $client->fetch();
