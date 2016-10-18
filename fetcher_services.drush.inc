@@ -131,7 +131,9 @@ function drush_fetcher_services_check_all_urls($environment) {
   $sites = $info->getSitesByEnvironment($environment, $support);
 
   $error_status = FETCHER_SERVICES_CHECK_OK;
+  drush_set_context('DRUSH_EXIT_CODE', $error_status);
   if (empty($sites)) {
+    drush_log(dt('No sites were checked.'), 'ok');
     return;
   }
 
@@ -144,10 +146,16 @@ function drush_fetcher_services_check_all_urls($environment) {
       }
       $output = drush_invoke_process(NULL, 'fetcher-services-check-url', array($url));
       if ($output['error_status']) {
-        $error_status = $output['error_status'] > $error_status ? $output['error_status'] : $error_status;
+        $current_status = drush_get_context('DRUSH_EXIT_CODE');
+        $error_status = $output['error_status'] > $current_status ? $output['error_status'] : $current_status;
         drush_set_context('DRUSH_EXIT_CODE', $error_status);
       }
     }
+  }
+
+  // Add a message if all sites are up and running.
+  if (drush_get_context('DRUSH_EXIT_CODE') === FETCHER_SERVICES_CHECK_OK) {
+    drush_log(dt('All sites are up and running.'), 'ok');
   }
 }
 
