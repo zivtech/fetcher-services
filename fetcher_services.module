@@ -25,13 +25,6 @@ function fetcher_services_menu() {
     'access callback' => TRUE,
     'type' => MENU_CALLBACK,
   );
-  $items['fetcher-services/api/sites-all/%'] = array(
-    'page title' => 'Get All Sites by Environment',
-    'page callback' => 'fetcher_services_site_environments_all',
-    'page arguments' => array(3),
-    'access callback' => TRUE,
-    'type' => MENU_CALLBACK,
-  );
   return $items;
 }
 
@@ -75,7 +68,7 @@ function fetcher_services_site_environments_by_ip() {
 /**
  *  Page callback to get all sites info.
  */
-function fetcher_services_site_environments_all($environment = NULL) {
+function fetcher_services_site_environments_all() {
   drupal_add_http_header('Cache-Control', 'no-cache');
   drupal_add_http_header('Pragma', 'no-cache');
   drupal_add_http_header('Expires', '-1');
@@ -87,17 +80,20 @@ function fetcher_services_site_environments_all($environment = NULL) {
     drupal_access_denied();
   }
 
-  // Only allow true and false as strings.
-  if (isset($_GET['support']) && in_array($_GET['support'], array('true', 'false'))) {
-    $support = $_GET['support'] == 'true' ? 1 : 0;
-  }
-
   $options = array(
-    'environment' => $environment,
+    'environment' => NULL,
     'detail' => TRUE,
     'limit' => FALSE,
-    'support' => isset($support) ? $support : NULL,
+    'support' => NULL,
+    'processes' => array(),
   );
+
+  foreach ($options as $name => $value) {
+    if (isset($_GET[$name])) {
+      $options[$name] = $_GET[$name];
+    }
+  }
+
   $sites = _fetcher_service_get_list_of_sites(NULL, $options);
 
   print drupal_json_output($sites);
@@ -230,7 +226,6 @@ function _fetcher_services_form_validate($form, &$form_state) {
   }
 }
 
-
  /**
   * Lookup a server's nid by its hostname.
   */
@@ -241,28 +236,6 @@ function fetcher_services_lookup_server_nid_by_hostname($hostname) {
     ->fieldCondition('field_ftchr_remote_host', 'value', $hostname)
     ->execute();
   return reset(array_keys(reset($results)));
-}
-
- /**
-  * Lookup a list of environment field collection ids by server hostname.
-  *
-  * Only returns ids for environments that are hosted on a server with the provided
-  * hostname.
-  */
-function fetcher_services_services_get_environment_ids_from_server_hostname($hostname) {
-  $sites = array();
-  $query = new EntityFieldQuery();
-  $results = $query->entityCondition('entity_type', 'field_collection_item')
-    ->entityCondition('bundle', 'field_ftchr_environment')
-    ->fieldCondition('field_ftchr_server', 'target_id', fetcher_services_lookup_server_nid_by_hostname($hostname))
-    ->execute();
-  $ids = array();
-  if ($results) {
-    foreach (reset($results) as $item) {
-      $ids[] = $item->item_id;
-    }
-  }
-  return $ids;
 }
 
 /**
@@ -277,45 +250,27 @@ function fetcher_services_lookup_server_nid_by_ip_address($ip_address) {
   return isset($results['node']) && !empty($results['node']) ? reset(array_keys($results['node'])) : FALSE;
 }
 
- /**
-  * Lookup a list of environment field collection ids by server IP Address.
-  *
-  * Only returns ids for environments that are hosted on a server with the provided
-  * hostname.
-  */
-function fetcher_services_services_get_environment_ids_from_server_ip_address($ip_address) {
-  $nid = fetcher_services_lookup_server_nid_by_ip_address($ip_address);
-  if (!$nid) {
-    return array();
-  }
-  $sites = array();
-  $query = new EntityFieldQuery();
-  $results = $query->entityCondition('entity_type', 'field_collection_item')
-    ->entityCondition('bundle', 'field_ftchr_environment')
-    ->fieldCondition('field_ftchr_server', 'target_id', $nid)
-    ->execute();
-  $ids = array();
-  if ($results) {
-    foreach (reset($results) as $item) {
-      $ids[] = $item->item_id;
-    }
-  }
-  return $ids;
-}
-
 /**
-  * Lookup a list of environment field collection ids by environment.
-  *
-  * Only returns ids for environments that are hosted on a server with the provided
-  * hostname.
-  */
-function fetcher_services_services_get_environment_ids_from_environment($environment) {
+ * Lookup a list of environment field collection ids by the given parameter(s).
+ *
+ * @param array $params
+ *  An array of field conditions to add to the query.
+ *  Each one is an array with keys field, column, and value.
+ *
+ * @return array
+ *  An array of environment ids.
+ */
+function fetcher_services_services_get_environment_ids($params = array()) {
   $sites = array();
   $query = new EntityFieldQuery();
-  $results = $query->entityCondition('entity_type', 'field_collection_item')
-    ->entityCondition('bundle', 'field_ftchr_environment')
-    ->fieldCondition('field_ftchr_environment_name', 'value', $environment)
-    ->execute();
+  $query->entityCondition('entity_type', 'field_collection_item')
+    ->entityCondition('bundle', 'field_ftchr_environment');
+
+  foreach ($params as $param) {
+    $query->fieldCondition($param['field'], $param['column'], $param['value']);
+  }
+  $results = $query->execute();
+
   $ids = array();
   if ($results) {
     foreach (reset($results) as $item) {
