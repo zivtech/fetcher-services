@@ -11,7 +11,7 @@ function fetcher_services_field_default_field_instances() {
   $field_instances = array();
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'
+  // 'field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'.
   $field_instances['field_collection_item-field_ftchr_environment-field_field_ftchr_vcs_rootsubdir'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -23,7 +23,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 7,
+        'weight' => 13,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -46,7 +46,7 @@ function fetcher_services_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_branch'
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_branch'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_branch'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => array(
@@ -62,7 +62,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 5,
+        'weight' => 10,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -85,7 +85,7 @@ function fetcher_services_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_db'
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_db'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_db'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -97,7 +97,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 8,
+        'weight' => 14,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -115,17 +115,17 @@ function fetcher_services_field_default_field_instances() {
         'size' => 60,
       ),
       'type' => 'text_textfield',
-      'weight' => 13,
+      'weight' => 4,
     ),
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_drupal_version'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
     'default_value_function' => '',
-    'default_value_php' => '',
+    'default_value_php' => FALSE,
     'deleted' => 0,
     'description' => '',
     'display' => array(
@@ -134,7 +134,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'list',
         'settings' => array(),
         'type' => 'list_default',
-        'weight' => 4,
+        'weight' => 9,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -156,7 +156,7 @@ function fetcher_services_field_default_field_instances() {
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_environment_name'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_environment_name'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -168,7 +168,7 @@ function fetcher_services_field_default_field_instances() {
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 3,
+        'weight' => 5,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -185,11 +185,11 @@ function fetcher_services_field_default_field_instances() {
       'settings' => array(
         'available_options' => 'dev|Dev
 staging|Staging
-prod|Production',
+prod|Production
+sec|Security',
         'available_options_php' => '',
         'markup_available_options_php' => '&lt;none&gt;',
         'other' => 'Other',
-        'other_size' => 60,
         'other_title' => '',
         'other_unknown_defaults' => 'ignore',
         'sort_options' => 0,
@@ -199,12 +199,13 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_root'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_root'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_root'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => 'This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working directory then this will default to `[working directory]/webroot`.',
+    'description' => 'This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working direcotry then this will default to `[working directory]/webroot`.',
     'display' => array(
       'default' => array(
         'label' => 'above',
@@ -233,7 +234,8 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_server'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_server'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_server'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -244,7 +246,7 @@ prod|Production',
         'label' => 'above',
         'module' => 'entityreference',
         'settings' => array(
-          'link' => FALSE,
+          'link' => 1,
         ),
         'type' => 'entityreference_label',
         'weight' => 11,
@@ -269,7 +271,41 @@ prod|Production',
   );
 
   // Exported field_instance:
-  // 'field_collection_item-field_ftchr_environment-field_ftchr_uri'
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_site_processes'.
+  $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_site_processes'] = array(
+    'bundle' => 'field_ftchr_environment',
+    'default_value' => NULL,
+    'default_value_function' => '',
+    'default_value_php' => '',
+    'deleted' => 0,
+    'description' => '',
+    'display' => array(
+      'default' => array(
+        'label' => 'above',
+        'module' => 'list',
+        'settings' => array(),
+        'type' => 'list_default',
+        'weight' => 16,
+      ),
+    ),
+    'entity_type' => 'field_collection_item',
+    'field_name' => 'field_ftchr_site_processes',
+    'label' => 'Site Processes',
+    'required' => 0,
+    'settings' => array(
+      'user_register_form' => FALSE,
+    ),
+    'widget' => array(
+      'active' => 1,
+      'module' => 'options',
+      'settings' => array(),
+      'type' => 'options_buttons',
+      'weight' => 14,
+    ),
+  );
+
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_uri'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_uri'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
@@ -303,19 +339,20 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'field_collection_item-field_ftchr_environment-field_ftchr_working_dir'
+  // Exported field_instance:
+  // 'field_collection_item-field_ftchr_environment-field_ftchr_working_dir'.
   $field_instances['field_collection_item-field_ftchr_environment-field_ftchr_working_dir'] = array(
     'bundle' => 'field_ftchr_environment',
     'default_value' => NULL,
     'deleted' => 0,
-    'description' => '(If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.',
+    'description' => 'If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.',
     'display' => array(
       'default' => array(
         'label' => 'above',
         'module' => 'text',
         'settings' => array(),
         'type' => 'text_default',
-        'weight' => 2,
+        'weight' => 15,
       ),
     ),
     'entity_type' => 'field_collection_item',
@@ -337,7 +374,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-body'
+  // Exported field_instance: 'node-fetcher_server-body'.
   $field_instances['node-fetcher_server-body'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -395,7 +432,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_remote_host'
+  // Exported field_instance: 'node-fetcher_server-field_ftchr_remote_host'.
   $field_instances['node-fetcher_server-field_ftchr_remote_host'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -447,7 +484,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_remote_user'
+  // Exported field_instance: 'node-fetcher_server-field_ftchr_remote_user'.
   $field_instances['node-fetcher_server-field_ftchr_remote_user'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => array(
@@ -503,7 +540,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_ip'
+  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_ip'.
   $field_instances['node-fetcher_server-field_ftchr_server_ip'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -556,7 +593,7 @@ prod|Production',
   );
 
   // Exported field_instance:
-  // 'node-fetcher_server-field_ftchr_server_machine_name'
+  // 'node-fetcher_server-field_ftchr_server_machine_name'.
   $field_instances['node-fetcher_server-field_ftchr_server_machine_name'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -597,7 +634,7 @@ prod|Production',
     'entity_type' => 'node',
     'field_name' => 'field_ftchr_server_machine_name',
     'label' => 'Machine Name',
-    'required' => 1,
+    'required' => 0,
     'settings' => array(
       'source' => 'title',
       'user_register_form' => FALSE,
@@ -613,7 +650,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_managed'
+  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_managed'.
   $field_instances['node-fetcher_server-field_ftchr_server_managed'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -666,7 +703,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_os'
+  // Exported field_instance: 'node-fetcher_server-field_ftchr_server_os'.
   $field_instances['node-fetcher_server-field_ftchr_server_os'] = array(
     'bundle' => 'fetcher_server',
     'default_value' => NULL,
@@ -711,13 +748,15 @@ prod|Production',
     'widget' => array(
       'active' => 1,
       'module' => 'options',
-      'settings' => array(),
+      'settings' => array(
+        'apply_chosen' => 0,
+      ),
       'type' => 'options_select',
       'weight' => 10,
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_site-body'
+  // Exported field_instance: 'node-fetcher_site-body'.
   $field_instances['node-fetcher_site-body'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => NULL,
@@ -774,7 +813,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_site-field_ftchr_environment'
+  // Exported field_instance: 'node-fetcher_site-field_ftchr_environment'.
   $field_instances['node-fetcher_site-field_ftchr_environment'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => array(
@@ -848,7 +887,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_site-field_ftchr_machine_name'
+  // Exported field_instance: 'node-fetcher_site-field_ftchr_machine_name'.
   $field_instances['node-fetcher_site-field_ftchr_machine_name'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => NULL,
@@ -905,7 +944,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_support'
+  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_support'.
   $field_instances['node-fetcher_site-field_ftchr_site_support'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => array(
@@ -1005,7 +1044,7 @@ prod|Production',
     'widget_type' => 'optionwidgets_onoff',
   );
 
-  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_vcs'
+  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_vcs'.
   $field_instances['node-fetcher_site-field_ftchr_site_vcs'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => array(
@@ -1063,7 +1102,7 @@ prod|Production',
     ),
   );
 
-  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_vcs_url'
+  // Exported field_instance: 'node-fetcher_site-field_ftchr_site_vcs_url'.
   $field_instances['node-fetcher_site-field_ftchr_site_vcs_url'] = array(
     'bundle' => 'fetcher_site',
     'default_value' => NULL,
@@ -1116,7 +1155,6 @@ prod|Production',
 
   // Translatables
   // Included for use with string extractors like potx.
-  t('(If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.');
   t('Additional Notes');
   t('Database');
   t('Drupal Support');
@@ -1126,6 +1164,7 @@ prod|Production',
   t('Host Name');
   t('IP Address');
   t('If the root of this VCS repository is not the root of the Drupal htdocs (the folder containing `index.php`, specify the subdirectory containing it.');
+  t('If the working directory on the remote server is not `/var/www/[site name]` then enter it here.  The working directory is usually the directory that contains the files folders, the logs directory along side the code repository.');
   t('Machine Name');
   t('Managed By');
   t('Notes');
@@ -1134,10 +1173,11 @@ prod|Production',
   t('Remote User');
   t('Server');
   t('Server Version');
+  t('Site Processes');
   t('The host name of this server.  This should be a proper fully qualified domain name (FQDN) that can be used to publicly address this server.');
   t('The name of the remote database for this site. If left blank, the site\'s machine name will be used.');
   t('The user name of the user to log in to this server.  If you have a shared sign on system (LDAP or similar) this may be ignored.');
-  t('This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working directory then this will default to `[working directory]/webroot`.');
+  t('This is optional and will default to `/var/www/[site name]/webroot`.  If you\'ve entered the remote server working direcotry then this will default to `[working directory]/webroot`.');
   t('URI');
   t('VCS URL');
   t('Version Control Branch');

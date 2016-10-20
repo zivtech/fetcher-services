@@ -10,7 +10,7 @@
 function fetcher_services_field_default_field_bases() {
   $field_bases = array();
 
-  // Exported field_base: 'body'
+  // Exported field_base: 'body'.
   $field_bases['body'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -31,7 +31,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text_with_summary',
   );
 
-  // Exported field_base: 'field_field_ftchr_vcs_rootsubdir'
+  // Exported field_base: 'field_field_ftchr_vcs_rootsubdir'.
   $field_bases['field_field_ftchr_vcs_rootsubdir'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -52,7 +52,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_branch'
+  // Exported field_base: 'field_ftchr_branch'.
   $field_bases['field_ftchr_branch'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -73,7 +73,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_db'
+  // Exported field_base: 'field_ftchr_db'.
   $field_bases['field_ftchr_db'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -94,7 +94,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_drupal_version'
+  // Exported field_base: 'field_ftchr_drupal_version'.
   $field_bases['field_ftchr_drupal_version'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -112,26 +112,24 @@ function fetcher_services_field_default_field_bases() {
       'allowed_values' => array(
         1 => 6,
         2 => 7,
+        3 => ' 8',
+        4 => ' 9',
       ),
       'allowed_values_function' => '',
-      'allowed_values_php' => '',
+      'allowed_values_php' => FALSE,
     ),
     'translatable' => 1,
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_ftchr_environment'
+  // Exported field_base: 'field_ftchr_environment'.
   $field_bases['field_ftchr_environment'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ftchr_environment',
-    'indexes' => array(
-      'revision_id' => array(
-        0 => 'revision_id',
-      ),
-    ),
+    'indexes' => array(),
     'locked' => 0,
     'module' => 'field_collection',
     'settings' => array(
@@ -142,7 +140,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'field_collection',
   );
 
-  // Exported field_base: 'field_ftchr_environment_name'
+  // Exported field_base: 'field_ftchr_environment_name'.
   $field_bases['field_ftchr_environment_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -163,7 +161,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_machine_name'
+  // Exported field_base: 'field_ftchr_machine_name'.
   $field_bases['field_ftchr_machine_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -187,7 +185,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'machine_name',
   );
 
-  // Exported field_base: 'field_ftchr_remote_host'
+  // Exported field_base: 'field_ftchr_remote_host'.
   $field_bases['field_ftchr_remote_host'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -208,7 +206,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_remote_user'
+  // Exported field_base: 'field_ftchr_remote_user'.
   $field_bases['field_ftchr_remote_user'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -229,7 +227,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_root'
+  // Exported field_base: 'field_ftchr_root'.
   $field_bases['field_ftchr_root'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -250,7 +248,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_server'
+  // Exported field_base: 'field_ftchr_server'.
   $field_bases['field_ftchr_server'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -289,21 +287,13 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'entityreference',
   );
 
-  // Exported field_base: 'field_ftchr_server_ip'
+  // Exported field_base: 'field_ftchr_server_ip'.
   $field_bases['field_ftchr_server_ip'] = array(
     'active' => 1,
     'cardinality' => -1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ftchr_server_ip',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
@@ -318,7 +308,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_server_machine_name'
+  // Exported field_base: 'field_ftchr_server_machine_name'.
   $field_bases['field_ftchr_server_machine_name'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -341,7 +331,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'machine_name',
   );
 
-  // Exported field_base: 'field_ftchr_server_managed'
+  // Exported field_base: 'field_ftchr_server_managed'.
   $field_bases['field_ftchr_server_managed'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -368,7 +358,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_ftchr_server_os'
+  // Exported field_base: 'field_ftchr_server_os'.
   $field_bases['field_ftchr_server_os'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -397,7 +387,35 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_ftchr_site_support'
+  // Exported field_base: 'field_ftchr_site_processes'.
+  $field_bases['field_ftchr_site_processes'] = array(
+    'active' => 1,
+    'cardinality' => -1,
+    'deleted' => 0,
+    'entity_types' => array(),
+    'field_name' => 'field_ftchr_site_processes',
+    'indexes' => array(
+      'value' => array(
+        0 => 'value',
+      ),
+    ),
+    'locked' => 0,
+    'module' => 'list',
+    'settings' => array(
+      'allowed_values' => array(
+        'available' => 'Site Available',
+        'report' => 'Status Report',
+        'mysql_backup' => 'Mysql Backups',
+        'file_backup' => 'File Backups',
+      ),
+      'allowed_values_function' => '',
+      'allowed_values_php' => '',
+    ),
+    'translatable' => 0,
+    'type' => 'list_text',
+  );
+
+  // Exported field_base: 'field_ftchr_site_support'.
   $field_bases['field_ftchr_site_support'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -425,7 +443,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'list_boolean',
   );
 
-  // Exported field_base: 'field_ftchr_site_vcs'
+  // Exported field_base: 'field_ftchr_site_vcs'.
   $field_bases['field_ftchr_site_vcs'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -451,7 +469,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'list_text',
   );
 
-  // Exported field_base: 'field_ftchr_site_vcs_url'
+  // Exported field_base: 'field_ftchr_site_vcs_url'.
   $field_bases['field_ftchr_site_vcs_url'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -472,7 +490,7 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_uri'
+  // Exported field_base: 'field_ftchr_uri'.
   $field_bases['field_ftchr_uri'] = array(
     'active' => 1,
     'cardinality' => 1,
@@ -493,21 +511,13 @@ function fetcher_services_field_default_field_bases() {
     'type' => 'text',
   );
 
-  // Exported field_base: 'field_ftchr_working_dir'
+  // Exported field_base: 'field_ftchr_working_dir'.
   $field_bases['field_ftchr_working_dir'] = array(
     'active' => 1,
     'cardinality' => 1,
     'deleted' => 0,
     'entity_types' => array(),
     'field_name' => 'field_ftchr_working_dir',
-    'foreign keys' => array(
-      'format' => array(
-        'columns' => array(
-          'format' => 'format',
-        ),
-        'table' => 'filter_format',
-      ),
-    ),
     'indexes' => array(
       'format' => array(
         0 => 'format',
