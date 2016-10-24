@@ -403,8 +403,8 @@ function fetcher_services_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'available' => 'Site Available',
-        'report' => 'Status Report',
+        'site_available' => 'Site Available',
+        'status_report' => 'Status Report',
         'mysql_backup' => 'Mysql Backups',
         'file_backup' => 'File Backups',
       ),
