@@ -39,6 +39,9 @@ function fetcher_services_drush_command() {
     'arguments' => array(
       'url' => 'Check the http status code for this url.',
     ),
+    'options' => array(
+      'cached-url' => 'Allow checking of the cached version of the url. The default is NOT to use the cached version.',
+    ),
   );
   $items['fetcher-services-check-all-urls'] = array(
     'description' => 'Check the http status of all fetcher urls.',
@@ -96,7 +99,8 @@ function drush_fetcher_services_check_url($url) {
     $error_message = dt('@url is not a valid url.', array('@url' => $url));
   }
   else {
-    $ch = curl_init($url);
+    $curl_url = drush_get_option('cached-url') ? $url : $url . '?fetcher-check=' . time();
+    $ch = curl_init($curl_url);
     curl_setopt($ch, CURLOPT_HEADER, TRUE);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, TRUE);
