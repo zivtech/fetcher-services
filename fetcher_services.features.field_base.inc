@@ -403,10 +403,10 @@ function fetcher_services_field_default_field_bases() {
     'module' => 'list',
     'settings' => array(
       'allowed_values' => array(
-        'site_available' => 'Site Available',
-        'status_report' => 'Status Report',
-        'mysql_backup' => 'Mysql Backups',
         'file_backup' => 'File Backups',
+        'mysql_backup' => 'Mysql Backups',
+        'security_check' => 'Security Check',
+        'status_check' => 'Status Check',
       ),
       'allowed_values_function' => '',
       'allowed_values_php' => '',

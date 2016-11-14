@@ -27,6 +27,7 @@ function fetcher_services_field_group_info() {
       1 => 'field_ftchr_branch',
       2 => 'field_ftchr_root',
       3 => 'field_ftchr_working_dir',
+      4 => 'field_ftchr_site_processes',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(
