@@ -110,7 +110,7 @@ function drush_fetcher_services_check_url($url) {
     $exit_code = $status_code != 200 ? FETCHER_SERVICES_CHECK_CRITICAL : FETCHER_SERVICES_CHECK_OK;
 
     if ($exit_code != CHECK_OK) {
-      $error_message = dt('Received a @status_code on @url', array('@status_code' => $status_code, '@url' => $url));
+      $error_message = dt('Received a @status_code on @url', array('@status_code' => $status_code, '@url' => $curl_url));
     }
   }
 
