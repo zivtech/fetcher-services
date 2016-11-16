@@ -25,6 +25,7 @@ function _fetcher_services_services_index_sites($page, $name, $detail, $server_h
 function _fetcher_service_get_list_of_sites($page, $options) {
   extract($options);
   $sites = array();
+  $environment_filters = array();
   $query = new EntityFieldQuery();
   $query->entityCondition('entity_type', 'node')
     ->entityCondition('bundle', 'fetcher_site')
@@ -37,22 +38,44 @@ function _fetcher_service_get_list_of_sites($page, $options) {
     $query->fieldCondition('field_ftchr_machine_name', 'value', $name, 'CONTAINS');
   }
   if (!empty($options['server_hostname'])) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_hostname($options['server_hostname']);
-    if (empty($ids)) {
-      return array();
-    }
-    $query->fieldCondition('field_ftchr_environment', 'value', $ids);
+    $environment_filters[] = array(
+      'field' => 'field_ftchr_server',
+      'column' => 'target_id',
+      'value' => fetcher_services_lookup_server_nid_by_hostname($options['server_hostname']),
+    );
   }
   if (!empty($options['ip_address'])) {
-    $ids = fetcher_services_services_get_environment_ids_from_server_ip_address($options['ip_address']);
-    if (empty($ids)) {
-      return array();
-    }
-    $query->fieldCondition('field_ftchr_environment', 'value', $ids);
+    $environment_filters[] = array(
+      'field' => 'field_ftchr_server',
+      'column' => 'target_id',
+      'value' => fetcher_services_lookup_server_nid_by_ip_address($options['ip_address']),
+    );
   }
 
   if (!empty($environment)) {
-    $ids = fetcher_services_services_get_environment_ids_from_environment($environment);
+    $environment_filters[] = array(
+      'field' => 'field_ftchr_environment_name',
+      'column' => 'value',
+      'value' => $environment,
+    );
+  }
+
+  if (!empty($processes)) {
+    $environment_filters[] = array(
+      'field' => 'field_ftchr_site_processes',
+      'column' => 'value',
+      'value' => $processes,
+    );
+  }
+
+  // IF we need to filter by values in the environments then do so here.
+  if (!empty($environment_filters)) {
+    $ids = fetcher_services_services_get_environment_ids($environment_filters);
+    // Running this query with no ids will blow it up
+    // so we end it here since there will be no results.
+    if (empty($ids)) {
+      return array();
+    }
     $query->fieldCondition('field_ftchr_environment', 'value', $ids);
   }
 
@@ -177,6 +200,7 @@ function _fetcher_services_build_site_info($nid, $options = array()) {
       $data['site.working_directory'] = $environment->field_ftchr_working_dir->value() ? $environment->field_ftchr_working_dir->value() : '/var/www/' . $site_info['name'];
       $data['root'] = $environment->field_ftchr_root->value() ? $environment->field_ftchr_root->value() : $data['site.working_directory'] . '/webroot';
       $data['version'] = _fetcher_services_get_list_display_value('field_ftchr_drupal_version', $environment->field_ftchr_drupal_version->value());
+      $data['site.processes'] = $environment->field_ftchr_site_processes->value();
       $site_info['environments'][$environment->field_ftchr_environment_name->value()] = $data;
     }
   }

@@ -46,11 +46,10 @@ function fetcher_services_drush_command() {
   $items['fetcher-services-check-all-urls'] = array(
     'description' => 'Check the http status of all fetcher urls.',
     'bootstrap' => DRUSH_BOOTSTRAP_DRUSH,
-    'arguments' => array(
-      'environment' => 'Check all sites of the given environment.',
-    ),
     'options' => array(
       'support' => 'Check only the sites with or without support. This value must be either "true" or "false".',
+      'environment' => 'Check all sites of the given environment.',
+      'processes' => 'Filter the sites checked by the allowed processes.',
     ),
   );
 
@@ -123,31 +122,55 @@ function drush_fetcher_services_check_url($url) {
 }
 
 /**
- * Check the status of all of the urls of a given environment.
+ * Check the status of all of the urls.
  */
-function drush_fetcher_services_check_all_urls($environment) {
+function drush_fetcher_services_check_all_urls() {
   $support = drush_get_option('support');
+  $selected_environment = drush_get_option('environment');
+  $processes = explode(',', drush_get_option('processes'));
+
   $info = drush_fetcher_get_info_fetcher();
-  $sites = $info->getSitesByEnvironment($environment, $support);
+  $sites = $info->getAllSites(array(
+    'environment' => !empty($selected_environment) ? $selected_environment : NULL,
+    'support' => $support,
+    'processes' => !empty($processes) ? $processes : NULL,
+  ));
 
   $error_status = FETCHER_SERVICES_CHECK_OK;
+  drush_set_context('DRUSH_EXIT_CODE', $error_status);
   if (empty($sites)) {
+    drush_log(dt('No sites were checked.'), 'ok');
     return;
   }
 
   foreach ($sites as $site) {
-    if (!empty($site['environments'][$environment]['uri'])) {
-      $url = $site['environments'][$environment]['uri'];
+    if (empty($site['environments'])) {
+      continue;
+    }
+    foreach ($site['environments'] as $env_name => $environment) {
+      // Don't check the uri if it's not in the selected environment
+      // or if there is no uri.
+      if ((!empty($selected_environment) && $env_name != $selected_environment) || empty($environment['uri'])) {
+        continue;
+      }
+
+      $url = $environment['uri'];
       $parsed_url = parse_url($url);
       if (empty($parsed_url['scheme'])) {
         $url = 'http://' . $url;
       }
       $output = drush_invoke_process(NULL, 'fetcher-services-check-url', array($url));
       if ($output['error_status']) {
-        $error_status = $output['error_status'] > $error_status ? $output['error_status'] : $error_status;
+        $current_status = drush_get_context('DRUSH_EXIT_CODE');
+        $error_status = $output['error_status'] > $current_status ? $output['error_status'] : $current_status;
         drush_set_context('DRUSH_EXIT_CODE', $error_status);
       }
     }
+  }
+
+  // Add a message if all sites are up and running.
+  if (drush_get_context('DRUSH_EXIT_CODE') === FETCHER_SERVICES_CHECK_OK) {
+    drush_log(dt('All sites are up and running.'), 'ok');
   }
 }
 

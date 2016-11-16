@@ -21,12 +21,13 @@ function fetcher_services_field_group_info() {
   $field_group->parent_name = '';
   $field_group->data = array(
     'label' => 'Advanced',
-    'weight' => '4',
+    'weight' => '5',
     'children' => array(
       0 => 'field_field_ftchr_vcs_rootsubdir',
       1 => 'field_ftchr_branch',
       2 => 'field_ftchr_root',
       3 => 'field_ftchr_working_dir',
+      4 => 'field_ftchr_site_processes',
     ),
     'format_type' => 'fieldset',
     'format_settings' => array(

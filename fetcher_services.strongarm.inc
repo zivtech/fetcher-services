@@ -71,9 +71,16 @@ function fetcher_services_strongarm() {
       'token' => array(
         'custom_settings' => FALSE,
       ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
     ),
     'extra_fields' => array(
-      'form' => array(),
+      'form' => array(
+        'redirect' => array(
+          'weight' => '7',
+        ),
+      ),
       'display' => array(),
     ),
   );
@@ -107,6 +114,15 @@ function fetcher_services_strongarm() {
         'custom_settings' => FALSE,
       ),
       'token' => array(
+        'custom_settings' => FALSE,
+      ),
+      'issuemetadata' => array(
+        'custom_settings' => TRUE,
+      ),
+      'diff_standard' => array(
+        'custom_settings' => FALSE,
+      ),
+      'revision' => array(
         'custom_settings' => FALSE,
       ),
     ),
@@ -157,31 +173,6 @@ function fetcher_services_strongarm() {
   $strongarm = new stdClass();
   $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
   $strongarm->api_version = 1;
-  $strongarm->name = 'menu_options_fetcher_server';
-  $strongarm->value = array(
-    0 => 'main-menu',
-  );
-  $export['menu_options_fetcher_server'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'menu_parent_fetcher_server';
-  $strongarm->value = 'main-menu:0';
-  $export['menu_parent_fetcher_server'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'node_options_fetcher_server';
-  $strongarm->value = array(
-    0 => 'status',
-  );
-  $export['node_options_fetcher_server'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
   $strongarm->name = 'node_options_project_info';
   $strongarm->value = array(
     0 => 'status',
@@ -196,20 +187,6 @@ function fetcher_services_strongarm() {
     0 => 'status',
   );
   $export['node_options_server'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'node_preview_fetcher_server';
-  $strongarm->value = '1';
-  $export['node_preview_fetcher_server'] = $strongarm;
-
-  $strongarm = new stdClass();
-  $strongarm->disabled = FALSE; /* Edit this to true to make a default strongarm disabled initially */
-  $strongarm->api_version = 1;
-  $strongarm->name = 'node_submitted_fetcher_server';
-  $strongarm->value = 0;
-  $export['node_submitted_fetcher_server'] = $strongarm;
 
   return $export;
 }

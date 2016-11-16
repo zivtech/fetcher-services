@@ -208,6 +208,32 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['filters']['type']['value'] = array(
     'fetcher_site' => 'fetcher_site',
   );
+  $translatables['fetcher_servers'] = array(
+    t('Master'),
+    t('Fetcher Servers'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('A quick glance of important information about Fetcher Servers. Click through to view notes. 
+
+*Listed alphabetically
+
+<a href="/node/add/fetcher-site">+ Add a site</a>  <a href="/node/add/fetcher-server">+ Add a server</a>'),
+    t('Title'),
+    t('Host Name'),
+    t('IP Address'),
+    t('Machine Name'),
+    t('Remote User'),
+    t('Server Version'),
+    t('Page'),
+    t('Sites on This Server'),
+    t('field collection item from field_ftchr_environment'),
+    t('Content entity referenced from field_ftchr_server'),
+    t('All'),
+  );
   $export['fetcher_servers'] = $view;
 
   $view = new view();
@@ -222,11 +248,10 @@ function fetcher_services_views_default_views() {
 
   /* Display: Master */
   $handler = $view->new_display('default', 'Master', 'default');
-  $handler->display->display_options['title'] = 'Fetcher Sites';
+  $handler->display->display_options['title'] = 'Fetcher sites';
   $handler->display->display_options['use_more_always'] = FALSE;
   $handler->display->display_options['group_by'] = TRUE;
   $handler->display->display_options['access']['type'] = 'perm';
-  $handler->display->display_options['access']['perm'] = 'create fetcher_site content';
   $handler->display->display_options['cache']['type'] = 'none';
   $handler->display->display_options['query']['type'] = 'views_query';
   $handler->display->display_options['query']['options']['distinct'] = TRUE;
@@ -341,9 +366,21 @@ function fetcher_services_views_default_views() {
   $handler->display->display_options['filters']['status']['id'] = 'status';
   $handler->display->display_options['filters']['status']['table'] = 'node';
   $handler->display->display_options['filters']['status']['field'] = 'status';
-  $handler->display->display_options['filters']['status']['value'] = 1;
+  $handler->display->display_options['filters']['status']['value'] = '1';
   $handler->display->display_options['filters']['status']['group'] = 1;
-  $handler->display->display_options['filters']['status']['expose']['operator'] = FALSE;
+  $handler->display->display_options['filters']['status']['exposed'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['operator_id'] = '';
+  $handler->display->display_options['filters']['status']['expose']['label'] = 'Current';
+  $handler->display->display_options['filters']['status']['expose']['operator'] = 'status_op';
+  $handler->display->display_options['filters']['status']['expose']['identifier'] = 'status';
+  $handler->display->display_options['filters']['status']['expose']['required'] = TRUE;
+  $handler->display->display_options['filters']['status']['expose']['remember_roles'] = array(
+    2 => '2',
+    1 => 0,
+    4 => 0,
+    5 => 0,
+    3 => 0,
+  );
   /* Filter criterion: Content: Drupal Support (field_ftchr_site_support) */
   $handler->display->display_options['filters']['field_ftchr_site_support_value']['id'] = 'field_ftchr_site_support_value';
   $handler->display->display_options['filters']['field_ftchr_site_support_value']['table'] = 'field_data_field_ftchr_site_support';
@@ -363,13 +400,38 @@ function fetcher_services_views_default_views() {
 
   /* Display: Page */
   $handler = $view->new_display('page', 'Page', 'page');
-  $handler->display->display_options['path'] = 'admin/reports/fetcher-sites';
+  $handler->display->display_options['path'] = 'fetcher-sites';
   $handler->display->display_options['menu']['type'] = 'normal';
-  $handler->display->display_options['menu']['title'] = 'Fetcher Sites';
+  $handler->display->display_options['menu']['title'] = 'Fetcher sites';
   $handler->display->display_options['menu']['weight'] = '0';
-  $handler->display->display_options['menu']['name'] = 'management';
+  $handler->display->display_options['menu']['name'] = 'main-menu';
   $handler->display->display_options['menu']['context'] = 0;
-  $handler->display->display_options['menu']['context_only_inline'] = 0;
+  $translatables['fetcher_sites'] = array(
+    t('Master'),
+    t('Fetcher sites'),
+    t('more'),
+    t('Apply'),
+    t('Reset'),
+    t('Sort by'),
+    t('Asc'),
+    t('Desc'),
+    t('Items per page'),
+    t('- All -'),
+    t('Offset'),
+    t('« first'),
+    t('‹ previous'),
+    t('next ›'),
+    t('last »'),
+    t('<a href="/node/add/fetcher-site">+ Add a site</a>  <a href="/node/add/fetcher-server">+ Add a server</a>'),
+    t('Environment'),
+    t('Machine Name'),
+    t('Server'),
+    t('VCS URL'),
+    t('Drupal Support'),
+    t('Current'),
+    t('Drupal Support?'),
+    t('Page'),
+  );
   $export['fetcher_sites'] = $view;
 
   return $export;
